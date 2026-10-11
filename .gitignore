@@ -25,3 +25,4 @@ web/public/recorder/
 video/public/vo_user/
 video/public/vo*/*.webm
 .pytest_cache/
+video/public/face/
