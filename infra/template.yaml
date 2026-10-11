@@ -1,0 +1,363 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Vakeel - an AI advocate that reads India's environmental clearance filings for the people who live next to them.
+
+Parameters:
+  ExtractModelId:
+    Type: String
+    Default: global.amazon.nova-2-lite-v1:0
+  DraftModelId:
+    Type: String
+    Default: global.amazon.nova-2-lite-v1:0
+  MaxBedrockCallsPerDay:
+    Type: Number
+    Default: 150
+
+Globals:
+  Function:
+    Runtime: python3.12
+    Architectures: [arm64]
+    MemorySize: 1024
+    Timeout: 30
+    Environment:
+      Variables:
+        VAKEEL_TABLE: !Ref Table
+        VAKEEL_BUCKET: !Ref DocsBucket
+        VAKEEL_REGION: !Ref AWS::Region
+        VAKEEL_EXTRACT_MODEL_ID: !Ref ExtractModelId
+        VAKEEL_DRAFT_MODEL_ID: !Ref DraftModelId
+        VAKEEL_MAX_BEDROCK_CALLS_PER_DAY: !Ref MaxBedrockCallsPerDay
+
+Resources:
+  Table:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - { AttributeName: pk, AttributeType: S }
+        - { AttributeName: sk, AttributeType: S }
+        - { AttributeName: gsi1pk, AttributeType: S }
+        - { AttributeName: gsi1sk, AttributeType: S }
+      KeySchema:
+        - { AttributeName: pk, KeyType: HASH }
+        - { AttributeName: sk, KeyType: RANGE }
+      GlobalSecondaryIndexes:
+        - IndexName: gsi1
+          KeySchema:
+            - { AttributeName: gsi1pk, KeyType: HASH }
+            - { AttributeName: gsi1sk, KeyType: RANGE }
+          Projection: { ProjectionType: ALL }
+      TimeToLiveSpecification: { AttributeName: ttl, Enabled: true }
+
+  DocsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      CorsConfiguration:
+        CorsRules:
+          - AllowedMethods: [PUT, GET]
+            AllowedOrigins: ["*"]
+            AllowedHeaders: ["*"]
+            MaxAge: 3000
+      LifecycleConfiguration:
+        Rules:
+          - Id: expire-uploads
+            Status: Enabled
+            Prefix: uploads/
+            ExpirationInDays: 30
+
+  WebBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  WebOAC:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub "${AWS::StackName}-web-oac"
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  WebDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        DefaultRootObject: index.html
+        HttpVersion: http2and3
+        PriceClass: PriceClass_All
+        Origins:
+          - Id: web
+            DomainName: !GetAtt WebBucket.RegionalDomainName
+            OriginAccessControlId: !Ref WebOAC
+            S3OriginConfig: { OriginAccessIdentity: "" }
+        DefaultCacheBehavior:
+          TargetOriginId: web
+          ViewerProtocolPolicy: redirect-to-https
+          Compress: true
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6 # Managed-CachingOptimized
+        CustomErrorResponses:
+          - { ErrorCode: 403, ResponseCode: 200, ResponsePagePath: /index.html }
+          - { ErrorCode: 404, ResponseCode: 200, ResponsePagePath: /index.html }
+
+  WebBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref WebBucket
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal: { Service: cloudfront.amazonaws.com }
+            Action: s3:GetObject
+            Resource: !Sub "${WebBucket.Arn}/*"
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${WebDistribution}"
+
+  HttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowOrigins: ["*"]
+        AllowMethods: [GET, POST, OPTIONS]
+        AllowHeaders: [content-type]
+      DefaultRouteSettings:
+        ThrottlingBurstLimit: 20
+        ThrottlingRateLimit: 10
+
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../build/backend.zip
+      Handler: handlers.api.handler
+      MemorySize: 512
+      Timeout: 15
+      Environment:
+        Variables:
+          VAKEEL_INGEST_SM_ARN: !Ref IngestStateMachine
+          VAKEEL_OBJECTION_SM_ARN: !Ref ObjectionStateMachine
+      Policies:
+        - DynamoDBCrudPolicy: { TableName: !Ref Table }
+        - S3CrudPolicy: { BucketName: !Ref DocsBucket }
+        - StepFunctionsExecutionPolicy: { StateMachineName: !GetAtt IngestStateMachine.Name }
+        - StepFunctionsExecutionPolicy: { StateMachineName: !GetAtt ObjectionStateMachine.Name }
+        - Statement:
+            - Effect: Allow
+              Action: [states:SendTaskSuccess, states:SendTaskFailure]
+              Resource: "*"
+      Events:
+        Any:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref HttpApi
+            Path: /{proxy+}
+            Method: ANY
+
+  SegmentFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../build/backend.zip
+      Handler: handlers.workers.segment
+      MemorySize: 2048
+      Timeout: 120
+      Policies:
+        - DynamoDBCrudPolicy: { TableName: !Ref Table }
+        - S3CrudPolicy: { BucketName: !Ref DocsBucket }
+
+  AnalyzeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../build/backend.zip
+      Handler: handlers.workers.analyze
+      MemorySize: 1024
+      Timeout: 600
+      Policies:
+        - DynamoDBCrudPolicy: { TableName: !Ref Table }
+        - S3ReadPolicy: { BucketName: !Ref DocsBucket }
+        - Statement:
+            - Effect: Allow
+              Action: [bedrock:InvokeModel, bedrock:Converse]
+              Resource: "*"
+
+  FinalizeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../build/backend.zip
+      Handler: handlers.workers.finalize
+      Timeout: 60
+      Policies:
+        - DynamoDBCrudPolicy: { TableName: !Ref Table }
+        - Statement:
+            - Effect: Allow
+              Action: [geo-places:Geocode]
+              Resource: "*"
+
+  FailFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../build/backend.zip
+      Handler: handlers.workers.fail
+      Policies:
+        - DynamoDBCrudPolicy: { TableName: !Ref Table }
+
+  DraftFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../build/backend.zip
+      Handler: handlers.workers.draft
+      Timeout: 120
+      Policies:
+        - DynamoDBCrudPolicy: { TableName: !Ref Table }
+        - Statement:
+            - Effect: Allow
+              Action: [bedrock:InvokeModel, bedrock:Converse]
+              Resource: "*"
+
+  AwaitSignatureFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../build/backend.zip
+      Handler: handlers.workers.await_signature
+      Policies:
+        - DynamoDBCrudPolicy: { TableName: !Ref Table }
+
+  FileFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../build/backend.zip
+      Handler: handlers.workers.file_objection
+      Policies:
+        - DynamoDBCrudPolicy: { TableName: !Ref Table }
+
+  ExpireFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../build/backend.zip
+      Handler: handlers.workers.expire
+      Policies:
+        - DynamoDBCrudPolicy: { TableName: !Ref Table }
+
+  IngestStateMachine:
+    Type: AWS::Serverless::StateMachine
+    Properties:
+      Type: STANDARD
+      Policies:
+        - LambdaInvokePolicy: { FunctionName: !Ref SegmentFunction }
+        - LambdaInvokePolicy: { FunctionName: !Ref AnalyzeFunction }
+        - LambdaInvokePolicy: { FunctionName: !Ref FinalizeFunction }
+        - LambdaInvokePolicy: { FunctionName: !Ref FailFunction }
+      Definition:
+        Comment: Read a clearance filing - one Bedrock agent per project, in parallel, each claim verified against the source.
+        StartAt: Segment
+        States:
+          Segment:
+            Type: Task
+            Resource: !GetAtt SegmentFunction.Arn
+            ResultPath: $.segmented
+            Catch: [{ ErrorEquals: [States.ALL], ResultPath: $.error, Next: Fail }]
+            Next: ReadProjects
+          ReadProjects:
+            Type: Map
+            ItemsPath: $.segmented.projects
+            MaxConcurrency: 3
+            ItemSelector:
+              docId.$: $.docId
+              index.$: $$.Map.Item.Value
+            ItemProcessor:
+              ProcessorConfig: { Mode: INLINE }
+              StartAt: AnalyzeProject
+              States:
+                AnalyzeProject:
+                  Type: Task
+                  Resource: !GetAtt AnalyzeFunction.Arn
+                  Retry:
+                    - ErrorEquals: [ThrottlingException, ServiceUnavailableException, Lambda.TooManyRequestsException]
+                      IntervalSeconds: 5
+                      BackoffRate: 2
+                      MaxAttempts: 3
+                  Catch: [{ ErrorEquals: [States.ALL], ResultPath: $.error, Next: ProjectFailed }]
+                  End: true
+                ProjectFailed:
+                  Type: Pass
+                  Result: { failed: true }
+                  End: true
+            ResultPath: $.projects
+            Next: Finalize
+          Finalize:
+            Type: Task
+            Resource: !GetAtt FinalizeFunction.Arn
+            Catch: [{ ErrorEquals: [States.ALL], ResultPath: $.error, Next: Fail }]
+            End: true
+          Fail:
+            Type: Task
+            Resource: !GetAtt FailFunction.Arn
+            End: true
+
+  ObjectionStateMachine:
+    Type: AWS::Serverless::StateMachine
+    Properties:
+      Type: STANDARD
+      Policies:
+        - LambdaInvokePolicy: { FunctionName: !Ref DraftFunction }
+        - LambdaInvokePolicy: { FunctionName: !Ref AwaitSignatureFunction }
+        - LambdaInvokePolicy: { FunctionName: !Ref FileFunction }
+        - LambdaInvokePolicy: { FunctionName: !Ref ExpireFunction }
+      Definition:
+        Comment: Draft an objection, wait for the citizen's explicit signature, then file. Nothing is ever filed without a human.
+        StartAt: Draft
+        States:
+          Draft:
+            Type: Task
+            Resource: !GetAtt DraftFunction.Arn
+            Retry:
+              - ErrorEquals: [ThrottlingException, ServiceUnavailableException]
+                IntervalSeconds: 5
+                BackoffRate: 2
+                MaxAttempts: 3
+            Catch: [{ ErrorEquals: [States.ALL], ResultPath: $.error, Next: Expire }]
+            Next: AwaitSignature
+          AwaitSignature:
+            Type: Task
+            Resource: arn:aws:states:::lambda:invoke.waitForTaskToken
+            Parameters:
+              FunctionName: !Ref AwaitSignatureFunction
+              Payload:
+                objectionId.$: $.objectionId
+                taskToken.$: $$.Task.Token
+            TimeoutSeconds: 604800
+            ResultPath: $.signature
+            Catch: [{ ErrorEquals: [States.ALL], ResultPath: $.error, Next: Expire }]
+            Next: File
+          File:
+            Type: Task
+            Resource: !GetAtt FileFunction.Arn
+            Catch: [{ ErrorEquals: [States.ALL], ResultPath: $.error, Next: Expire }]
+            End: true
+          Expire:
+            Type: Task
+            Resource: !GetAtt ExpireFunction.Arn
+            End: true
+
+Outputs:
+  ApiUrl:
+    Value: !Sub "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com"
+  WebUrl:
+    Value: !Sub "https://${WebDistribution.DomainName}"
+  WebBucketName:
+    Value: !Ref WebBucket
+  DocsBucketName:
+    Value: !Ref DocsBucket
+  DistributionId:
+    Value: !Ref WebDistribution
+  TableName:
+    Value: !Ref Table
