@@ -21,6 +21,8 @@ Vakeel turns that filing into something a resident can act on in about a minute:
 
 Who it's for: people living next to proposed coal plants, mines and dams, and the panchayats, environmental lawyers and journalists who currently read these files by hand.
 
+How it differs from existing tools: permit trackers such as Open Permit list filings and generate letters citing laws. Vakeel reads what is actually inside the filing, proves every fact against its page, computes the impact in code, and explains it in the reader's language, so the objection rests on the government's own words.
+
 ## How did you use AWS?
 
 **AWS open source:** the AWS SDK for Python (boto3/botocore) for every service call, including the Bedrock Converse API with tool-forced JSON; AWS SAM (Serverless Application Model) for infrastructure as code (the `AWS::Serverless-2016-10-31` transform in `infra/template.yaml`); and the AWS CLI for packaging and deployment.

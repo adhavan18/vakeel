@@ -103,6 +103,12 @@ video/              launch film (Remotion), voiceover, score, encoder
 docs/blog/          build log
 ```
 
+## Related work
+
+- **[Open Permit](https://github.com/LarytheLord/Automated-Factory-Farm-Objection-Generator)** monitors permit listings across eight countries, including PARIVESH. It uses Gemini to write objection letters that cite laws, from stakeholder personas. Vakeel works one layer deeper: it reads the *contents* of the filing itself (hundreds of pages of committee minutes or an EIA), verifies every fact against the page it came from, computes the impact in code, and explains it to residents in their language before any letter is drafted. The letter's grounds are the committee's own words, with page numbers.
+- **CSE's citizen EIA toolkit** trains people to read clearance documents by hand. Vakeel automates the reading and keeps the evidence checkable.
+- **[india-environmental-approvals](https://github.com/Vonter/india-environmental-approvals)** is an open dataset of PARIVESH applications, and a natural source for automatic filing discovery.
+
 ## Limits
 
 - Vakeel never submits anything itself. Residents send the signed letter from their own email or by post, so it carries their identity.
