@@ -1,3 +1,4 @@
+import { Component } from "react";
 import { useRoute, go } from "./lib.js";
 import { MOCK } from "./api.js";
 import Home from "./components/Home.jsx";
@@ -42,6 +43,24 @@ function Footer() {
   );
 }
 
+class Boundary extends Component {
+  state = { error: null };
+  static getDerivedStateFromError(error) {
+    return { error };
+  }
+  render() {
+    if (!this.state.error) return this.props.children;
+    return (
+      <div className="mx-auto max-w-3xl px-5 py-24">
+        <p className="serif text-4xl">Something went wrong on this page.</p>
+        <button onClick={() => window.location.reload()} className="mt-6 rounded-full bg-paper px-5 py-2 text-sm font-medium text-ink">
+          Reload
+        </button>
+      </div>
+    );
+  }
+}
+
 export default function App() {
   const parts = useRoute();
   let page;
@@ -52,7 +71,9 @@ export default function App() {
   return (
     <div className="min-h-screen">
       <Header />
-      <main>{page}</main>
+      <main>
+        <Boundary key={parts.join("/")}>{page}</Boundary>
+      </main>
       <Footer />
     </div>
   );

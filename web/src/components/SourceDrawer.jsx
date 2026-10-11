@@ -22,7 +22,7 @@ export default function SourceDrawer({ docId, source, onClose }) {
   }, [page]);
 
   let body = null;
-  if (page) {
+  if (page && source) {
     const range = source.quote ? highlightRange(page.text, source.quote) : null;
     body = range ? (
       <>
