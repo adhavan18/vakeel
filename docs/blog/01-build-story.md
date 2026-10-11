@@ -8,9 +8,19 @@ On page 18 there's this line:
 
 > "Public hearing for the 2x660 MW (Phase - II) is exempted as per S.O. 1247(E)…"
 
-That's a 1,320 MW coal expansion at Korba, Chhattisgarh, 2.2 km from the Barpall reserved forest. It draws 104,110 cubic metres a day from the Hasdeo River. On page 25, the committee **recommended it**.
+That's a 1,320 MW coal expansion at Korba, Chhattisgarh, 2.2 km from the Barpall reserved forest. It draws 104,110 cubic metres a day from the Hasdeo River, the river at the heart of Hasdeo Arand, where Adivasi communities have fought coal mining for over a decade. On page 25, the committee **recommended it**.
 
-Indian law gives people next to these projects a voice: public hearings and written objections. But you can't object to a document you can't read. So we built **Vakeel** (Hindi for *advocate*): an AI that reads these filings for the people next door, and helps them object before approval.
+S.O. 1247(E) is a March 2021 amendment to India's EIA Notification. When a project's clearance lapses before it's finished, the committee may waive the public hearing if the project is already **at least half built**. Korba was more than 75% built. The people who will breathe its smoke never got a hearing.
+
+## Why this is an air problem, not a paperwork problem
+
+- Studies link pollution from India's coal power plants to **as many as 115,000 premature deaths a year**.
+- In **July 2025**, a revised notification exempted **78% of India's coal plants** from installing flue-gas desulphurisation (sulphur scrubbers).
+- Committee scrutiny is thin. One analysis found the river-valley committee **rejected nothing** in six years.
+
+That leaves the environmental clearance as the last point where anyone can say no to more coal smoke, more river water drawn and more forest lost. The law gives the people next door a voice there, through public hearings and written objections. But you can't object to a document you can't read.
+
+So we built **Vakeel** (Hindi for *advocate*): an AI that reads these filings for the people next door, and helps them object before approval.
 
 ![Vakeel project page: the Korba expansion decoded, every figure linked to its source page](../../assets/screenshots/04-project.png)
 
@@ -27,7 +37,7 @@ An LLM summarising legal documents is easy to build and dangerous to ship. If it
 
 ## Parallel agents with Step Functions
 
-Committee minutes bundle several projects, and describe each one twice: once with its details near the front, again with the committee's deliberations near the back. Vakeel's segmenter stitches each project's two halves back together. Then a **Step Functions Map state** fans out one Bedrock agent per project, three at a time, with retries. Every agent streams progress into DynamoDB, and the UI shows six lanes reading in parallel. The whole 246-page filing goes through in about 35 seconds for roughly 200k tokens.
+Committee minutes bundle several projects, and describe each one twice: once with its details near the front, again with the committee's deliberations near the back. Vakeel's segmenter stitches each project's two halves back together. Then a **Step Functions Map state** fans out one Bedrock agent per project, three at a time, with retries. Every agent streams progress into DynamoDB, and the UI shows six lanes reading in parallel. The whole 246-page filing goes through in under a minute for roughly 200k tokens.
 
 ![Six Bedrock agents reading one filing in parallel, with a live log](../../assets/screenshots/02-agents.png)
 
@@ -50,3 +60,13 @@ Amazon Bedrock (Nova 2 Lite) · AWS Step Functions · AWS Lambda · Amazon Dynam
 ## What's next
 
 Watching PARIVESH for new filings by district, then WhatsApp and voice alerts in local languages, so a farmer near the next proposed plant hears about it from Vakeel before the objection window closes, not after.
+
+## Sources
+
+- S.O. 1247(E), 18 March 2021, amendment to the EIA Notification 2006 (public-hearing exemption for projects at least 50% implemented): https://dste.py.gov.in/SEIAA/pdf/Notifications/N38.pdf
+- Coal power and premature deaths in India: https://www.scientificamerican.com/article/coal-fired-power-in-india-may-cause-more-than-100000-premature-deaths-annually/
+- July 2025 FGD exemption for 78% of coal plants (CREA via Down To Earth): https://www.downtoearth.org.in/energy/most-sulphur-dioxide-around-delhi-comes-from-coal-plants-exempted-from-pollution-rules-crea
+- EAC rejection analysis (SANDRP): https://sandrp.in/2013/02/05/analysis-of-moefs-eac-on-river-valley-projects-the-expert-approval-committee-has-zero-rejection-in-six-years/
+- Hasdeo Arand protests: https://scroll.in/article/1031123/threatened-by-coal-mining-hasdeo-arand-forest-is-receiving-a-groundswell-of-support-on-the-internet
+- Source filing (EAC Thermal minutes, 20 June 2025): https://parivesh.nic.in/utildoc/131396604_1751547453000.pdf
+- Live app: https://d4i9n8m04ddaa.cloudfront.net · Code: https://github.com/adhavan18/vakeel
