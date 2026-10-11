@@ -71,7 +71,7 @@ export function PageWall({ scene }) {
   const pages = Array.from({ length: 60 }, (_, i) => `pages/p${String(i + 1).padStart(3, "0")}.jpg`);
   const scale = interpolate(f, [0, scene.frames * 0.75], [3.4, 0.92], { ...clamp, easing: ease });
   const count = Math.round(interpolate(f, [10, scene.frames * 0.6], [1, 246], clamp));
-  const chars = Math.round(interpolate(f, [10, scene.frames * 0.6], [0, 621869], clamp));
+  const chars = Math.round(interpolate(f, [10, scene.frames * 0.6], [0, 620940], clamp));
   const tagO = interpolate(f, [scene.frames * 0.62, scene.frames * 0.72], [0, 1], clamp);
   return (
     <AbsoluteFill style={{ background: C.ink, overflow: "hidden" }}>
@@ -336,6 +336,7 @@ export function End() {
       </div>
       <div style={{ fontFamily: sans, fontSize: 32, color: C.muted, marginTop: 6 }}>Read the filing before it's approved.</div>
       <div style={{ fontFamily: mono, fontSize: 22, color: C.dim, marginTop: 50 }}>{clips.webUrl || ""}</div>
+      <div style={{ fontFamily: mono, fontSize: 22, color: C.dim, marginTop: 10 }}>github.com/adhavan18/vakeel</div>
       <div style={{ fontFamily: mono, fontSize: 18, color: C.dim, marginTop: 14 }}>Built on AWS · Environmental Hacks 2026 · Air track</div>
     </AbsoluteFill>
   );

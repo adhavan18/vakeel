@@ -21,7 +21,9 @@ SR = 44100
 FPS = 30
 
 CONFIG = {
+    "film": {"script": "script_launch.json", "frames": "out/frames_film", "out": "out/vakeel-launch-film.mp4", "vo_delay": 8, "pad": 0.9, "duck": True, "music_gain": 0.42},
     "launch": {"script": "script.json", "frames": "out/frames_launch", "out": "out/vakeel-launch.mp4", "vo_delay": 8, "pad": 0.9, "duck": True, "music_gain": 0.42},
+    "final": {"script": "script_v2.json", "frames": "out/frames_final", "out": "out/vakeel-launch-final.mp4", "vo_delay": 8, "pad": 0.9, "duck": True, "music_gain": 0.42},
     "launch2": {"script": "script_v2.json", "frames": "out/frames_launch2", "out": "out/vakeel-launch-v2.mp4", "vo_delay": 8, "pad": 0.9, "duck": True, "music_gain": 0.42},
     "short": {"script": "short_script.json", "frames": "out/frames_short", "out": "out/vakeel-short.mp4", "vo_delay": 6, "pad": 0.6, "duck": False, "music_gain": 0.32},
 }[sys.argv[1]]
@@ -86,10 +88,10 @@ if peak > 0.98:
 
 frames_dir = ROOT / CONFIG["frames"]
 files = sorted(frames_dir.glob("*.jpeg")) or sorted(frames_dir.glob("*.jpg"))
-assert len(files) >= total_frames - 1, f"expected {total_frames} frames, found {len(files)}"
+assert len(files) == total_frames, f"expected {total_frames} frames, found {len(files)}"
 
 out = av.open(str(ROOT / CONFIG["out"]), "w", options={"movflags": "+faststart"})
-vstream = out.add_stream("libx264", rate=FPS, options={"crf": "18", "preset": "medium"})
+vstream = out.add_stream("libx264", rate=FPS, options={"crf": "18", "preset": "fast" if sys.argv[1] == "film" else "medium"})
 first = Image.open(files[0])
 vstream.width, vstream.height = first.size
 vstream.pix_fmt = "yuv420p"
@@ -98,6 +100,8 @@ astream.bit_rate = 192_000
 astream.layout = "stereo"
 
 for i, f in enumerate(files):
+    if i % 300 == 0:
+        print(f"encoding {i}/{len(files)}", flush=True)
     frame = av.VideoFrame.from_image(Image.open(f).convert("RGB"))
     frame.pts = i
     for p in vstream.encode(frame):

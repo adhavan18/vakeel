@@ -15,7 +15,7 @@ function Stakes({ scene }) {
   const rows = [
     ["115,000", "early deaths a year linked to India's coal power", "Conservation Action Trust / Urban Emissions"],
     ["78%", "of coal plants exempted from sulphur scrubbers, July 2025", "MoEFCC notification, via CREA"],
-    ["1", "clearance file: the last place anyone can say no", ""],
+    ["246", "pages between a community and a coal plant", ""],
   ];
   const at = [0.02, 0.3, 0.6].map((x) => Math.round(x * n));
   return (
