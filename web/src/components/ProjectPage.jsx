@@ -113,6 +113,8 @@ export default function ProjectPage({ docId, n }) {
   const t = lang === "en" ? { headline: p.headline, dek: p.dek } : p.translations.find((x) => x.lang === lang) || {};
   const loc = p.location || {};
   const decision = p.committeeDecision || {};
+  // Records analysed before the coal-unit guard in impact.py can hold a "0.0 trains" metric.
+  const metrics = p.impact.metrics.filter((m) => m.id !== "coal" || m.value >= 0.1);
   const open = (item) => setSource({ page: item.page, quote: item.quote });
 
   return (
@@ -163,9 +165,9 @@ export default function ProjectPage({ docId, n }) {
         </div>
       )}
 
-      {p.impact.metrics.length > 0 && (
+      {metrics.length > 0 && (
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {p.impact.metrics.map((m, i) => (
+          {metrics.map((m, i) => (
             <Metric key={m.id} m={m} i={i} factors={p.impact.factors} onSource={open} />
           ))}
         </div>

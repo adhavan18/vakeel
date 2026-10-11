@@ -26,6 +26,12 @@ def test_small_water_draws_read_as_people_not_fractions_of_a_lakh():
     assert out["metrics"][0]["headline"] == "Enough water for 6,889 people, every day"
 
 
+def test_coal_in_the_wrong_unit_shows_no_trains():
+    # "Proposed TPP 3.50" (million tonnes a year) read as tonnes a day must not become "0.0 trains".
+    out = impact.compute("coal_power", [fact("coal_tonnes_per_day", 3.5)])
+    assert not [m for m in out["metrics"] if m["id"] == "coal"]
+
+
 def test_air_flag_only_when_baseline_exceeds_the_annual_standard():
     flags = impact.compute("coal_power", [fact("pm10_max_ugm3", 68.1), fact("so2_max_ugm3", 19.6)])["airFlags"]
     assert [f["pollutant"] for f in flags] == ["PM10"]

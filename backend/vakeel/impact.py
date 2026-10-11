@@ -95,8 +95,10 @@ def compute(project_type: str, facts: list[dict]) -> dict:
         })
 
     coal = by_key.get("coal_tonnes_per_day")
-    if coal:
-        trains = coal["value"] / _f("rake_t")
+    trains = coal["value"] / _f("rake_t") if coal else 0
+    # Under a tenth of a rake a day is not a coal plant's burn: the filing gave the figure
+    # in another unit (usually million tonnes a year), so we show nothing rather than guess.
+    if coal and trains >= 0.1:
         metrics.append({
             "id": "coal",
             "value": round(trains, 1),
