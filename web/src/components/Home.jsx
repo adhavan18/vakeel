@@ -164,12 +164,34 @@ const STEPS = [
 ];
 
 function Feed({ data }) {
+  const [q, setQ] = useState("");
   if (!data?.length) return null;
+  const query = q.trim().toLowerCase();
+  const match = (p) =>
+    !query || [p.district, p.state, p.proponent, p.headline].filter(Boolean).some((v) => v.toLowerCase().includes(query));
+  const groups = data.map((d) => ({ ...d, projects: d.projects.filter(match) })).filter((d) => d.projects.length);
   return (
     <section id="filings" className="mx-auto max-w-6xl scroll-mt-16 px-5 pt-24">
       <Eyebrow>On the record</Eyebrow>
-      <h2 className="mt-1 text-[40px] font-semibold leading-tight tracking-[-0.03em]">What's being approved right now.</h2>
-      {data.map(({ document, projects }) => (
+      <div className="mt-1 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <h2 className="text-[40px] font-semibold leading-tight tracking-[-0.03em]">What's being approved near you.</h2>
+        <label className="relative w-full sm:w-80">
+          <span className="sr-only">Search your district, state or company</span>
+          <input
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="Search your district, e.g. Korba"
+            className="w-full rounded-full border border-line bg-white px-5 py-3 text-[15px] outline-none transition focus:border-action focus:ring-4 focus:ring-action/15"
+          />
+        </label>
+      </div>
+      {groups.length === 0 && (
+        <div className="surface mt-8 rounded-3xl p-8 text-center">
+          <p className="text-[19px] font-semibold">Nothing read for “{q}” yet.</p>
+          <p className="mt-1 text-muted">Find the filing for your area on PARIVESH and drop it in below. Vakeel will read it in under a minute.</p>
+        </div>
+      )}
+      {groups.map(({ document, projects }) => (
         <div key={document.docId} className="mt-10">
           <a href={`#/doc/${document.docId}`} className="inline-flex items-center text-[15px] font-medium text-action hover:underline">
             {document.fileName.replace(/\.pdf$/i, "")} · {fmt(document.pages)} pages <ChevronRight className="h-4 w-4" />
@@ -225,8 +247,8 @@ export function ProjectCard({ docId, p, i = 0 }) {
 export default function Home({ focus }) {
   const { data } = useFeed();
   useEffect(() => {
-    if (focus === "how" || focus === "filings") setTimeout(() => document.getElementById(focus)?.scrollIntoView({ behavior: "smooth" }), 300);
-  }, [focus]);
+    if (focus === "how" || (focus === "filings" && data)) setTimeout(() => document.getElementById(focus)?.scrollIntoView({ behavior: "smooth" }), 150);
+  }, [focus, data]);
   const lead = data?.find((d) => /26th/.test(d.document.fileName)) || data?.[0];
   const leadHref = lead ? `#/doc/${lead.document.docId}/p/${lead.projects[0]?.index ?? 1}` : "#/filings";
 
@@ -258,12 +280,12 @@ export default function Home({ focus }) {
             Vakeel reads it, proves every number against the page, and helps you object while it still counts.
           </motion.p>
           <div className="mt-8 flex flex-wrap items-center gap-5">
-            <button onClick={() => go("/read")} className="press rounded-full bg-action px-6 py-3 text-[17px] font-medium text-white hover:bg-[#0077ed]">
-              Read a filing
+            <button onClick={() => go("/filings")} className="press rounded-full bg-action px-6 py-3 text-[17px] font-medium text-white hover:bg-[#0077ed]">
+              See what's being approved
             </button>
-            <a href={leadHref} className="inline-flex items-center text-[17px] text-action hover:underline">
-              See what it found <ChevronRight className="h-5 w-5" />
-            </a>
+            <button onClick={() => go("/read")} className="inline-flex items-center text-[17px] text-action hover:underline">
+              Read a new filing <ChevronRight className="h-5 w-5" />
+            </button>
           </div>
         </div>
         <EvidenceStack href={leadHref} />
