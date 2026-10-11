@@ -10,9 +10,13 @@ Vakeel reads India's environmental clearance filings for the people who live nex
 
 ## Why
 
-Every coal plant, mine and dam in India needs an environmental clearance. The paperwork is public on [PARIVESH](https://parivesh.nic.in), and the law gives affected people a voice, but nobody uses it, because nobody can read it.
+India's coal power is linked to [as many as 115,000 premature deaths a year](https://www.scientificamerican.com/article/coal-fired-power-in-india-may-cause-more-than-100000-premature-deaths-annually/). In July 2025, [78% of coal plants were exempted from installing sulphur scrubbers](https://www.downtoearth.org.in/energy/most-sulphur-dioxide-around-delhi-comes-from-coal-plants-exempted-from-pollution-rules-crea). The environmental clearance is the last point where anyone can say no to a new plant, mine or dam, and the law gives affected people a voice there. But the files are public on [PARIVESH](https://parivesh.nic.in), hundreds of pages long, and nobody can read them.
 
-In the Expert Appraisal Committee (Thermal) minutes of 20 June 2025, **page 18** records that a 1,320 MW coal expansion at Korba, 2.2 km from a reserved forest, was *exempted from its public hearing*. **Page 25** records that the committee *recommended* it. Vakeel finds that in under a minute.
+In the Expert Appraisal Committee (Thermal) minutes of 20 June 2025:
+- **Page 18:** a 1,320 MW coal expansion at Korba was *exempted from its public hearing*. It sits 2.2 km from a reserved forest and draws 104,110 m³ a day from the Hasdeo River. The exemption came under [S.O. 1247(E)](https://dste.py.gov.in/SEIAA/pdf/Notifications/N38.pdf), a 2021 rule that waives hearings for projects already at least half built.
+- **Page 25:** the committee *recommended* it.
+
+Vakeel finds that in under a minute.
 
 ## What it does
 
@@ -36,7 +40,7 @@ In the Expert Appraisal Committee (Thermal) minutes of 20 June 2025, **page 18**
 | EAC Coal Mining, 8 Dec 2025 | 250 | 45 s | Central Coalfields' Karo mine *ran at 15 MTPA while allowed 1.5*, recommended; UltraTech clears 652.9 ha of forest |
 | EAC Thermal, 30 Apr 2026 | 236 | 39 s | Jhabua Power dumping ash without approval, returned |
 
-Across these: 732 pages, 17 projects, 224 claims verified and 75 rejected.
+Across these: 732 pages, 17 projects, 219 claims verified and 65 rejected.
 
 ## Architecture
 
