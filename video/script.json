@@ -30,7 +30,7 @@
       "id": "agents",
       "min": 15,
       "clip": "agents",
-      "vo": "Drop in any environmental clearance filing. AWS Step Functions splits it into projects, and sends one Amazon Bedrock agent to read each one, in parallel. Two hundred and forty-six pages, read in about a minute."
+      "vo": "Drop in any environmental clearance filing. AWS Step Functions splits it into projects, and sends one Amazon Bedrock agent to read each one, in parallel. Two hundred and forty-six pages, read in thirty-five seconds."
     },
     {
       "id": "verify",

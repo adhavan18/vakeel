@@ -1,4 +1,4 @@
-import { AbsoluteFill, Audio, Html5Video, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Audio, Html5Video, Img, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import script from "../short_script.json";
 import vo from "../public/vo_short/manifest.json";
 import clips from "../public/clips/manifest.json";
@@ -32,31 +32,57 @@ function Headline({ children, top = 150, size = 76, color = C.paper, italic = fa
   );
 }
 
-function Hook({ scene }) {
+function QuoteScene({ scene, page, label, quote, mark, headline, after }) {
   const f = useCurrentFrame();
+  const markP = interpolate(f, [18, 40], [0, 1], clamp);
+  const afterO = after ? interpolate(f, [scene.frames * 0.5, scene.frames * 0.6], [0, 1], clamp) : 0;
+  const [pre, hit, post] = quote;
   return (
-    <AbsoluteFill style={{ background: "#151517" }}>
-      <ZoomPage f={f} start={0} end={scene.frames + 10} src="pages/hi_p018.jpg" region={[90, 830, 1220, 940]} marks={[[97, 848, 1212, 880], [97, 878, 415, 910]]} label="PAGE 18 OF 246" />
-      <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(11,11,12,0.96) 0%, rgba(11,11,12,0) 32%, rgba(11,11,12,0) 62%, rgba(11,11,12,0.96) 100%)" }} />
-      <Headline>A 1,320 MW coal plant expansion skipped its <span style={{ color: C.ember }}>public hearing.</span></Headline>
+    <AbsoluteFill style={{ background: C.ink }}>
+      <Img src={staticFile(page)} style={{ position: "absolute", width: 1300, left: -110, top: 120, opacity: 0.16, filter: "blur(2px)" }} />
+      <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(11,11,12,0.9) 0%, rgba(11,11,12,0.55) 40%, rgba(11,11,12,0.92) 100%)" }} />
+      <Headline top={150} size={74}>{headline}</Headline>
+      <div style={{ position: "absolute", top: 640, left: 70, right: 70 }}>
+        <div style={{ fontFamily: mono, fontSize: 28, letterSpacing: "0.2em", color: C.muted }}>{label}</div>
+        <div style={{ marginTop: 24, background: "#f4f0e8", color: "#1c1a17", borderRadius: 6, padding: "40px 44px", fontFamily: "Georgia, serif", fontSize: 52, lineHeight: 1.32, boxShadow: "0 40px 100px rgba(0,0,0,0.6)" }}>
+          {pre}
+          <span style={{ background: `linear-gradient(90deg, rgba(255,90,31,0.35) ${markP * 100}%, transparent ${markP * 100}%)`, borderBottom: `5px solid ${mark}` }}>{hit}</span>
+          {post}
+        </div>
+      </div>
+      {after && (
+        <div style={{ position: "absolute", top: 1330, left: 70, right: 70, opacity: afterO, fontFamily: serif, fontSize: 80, lineHeight: 1.02, color: C.paper }}>
+          Nobody objected. <span style={{ fontStyle: "italic", color: C.ember }}>Nobody could read it.</span>
+        </div>
+      )}
     </AbsoluteFill>
   );
 }
 
-function Rec({ scene }) {
-  const f = useCurrentFrame();
-  const late = interpolate(f, [scene.frames * 0.45, scene.frames * 0.55], [0, 1], clamp);
+function Hook({ scene }) {
   return (
-    <AbsoluteFill style={{ background: "#151517" }}>
-      <ZoomPage f={f} start={0} end={scene.frames + 10} src="pages/hi_p025.jpg" region={[90, 1215, 1220, 1300]} marks={[[97, 1230, 1212, 1260], [1010, 1228, 1172, 1262, true]]} label="PAGE 25 OF 246" />
-      <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(11,11,12,0.96) 0%, rgba(11,11,12,0) 32%, rgba(11,11,12,0) 62%, rgba(11,11,12,0.96) 100%)" }} />
-      <Headline>Then the committee <span style={{ color: C.ember }}>recommended it.</span></Headline>
-      <div style={{ position: "absolute", bottom: 330, left: 70, right: 70, opacity: late, fontFamily: serif, fontSize: 84, lineHeight: 1.02, color: C.paper }}>
-        Nobody objected.
-        <br />
-        <span style={{ fontStyle: "italic", color: C.ember }}>Nobody could read it.</span>
-      </div>
-    </AbsoluteFill>
+    <QuoteScene
+      scene={scene}
+      page="pages/hi_p018.jpg"
+      label="PAGE 18 OF 246"
+      mark={C.ember}
+      headline={<>A 1,320 MW coal expansion, 2.2 km from a reserved forest.</>}
+      quote={["“Public hearing for the 2x660 MW (Phase - II) ", "is exempted", " as per S.O. 1247(E)…”"]}
+    />
+  );
+}
+
+function Rec({ scene }) {
+  return (
+    <QuoteScene
+      scene={scene}
+      page="pages/hi_p025.jpg"
+      label="PAGE 25 OF 246"
+      mark={C.ember}
+      headline={<>Then the committee decided.</>}
+      quote={["“…the committee ", "recommended", " the instant proposal for grant of Environment Clearance…”"]}
+      after
+    />
   );
 }
 
@@ -73,9 +99,9 @@ function Title() {
 }
 
 const CLIP_SETUP = {
-  agents: { from: 0.3, label: "6 Bedrock agents read in parallel", sub: "Every number verified against the page" },
-  project: { from: 0.0, label: "Plain language. In Hindi.", sub: "Costs computed by code, not by AI" },
-  object: { from: 0.55, label: "A legal objection, signed by a human", sub: "Locked with a SHA-256 receipt" },
+  agents: { from: 0.3, zoom: 1.12, x: 150, y: 150, label: "6 Bedrock agents read in parallel", sub: "Every number verified against the page" },
+  project: { from: 0.0, zoom: 1.12, x: 150, y: 60, label: "Plain language. In Hindi.", sub: "Costs computed by code, not by AI" },
+  object: { from: 0.55, zoom: 0.92, x: 140, y: 120, label: "A legal objection, signed by a human", sub: "Locked with a SHA-256 receipt" },
 };
 
 function Clip({ scene }) {
@@ -85,12 +111,12 @@ function Clip({ scene }) {
   const sceneSec = scene.frames / SHORT_FPS;
   const available = meta ? meta.seconds * (1 - setup.from) : sceneSec;
   const rate = Math.min(5, Math.max(0.8, available / sceneSec));
-  const zoom = interpolate(f, [0, scene.frames], [1.32, 1.42]);
+  const zoom = setup.zoom * interpolate(f, [0, scene.frames], [1, 1.04]);
   return (
     <AbsoluteFill style={{ background: `radial-gradient(ellipse at 50% 100%, rgba(255,90,31,0.25), ${C.ink} 55%)` }}>
       <Headline top={170} size={70}>{setup.label}</Headline>
       <div style={{ position: "absolute", top: 520, left: 0, right: 0, height: 900, overflow: "hidden" }}>
-        <div style={{ width: 1600, height: 900, transform: `translateX(${(1080 - 1600 * zoom) / 2}px) scale(${zoom})`, transformOrigin: "0 0" }}>
+        <div style={{ width: 1600, height: 900, transform: `translate(${-setup.x * zoom}px, ${-setup.y * zoom}px) scale(${zoom})`, transformOrigin: "0 0" }}>
           {meta ? (
             <Html5Video src={staticFile(`clips/${scene.clip}.webm`)} startFrom={Math.round(meta.seconds * setup.from * SHORT_FPS)} playbackRate={rate} muted style={{ width: 1600, height: 900 }} />
           ) : (

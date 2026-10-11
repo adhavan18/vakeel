@@ -23,7 +23,9 @@ Who it's for: people living next to proposed coal plants, mines and dams, and th
 
 ## How did you use AWS?
 
-AWS is the product, not just the hosting. Everything runs serverless in ap-southeast-2, deployed with CloudFormation (SAM transform):
+**AWS open source:** the AWS SDK for Python (boto3/botocore) for every service call, including the Bedrock Converse API with tool-forced JSON; AWS SAM (Serverless Application Model) for infrastructure as code (the `AWS::Serverless-2016-10-31` transform in `infra/template.yaml`); and the AWS CLI for packaging and deployment.
+
+**AWS services:** AWS is the product, not just the hosting. Everything runs serverless in ap-southeast-2, deployed with CloudFormation (SAM transform):
 
 - **Amazon Bedrock (Nova 2 Lite, global inference profile):** the core reasoning. The Converse API uses tool-forced JSON schemas to extract facts, nearby rivers and forests, concerns and the committee's decision. A second editor pass writes headlines and Hindi/Odia translations. A third call drafts the letter's opening and requests.
 - **AWS Step Functions:** the ingest state machine uses a Map state to fan out one agent per project (MaxConcurrency 3) with retries. The objection state machine uses `lambda:invoke.waitForTaskToken`, so nothing proceeds until a human signs (7-day timeout, then expiry).
@@ -47,6 +49,18 @@ Tool-forced JSON in the Bedrock Converse API made model output safe to verify in
 ## Links (fill in)
 
 - Live: https://d4i9n8m04ddaa.cloudfront.net
-- Code: <GitHub URL>
+- Code: https://github.com/adhavan18/vakeel
 - Demo video: <YouTube URL>
 - Blog: <AWS Builder Center URL>
+
+## Team leader's contributions
+
+Designed and built Vakeel end to end:
+- **Product and ideation:** found the leverage point (the EIA public-objection window) and the real case in a 246-page EAC filing.
+- **Pipeline:** Bedrock extraction with tool-forced JSON, the deterministic verifier (verbatim quotes, number checks, table-row matching), impact math with sourced factors, the editor and translation pass, and objection drafting.
+- **AWS architecture:** a Step Functions Map state for parallel agents, waitForTaskToken for the human signature, Lambda, DynamoDB, S3, CloudFront and API Gateway, deployed with SAM/CloudFormation in ap-southeast-2, plus cost guardrails.
+- **Web app:** React UI with the live agent console, evidence drawer and signing flow.
+- **Launch film:** Remotion, an Amazon Polly voiceover, a generated score, and real footage recorded with Playwright.
+- **Writing:** four build-log blogs.
+
+(If teammates worked on parts of this, split the bullets above into their contribution fields.)
