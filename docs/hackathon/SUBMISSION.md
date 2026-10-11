@@ -26,6 +26,8 @@ Who it's for: people living next to proposed coal plants, mines and dams, and th
 
 How it differs from existing tools: permit trackers such as Open Permit list filings and generate letters citing laws. Vakeel reads what is actually inside the filing, proves every fact against its page, computes the impact in code, and explains it in the reader's language, so the objection rests on the government's own words.
 
+**Impact and sustainability:** reading a filing costs cents (a 246-page filing is about 200k tokens on Nova 2 Lite, fully serverless, with near-zero idle cost), so Vakeel can stay free for affected communities. The same engine serves people who pay to read these files today: ESG and lender due-diligence teams screening project risk, environmental law firms and NGOs (hours of reading become a verified, page-cited brief), and newsrooms. Next: watch PARIVESH for every new filing by district and send WhatsApp and voice alerts in local languages, so communities hear about a project before the objection window closes.
+
 ## How did you use AWS?
 
 **AWS open source:** the AWS SDK for Python (boto3/botocore) for every service call, including the Bedrock Converse API with tool-forced JSON; AWS SAM (Serverless Application Model) for infrastructure as code (the `AWS::Serverless-2016-10-31` transform in `infra/template.yaml`); and the AWS CLI for packaging and deployment.
