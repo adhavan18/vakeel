@@ -1,19 +1,19 @@
 {
   "agents": {
-    "seconds": 53,
+    "seconds": 68.4,
     "url": "d4i9n8m04ddaa.cloudfront.net"
   },
-  "docHash": "#/doc/f2c15b9952d2",
+  "docHash": "#/doc/d513c6a74daf",
   "verify": {
-    "seconds": 11.9,
+    "seconds": 12.3,
     "url": "d4i9n8m04ddaa.cloudfront.net"
   },
   "project": {
-    "seconds": 27.5,
+    "seconds": 26.4,
     "url": "d4i9n8m04ddaa.cloudfront.net"
   },
   "object": {
-    "seconds": 28.6,
+    "seconds": 28.8,
     "url": "d4i9n8m04ddaa.cloudfront.net"
   },
   "webUrl": "d4i9n8m04ddaa.cloudfront.net"

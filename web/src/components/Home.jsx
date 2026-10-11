@@ -43,7 +43,7 @@ function EvidenceStack({ href }) {
       >
         <div className="flex items-center justify-between gap-3">
           <DecisionBadge outcome="recommended" />
-          <span className="text-[12px] font-medium text-muted">Read by Vakeel in 35 s</span>
+          <span className="text-[12px] font-medium text-muted">Read by Vakeel in under a minute</span>
         </div>
         <p className="mt-3 text-[21px] font-semibold leading-snug tracking-tight">
           A 1,320 MW coal expansion, 2.2 km from a reserved forest, skipped its public hearing.
@@ -157,7 +157,7 @@ function Upload({ focus }) {
 }
 
 const STEPS = [
-  [ScanText, "Read", "One Amazon Bedrock agent per project, all in parallel through AWS Step Functions. A 246-page filing takes about 35 seconds."],
+  [ScanText, "Read", "One Amazon Bedrock agent per project, all in parallel through AWS Step Functions. A 246-page filing takes under a minute."],
   [ShieldCheck, "Verify", "Every number needs a word-for-word quote and a page. Code checks it against the PDF and throws away anything it can't find."],
   [Languages, "Translate", "Plain words in English, Hindi and the state's language. Costs are computed by code from published factors, never by the AI."],
   [PenLine, "Object", "A formal objection built from the committee's own record. Nothing is filed until you read it and sign it yourself."],

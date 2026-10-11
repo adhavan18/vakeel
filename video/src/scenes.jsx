@@ -298,7 +298,7 @@ export function Architecture({ scene }) {
       {nodes.map(([x, y, t, s, a, tone]) => (
         <Node key={t + x} f={f} x={x} y={y} title={t} sub={s} at={at(a)} tone={tone} />
       ))}
-      <div style={{ position: "absolute", left: 70, bottom: 150, display: "flex", gap: 14, opacity: interpolate(f, [at(200), at(220)], [0, 1], clamp) }}>
+      <div style={{ position: "absolute", left: 70, bottom: 200, display: "flex", gap: 14, opacity: interpolate(f, [at(200), at(220)], [0, 1], clamp) }}>
         {["Daily Bedrock budget cap", "Every filing read once, cached", "Money math in code, not the model", "Zero servers to run"].map((t) => (
           <div key={t} style={{ fontFamily: mono, fontSize: 19, color: C.paper, border: `1px solid ${C.line}`, background: C.ink2, padding: "8px 16px", borderRadius: 999 }}>
             {t}
