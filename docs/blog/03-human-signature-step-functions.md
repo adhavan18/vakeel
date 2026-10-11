@@ -53,6 +53,7 @@ Only then does `File` run. It writes a receipt, `sha256(letterHash | name | sign
 ## Why the model can't put words in the citizen's mouth
 
 The letter is built mostly by code:
+
 - **Grounds of objection** come from verified concerns. Each one quotes the committee's record with a page number, and every quote has already passed the verifier.
 - **Climate figures** are computed in Python and labelled as estimates.
 - **Bedrock writes only the opening paragraph and the requests**, and the drafting code throws those away if they contain any digit at all. A model can't invent a statistic it isn't allowed to write.
@@ -60,8 +61,9 @@ The letter is built mostly by code:
 ## Why not just a database flag?
 
 We could have stored `status = awaiting_signature` and polled. Step Functions gave us more for less code:
+
 - the pause, the timeout and the expiry path are declared, not hand-written;
 - every objection has an execution history showing exactly when it was drafted, signed and filed, which is an audit trail for a legal document;
 - execution names are unique (`obj-<id>`), so a double-click can't start two workflows.
 
-The same pattern secured last round's winners (Beacon's voice-approved remediation, Suraksha's consent gates). For a civic tool it fits even better: the human isn't approving a deployment, they're putting their name to a legal objection.
+Human approval before an agent acts is a familiar pattern in agentic systems. For a civic tool it fits even better: the human isn't approving a deployment, they're putting their name to a legal objection.
