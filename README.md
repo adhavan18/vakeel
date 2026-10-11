@@ -32,6 +32,11 @@ From the 26th EAC (Thermal) meeting, 20 June 2025 (`parivesh.nic.in/utildoc/1313
 
 The whole filing was read for roughly 200k Bedrock tokens. The verifier rejected about 40 AI claims that were not word-for-word in the source.
 
+The live deployment has also read two more real filings, **732 pages and 17 projects in total, with 209 claims verified and 70 rejected**:
+
+- **EAC (Coal Mining), 8 December 2025, 250 pages, read in 45 s:** Central Coalfields' Karo mine *"ran at 15 MTPA while only allowed 1.5"* and was recommended; UltraTech's Arjuni East mine clears 652.9 ha of forest beside Patasi Reserved Forest; a coal washery doubles capacity in air already above the PM10 standard.
+- **EAC (Thermal), 30 April 2026, 236 pages, read in 39 s:** Jhabua Power dumping ash without approval (returned); Adani Power's Raipur expansion; Jindal Power's Tamnar ash dyke.
+
 ## Architecture
 
 ```
