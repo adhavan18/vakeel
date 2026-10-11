@@ -52,15 +52,15 @@ A second Bedrock pass writes the headline a villager will read, plus Hindi and O
 
 ## Rule 5: show what was thrown away
 
-Rejected claims aren't silently dropped. Each project page has a section called **"What Vakeel refused to tell you"**, listing every claim the AI made that couldn't be proven, and why. On our first filing, that was about 40 claims. Judges, journalists and lawyers can see the system's honesty for themselves instead of taking our word for it.
+Rejected claims aren't silently dropped. Each project page has a section called **"What Vakeel refused to tell you"**, listing every claim the AI made that couldn't be proven, and why. On our first filing, that was 26 claims; across three filings, 65 rejected and 219 kept. Judges, journalists and lawyers can see the system's honesty for themselves instead of taking our word for it.
 
-![What Vakeel refused to tell you](../../assets/screenshots/06-refused.png)
+![What Vakeel refused to tell you](https://raw.githubusercontent.com/adhavan18/vakeel/main/assets/screenshots/06-refused.png)
 
 ## What this bought us
 
 - Every number on screen has a green **✓ p.14** tick that opens the exact page with the quote highlighted.
 
-![The evidence drawer: the quote highlighted on the real PDF page](../../assets/screenshots/05-evidence-drawer.png)
+![The evidence drawer: the quote highlighted on the real PDF page](https://raw.githubusercontent.com/adhavan18/vakeel/main/assets/screenshots/05-evidence-drawer.png)
 - The objection letter's grounds are assembled by code from verified concerns only. Bedrock writes the opening and the requests, and those are rejected if they contain *any* digit.
 - Money figures (₹4,887 crore a year of climate damage for one plant) are computed in Python from sourced factors, never by the model.
 

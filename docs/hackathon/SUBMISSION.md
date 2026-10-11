@@ -13,7 +13,7 @@ Every coal plant in India needs a clearance, and the paperwork is 246 pages nobo
 **The environmental problem:** India's coal power is linked to as many as 115,000 premature deaths a year, and in July 2025, 78% of coal plants were exempted from installing sulphur scrubbers. The environmental clearance is the last checkpoint before a new plant, mine or dam is built, and the law gives the people next door a voice there. In practice they never use it, because the filings are hundreds of pages long. A 2021 rule (S.O. 1247(E)) even lets a project that's already half built skip its public hearing.
 
 
-India's environmental clearance process has a public step: committee minutes and EIA reports are published on PARIVESH, and affected residents can object. In practice nobody does, because the documents are unreadable. The 26th Expert Appraisal Committee (Thermal) minutes from 20 June 2025 run to 246 pages and 621,869 characters, covering six coal power projects. Buried on page 18, a 1,320 MW Adani Power expansion at Korba, 2.2 km from a reserved forest, was exempted from its public hearing. On page 25 the committee recommended it.
+India's environmental clearance process has a public step: committee minutes and EIA reports are published on PARIVESH, and affected residents can object. In practice nobody does, because the documents are unreadable. The 26th Expert Appraisal Committee (Thermal) minutes from 20 June 2025 run to 246 pages and 620,940 characters, covering six coal power projects. Buried on page 18, a 1,320 MW Adani Power expansion at Korba, 2.2 km from a reserved forest, was exempted from its public hearing. On page 25 the committee recommended it.
 
 Vakeel turns that filing into something a resident can act on in about a minute:
 

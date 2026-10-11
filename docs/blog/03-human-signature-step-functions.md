@@ -6,7 +6,7 @@ Vakeel helps residents object to coal plants and mines before they're cleared. I
 
 Here's how we made "a human must read and sign this first" a hard property of the system rather than a promise in a prompt.
 
-![A filing decoded: committee decisions per project, on a map](../../assets/screenshots/03-filing-map.png)
+![A filing decoded: committee decisions per project, on a map](https://raw.githubusercontent.com/adhavan18/vakeel/main/assets/screenshots/03-filing-map.png)
 
 ## The state machine
 

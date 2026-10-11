@@ -1,0 +1,57 @@
+<!doctype html><html><head><meta charset="utf-8"><title>We built an AI that isn't allowed to make anything up, then pointed it at India's coal plant approvals</title>
+<style>body{max-width:760px;margin:40px auto;padding:0 16px;font:17px/1.6 -apple-system,Segoe UI,sans-serif;color:#1d1d1f} .tip{background:#e8f2ff;border-radius:12px;padding:14px 18px;font-size:15px;margin-bottom:28px} blockquote{border-left:3px solid #ccc;margin:0;padding-left:14px;color:#555} code{background:#f2f2f5;padding:1px 5px;border-radius:5px} img{max-width:100%;border-radius:10px}</style></head>
+<body><div class="tip"><b>How to use:</b> the Builder Center <b>Body</b> field takes Markdown, so the easiest path is <code>docs/blog/BUILDER-CENTER-POST.md</code>. If you prefer rich text, select everything below this box and paste it into Body. Images load from GitHub; if one doesn't appear, upload it from <code>assets/screenshots/</code>. Replace &lt;YOUTUBE LINK&gt; after uploading the film.</div><h1>We built an AI that isn't allowed to make anything up, then pointed it at India's coal plant approvals</h1>
+<p><em>Environmental Hacks 2026 · Bharat Builds Tour · Air track</em></p>
+<p><strong>▶ Watch the launch film:</strong> <YOUTUBE LINK></p>
+<p>On 20 June 2025, a government committee in New Delhi met to decide the future of six coal power plants. Its minutes are public on PARIVESH, the national clearance portal: <strong>246 pages, 620,940 characters</strong>.</p>
+<p>On page 18 there's this line:</p>
+<blockquote>
+<p>"Public hearing for the 2x660 MW (Phase - II) is exempted as per S.O. 1247(E)…"</p>
+</blockquote>
+<p>That's a 1,320 MW coal expansion at Korba, Chhattisgarh, 2.2 km from the Barpall reserved forest. It draws 104,110 cubic metres a day from the Hasdeo River, the river at the heart of Hasdeo Arand, where Adivasi communities have fought coal mining for over a decade. On page 25, the committee <strong>recommended it</strong>.</p>
+<p>S.O. 1247(E) is a March 2021 amendment to India's EIA Notification. When a project's clearance lapses before it's finished, the committee may waive the public hearing if the project is already <strong>at least half built</strong>. Korba was more than 75% built. The people who will breathe its smoke never got a hearing.</p>
+<h2>Why this is an air problem, not a paperwork problem</h2>
+<ul>
+<li>Studies link pollution from India's coal power plants to <strong>as many as 115,000 premature deaths a year</strong>.</li>
+<li>In <strong>July 2025</strong>, a revised notification exempted <strong>78% of India's coal plants</strong> from installing flue-gas desulphurisation (sulphur scrubbers).</li>
+<li>Committee scrutiny is thin. One analysis found the river-valley committee <strong>rejected nothing</strong> in six years.</li>
+</ul>
+<p>That leaves the environmental clearance as the last point where anyone can say no to more coal smoke, more river water drawn and more forest lost. The law gives the people next door a voice there, through public hearings and written objections. But you can't object to a document you can't read.</p>
+<p>So we built <strong>Vakeel</strong> (Hindi for <em>advocate</em>): an AI that reads these filings for the people next door, and helps them object before approval.</p>
+<p><img alt="Vakeel project page: the Korba expansion decoded, every figure linked to its source page" src="https://raw.githubusercontent.com/adhavan18/vakeel/main/assets/screenshots/04-project.png" /></p>
+<h2>The hard part wasn't reading. It was trust.</h2>
+<p>An LLM summarising legal documents is easy to build and dangerous to ship. If it invents one number ("the plant will displace 2,000 families") in a letter a citizen signs and sends to a government committee, the whole idea collapses. So we designed Vakeel around one rule: <strong>the AI is not allowed to say anything it can't prove from the page.</strong></p>
+<ol>
+<li><strong>Tool-forced structured output.</strong> Amazon Bedrock (Nova 2 Lite) is called through the Converse API with a single tool whose input schema is the shape we want: facts, nearby places, concerns, the committee's decision. Each item must include a <strong>verbatim quote</strong> and a <strong>page number</strong>.</li>
+<li><strong>A deterministic verifier.</strong> Code normalises the quote and searches the actual PDF text for it. It also checks that the claimed number appears <em>inside</em> the quote. No match, no claim. On this filing alone, the verifier threw out 26 claims; across our three real filings it has kept 219 and rejected 65. They're shown in a section called <em>What Vakeel refused to tell you</em>.</li>
+<li><strong>Tables fight back.</strong> PDF extraction scrambles tables, so a true fact like "Barpall R.F. · 2.2 km" can fail an exact-quote match. Rather than loosen the rule, we added a second deterministic check: the name and the number must sit together in one row of a real page, and that row's actual text becomes the quote.</li>
+<li><strong>The model never does the math.</strong> "₹4,887 crore of climate damage a year" is computed in Python from the plant's stated capacity × plant load factor (CEA) × emission rate × India's social cost of carbon (Ricke et al., <em>Nature Climate Change</em>, 2018). Every factor and its source is one click away in the UI.</li>
+<li><strong>Headlines can't sneak in numbers either.</strong> A second Bedrock pass writes the plain-language headline and the Hindi/Odia translations. Any number in them that isn't in the verified data gets the text thrown away and replaced.</li>
+<li><strong>Never overstate a decision.</strong> The model once called an approved <em>Terms of Reference</em> (permission to <em>study</em> a plant) "recommended for clearance". A small rule now makes sure that can never be shown.</li>
+</ol>
+<h2>Parallel agents with Step Functions</h2>
+<p>Committee minutes bundle several projects, and describe each one twice: once with its details near the front, again with the committee's deliberations near the back. Vakeel's segmenter stitches each project's two halves back together. Then a <strong>Step Functions Map state</strong> fans out one Bedrock agent per project, three at a time, with retries. Every agent streams progress into DynamoDB, and the UI shows six lanes reading in parallel. The whole 246-page filing goes from queued to finished in 52 seconds, for roughly 200k tokens.</p>
+<p><img alt="Six Bedrock agents reading one filing in parallel, with a live log" src="https://raw.githubusercontent.com/adhavan18/vakeel/main/assets/screenshots/02-agents.png" /></p>
+<h2>A human must sign. Step Functions waits.</h2>
+<p>Vakeel drafts a formal objection to the committee. The grounds are built <strong>by code</strong> from verified concerns, each with its quote and page. Bedrock writes only the opening and the requests, and those are rejected if they contain any number at all.</p>
+<p>Then the objection state machine reaches a <code>lambda:invoke.waitForTaskToken</code> state and stops. Nothing happens until a real person reads the letter and types an exact sentence ("I object to proposal IA/CG/THE/532429/2025"). The API checks the phrase <em>and</em> that the SHA-256 of the letter they read matches the letter on record. Only then does it call <code>SendTaskSuccess</code>. The signed letter gets a receipt hash, and the citizen sends it from their own email so it carries their legal identity.</p>
+<h2>What fought back</h2>
+<ul>
+<li><strong>"Explicit deny in a service control policy."</strong> Our new AWS account is a <em>project</em> pinned to a home region (Sydney). Deploying to us-east-1 failed on Lambda, DynamoDB and S3, even with AdministratorAccess. The fix was in Settings → Projects → Additional info: deploy to <code>ap-southeast-2</code>. Bedrock's <code>global.</code> inference profile made Nova 2 Lite work from Sydney with no code changes.</li>
+<li><strong>Contaminated sections.</strong> Our first segmenter gave the last project 136 pages, including the other projects' annexures, so NTPC's Odisha plant "acquired" a river from Chhattisgarh. Splitting on both kinds of agenda headings fixed it.</li>
+<li><strong>Cost on a $100 account.</strong> We built in an atomic daily Bedrock call cap in DynamoDB, one Step Functions execution per document (execution name = document id), SHA-256 dedupe so no PDF is paid for twice, and API throttling.</li>
+</ul>
+<h2>Stack</h2>
+<p>Amazon Bedrock (Nova 2 Lite) · AWS Step Functions · AWS Lambda · Amazon DynamoDB · Amazon S3 · Amazon CloudFront · Amazon API Gateway · Amazon Location Service · Amazon Polly (the launch video's voice) · CloudFormation. Frontend: React, Tailwind, Leaflet.</p>
+<h2>What's next</h2>
+<p>Watching PARIVESH for new filings by district, then WhatsApp and voice alerts in local languages, so a farmer near the next proposed plant hears about it from Vakeel before the objection window closes, not after.</p>
+<h2>Sources</h2>
+<ul>
+<li>S.O. 1247(E), 18 March 2021, amendment to the EIA Notification 2006 (public-hearing exemption for projects at least 50% implemented): https://dste.py.gov.in/SEIAA/pdf/Notifications/N38.pdf</li>
+<li>Coal power and premature deaths in India: https://www.scientificamerican.com/article/coal-fired-power-in-india-may-cause-more-than-100000-premature-deaths-annually/</li>
+<li>July 2025 FGD exemption for 78% of coal plants (CREA via Down To Earth): https://www.downtoearth.org.in/energy/most-sulphur-dioxide-around-delhi-comes-from-coal-plants-exempted-from-pollution-rules-crea</li>
+<li>EAC rejection analysis (SANDRP): https://sandrp.in/2013/02/05/analysis-of-moefs-eac-on-river-valley-projects-the-expert-approval-committee-has-zero-rejection-in-six-years/</li>
+<li>Hasdeo Arand protests: https://scroll.in/article/1031123/threatened-by-coal-mining-hasdeo-arand-forest-is-receiving-a-groundswell-of-support-on-the-internet</li>
+<li>Source filing (EAC Thermal minutes, 20 June 2025): https://parivesh.nic.in/utildoc/131396604_1751547453000.pdf</li>
+<li>Live app: https://d4i9n8m04ddaa.cloudfront.net · Code: https://github.com/adhavan18/vakeel</li>
+</ul></body></html>

@@ -2,7 +2,7 @@
 
 *Environmental Hacks 2026 · Bharat Builds Tour · Air track*
 
-On 20 June 2025, a government committee in New Delhi met to decide the future of six coal power plants. Its minutes are public on PARIVESH, the national clearance portal: **246 pages, 621,869 characters**.
+On 20 June 2025, a government committee in New Delhi met to decide the future of six coal power plants. Its minutes are public on PARIVESH, the national clearance portal: **246 pages, 620,940 characters**.
 
 On page 18 there's this line:
 
@@ -22,14 +22,14 @@ That leaves the environmental clearance as the last point where anyone can say n
 
 So we built **Vakeel** (Hindi for *advocate*): an AI that reads these filings for the people next door, and helps them object before approval.
 
-![Vakeel project page: the Korba expansion decoded, every figure linked to its source page](../../assets/screenshots/04-project.png)
+![Vakeel project page: the Korba expansion decoded, every figure linked to its source page](https://raw.githubusercontent.com/adhavan18/vakeel/main/assets/screenshots/04-project.png)
 
 ## The hard part wasn't reading. It was trust.
 
 An LLM summarising legal documents is easy to build and dangerous to ship. If it invents one number ("the plant will displace 2,000 families") in a letter a citizen signs and sends to a government committee, the whole idea collapses. So we designed Vakeel around one rule: **the AI is not allowed to say anything it can't prove from the page.**
 
 1. **Tool-forced structured output.** Amazon Bedrock (Nova 2 Lite) is called through the Converse API with a single tool whose input schema is the shape we want: facts, nearby places, concerns, the committee's decision. Each item must include a **verbatim quote** and a **page number**.
-2. **A deterministic verifier.** Code normalises the quote and searches the actual PDF text for it. It also checks that the claimed number appears *inside* the quote. No match, no claim. On our filing, the verifier rejected about 40 claims. They're shown in a section called *What Vakeel refused to tell you*.
+2. **A deterministic verifier.** Code normalises the quote and searches the actual PDF text for it. It also checks that the claimed number appears *inside* the quote. No match, no claim. On this filing alone, the verifier threw out 26 claims; across our three real filings it has kept 219 and rejected 65. They're shown in a section called *What Vakeel refused to tell you*.
 3. **Tables fight back.** PDF extraction scrambles tables, so a true fact like "Barpall R.F. · 2.2 km" can fail an exact-quote match. Rather than loosen the rule, we added a second deterministic check: the name and the number must sit together in one row of a real page, and that row's actual text becomes the quote.
 4. **The model never does the math.** "₹4,887 crore of climate damage a year" is computed in Python from the plant's stated capacity × plant load factor (CEA) × emission rate × India's social cost of carbon (Ricke et al., *Nature Climate Change*, 2018). Every factor and its source is one click away in the UI.
 5. **Headlines can't sneak in numbers either.** A second Bedrock pass writes the plain-language headline and the Hindi/Odia translations. Any number in them that isn't in the verified data gets the text thrown away and replaced.
@@ -37,9 +37,9 @@ An LLM summarising legal documents is easy to build and dangerous to ship. If it
 
 ## Parallel agents with Step Functions
 
-Committee minutes bundle several projects, and describe each one twice: once with its details near the front, again with the committee's deliberations near the back. Vakeel's segmenter stitches each project's two halves back together. Then a **Step Functions Map state** fans out one Bedrock agent per project, three at a time, with retries. Every agent streams progress into DynamoDB, and the UI shows six lanes reading in parallel. The whole 246-page filing goes through in under a minute for roughly 200k tokens.
+Committee minutes bundle several projects, and describe each one twice: once with its details near the front, again with the committee's deliberations near the back. Vakeel's segmenter stitches each project's two halves back together. Then a **Step Functions Map state** fans out one Bedrock agent per project, three at a time, with retries. Every agent streams progress into DynamoDB, and the UI shows six lanes reading in parallel. The whole 246-page filing goes from queued to finished in 52 seconds, for roughly 200k tokens.
 
-![Six Bedrock agents reading one filing in parallel, with a live log](../../assets/screenshots/02-agents.png)
+![Six Bedrock agents reading one filing in parallel, with a live log](https://raw.githubusercontent.com/adhavan18/vakeel/main/assets/screenshots/02-agents.png)
 
 ## A human must sign. Step Functions waits.
 
