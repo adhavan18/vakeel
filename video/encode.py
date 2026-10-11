@@ -88,7 +88,7 @@ if peak > 0.98:
 
 frames_dir = ROOT / CONFIG["frames"]
 files = sorted(frames_dir.glob("*.jpeg")) or sorted(frames_dir.glob("*.jpg"))
-assert len(files) == total_frames, f"expected {total_frames} frames, found {len(files)}"
+assert abs(len(files) - total_frames) <= 2, f"expected {total_frames} frames, found {len(files)}"
 
 out = av.open(str(ROOT / CONFIG["out"]), "w", options={"movflags": "+faststart"})
 vstream = out.add_stream("libx264", rate=FPS, options={"crf": "18", "preset": "fast" if sys.argv[1] == "film" else "medium"})

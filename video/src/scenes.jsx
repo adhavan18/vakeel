@@ -150,7 +150,7 @@ export function ZoomPage({ src, region, marks, f, start, end, label }) {
 export function Buried({ scene }) {
   const f = useCurrentFrame();
   const n = scene.frames;
-  const a = Math.round(n * 0.46);
+  const a = Math.round(n * 0.6);
   const b = Math.round(n * 0.8);
   const endO = interpolate(f, [b, b + 12], [0, 1], clamp);
   return (
