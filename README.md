@@ -6,6 +6,8 @@
 
 Vakeel reads India's environmental clearance filings for the people who live next to the project. It turns a 246-page committee document into plain-language facts, in English, Hindi or the state's language. Every number is verified against the page it came from. Then Vakeel helps residents file a formal objection before the project is approved.
 
+**Live:** https://d4i9n8m04ddaa.cloudfront.net · **Build log:** [6 posts on AWS Builder Center](#build-log)
+
 ![Vakeel home](assets/screenshots/01-home.png)
 
 ## Why
@@ -16,11 +18,11 @@ In the Expert Appraisal Committee (Thermal) minutes of 20 June 2025:
 - **Page 18:** a 1,320 MW coal expansion at Korba was *exempted from its public hearing*. It sits 2.2 km from a reserved forest and draws 104,110 m³ a day from the Hasdeo River. The exemption came under [S.O. 1247(E)](https://dste.py.gov.in/SEIAA/pdf/Notifications/N38.pdf), a 2021 rule that waives hearings for projects already at least half built.
 - **Page 25:** the committee *recommended* it.
 
-Vakeel finds that in under a minute.
+Vakeel read the whole filing and surfaced both lines in 52 seconds.
 
 ## What it does
 
-- **Reads whole filings in parallel.** AWS Step Functions splits the document into projects and runs one Amazon Bedrock (Nova 2 Lite) agent per project. A 246-page filing takes under a minute.
+- **Reads whole filings in parallel.** AWS Step Functions splits the document into projects and runs one Amazon Bedrock (Nova 2 Lite) agent per project. The 246-page filing above went from queued to finished in 52 seconds.
 - **Proves every claim.** The model must return a word-for-word quote and a page for every number. Code checks each quote against the PDF and drops anything it can't find. Dropped claims are listed openly under *What Vakeel refused to tell you*.
 - **Speaks plainly, in the reader's language.** Headlines in English, Hindi and the state's language. Generated text can't introduce a number that isn't in the verified data.
 - **Keeps the money math out of the model.** CO₂, climate cost (₹ crore a year), water use (in people's daily water) and coal trains are computed in code from published factors, and every factor is cited.
@@ -36,7 +38,7 @@ Vakeel finds that in under a minute.
 
 | Filing | Pages | Read in | Findings |
 |---|---|---|---|
-| EAC Thermal, 20 Jun 2025 | 246 | < 1 min | Korba (Adani Power) 1,320 MW recommended with the public hearing exempted; 104,110 m³/day from the Hasdeo River; Jindal deferred over 31 non-compliances |
+| EAC Thermal, 20 Jun 2025 | 246 | 52 s | Korba (Adani Power) 1,320 MW recommended with the public hearing exempted; 104,110 m³/day from the Hasdeo River; Jindal deferred over 31 non-compliances |
 | EAC Coal Mining, 8 Dec 2025 | 250 | 45 s | Central Coalfields' Karo mine *ran at 15 MTPA while allowed 1.5*, recommended; UltraTech clears 652.9 ha of forest |
 | EAC Thermal, 30 Apr 2026 | 236 | 39 s | Jhabua Power dumping ash without approval, returned |
 
@@ -122,3 +124,14 @@ docs/blog/          build log
 ## Credits
 
 Built for **Environmental Hacks 2026** (WeMakeDevs × AWS, Bharat Builds Tour) by Tamil Adhavan S K. Source documents are public records from PARIVESH, Ministry of Environment, Forest and Climate Change. MIT licensed.
+
+## Build log
+
+A six-part series on AWS Builder Center, *Vakeel: building an AI advocate on AWS*:
+
+1. [We built an AI that isn't allowed to make anything up, then pointed it at India's coal plant approvals](https://builder.aws.com/content/3KXmQEU3NpHdPcboqyu278IJgu2/we-built-an-ai-that-isnt-allowed-to-make-anything-up-then-pointed-it-at-indias-coal-plant-approvals)
+2. [How we fact-check an LLM against a 246-page PDF](https://builder.aws.com/content/3KXpWljfUj9Vs5qcw1zUJHOqEUI/how-we-fact-check-an-llm-against-a-246-page-pdf)
+3. [A legal signature as a Step Functions waitForTaskToken](https://builder.aws.com/content/3KXqBM7zFjJKBY37TgHgkPUSb5Y/a-legal-signature-as-a-step-functions-waitfortasktoken)
+4. [Fixing "explicit deny in a service control policy" on AWS](https://builder.aws.com/content/3KXqVfIYB2dJkiTDARJRMtPn8na/fixing-explicit-deny-in-a-service-control-policy-on-aws)
+5. [Parallel Bedrock agents on a $100 AWS budget](https://builder.aws.com/content/3KXyQ8AUuYqu5a9JYvaQDjdAPbq/parallel-bedrock-agents-on-a-dollar100-aws-budget)
+6. [We made our launch film in code with Amazon Polly](https://builder.aws.com/content/3KXylOcV0ArLzLgt97NlEHsxygS/we-made-our-launch-film-in-code-with-amazon-polly)
