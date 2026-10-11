@@ -59,7 +59,7 @@ flowchart LR
   WAIT --> FILE[Lock with<br/>SHA-256 receipt]
 ```
 
-Serverless in `ap-southeast-2`, deployed with CloudFormation (SAM). Guardrails: an atomic daily Bedrock cap in DynamoDB, page and size limits, API throttling, one execution per document, and SHA-256 dedupe. A full filing costs about 200k tokens.
+Serverless in `ap-southeast-2`, deployed with CloudFormation (SAM), with a CloudWatch dashboard (filings read, Bedrock tokens, agent errors, human signatures) and alarms on failed reads. Guardrails: an atomic daily Bedrock cap in DynamoDB, page and size limits, API throttling, one execution per document, and SHA-256 dedupe. A full filing costs about 200k tokens.
 
 ## Run it
 

@@ -348,6 +348,74 @@ Resources:
             Resource: !GetAtt ExpireFunction.Arn
             End: true
 
+  # ---- Observability: alarms on the two places a resident would notice a failure, and one
+  # dashboard for the agent pipeline, Bedrock token use and errors.
+  IngestFailuresAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub "${AWS::StackName}-ingest-failures"
+      AlarmDescription: A filing failed to read end to end.
+      Namespace: AWS/States
+      MetricName: ExecutionsFailed
+      Dimensions:
+        - Name: StateMachineArn
+          Value: !Ref IngestStateMachine
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 1
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+
+  AnalyzeErrorsAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmName: !Sub "${AWS::StackName}-analyze-errors"
+      AlarmDescription: A Bedrock agent errored while reading a project.
+      Namespace: AWS/Lambda
+      MetricName: Errors
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref AnalyzeFunction
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 1
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+
+  Dashboard:
+    Type: AWS::CloudWatch::Dashboard
+    Properties:
+      DashboardName: !Sub "${AWS::StackName}-agents"
+      DashboardBody: !Sub |
+        {
+          "widgets": [
+            {"type": "metric", "x": 0, "y": 0, "width": 12, "height": 6, "properties": {
+              "title": "Filings read (Step Functions)", "region": "${AWS::Region}", "stat": "Sum", "period": 3600,
+              "metrics": [
+                ["AWS/States", "ExecutionsStarted", "StateMachineArn", "${IngestStateMachine}"],
+                [".", "ExecutionsSucceeded", ".", "."],
+                [".", "ExecutionsFailed", ".", "."]]}},
+            {"type": "metric", "x": 12, "y": 0, "width": 12, "height": 6, "properties": {
+              "title": "Bedrock tokens", "region": "${AWS::Region}", "period": 3600,
+              "metrics": [
+                [{"expression": "SEARCH('{AWS/Bedrock,ModelId} MetricName=\"InputTokenCount\"', 'Sum', 3600)", "id": "inp", "label": "input"}],
+                [{"expression": "SEARCH('{AWS/Bedrock,ModelId} MetricName=\"OutputTokenCount\"', 'Sum', 3600)", "id": "out", "label": "output"}]]}},
+            {"type": "metric", "x": 0, "y": 6, "width": 12, "height": 6, "properties": {
+              "title": "Agent Lambda duration (p90) and errors", "region": "${AWS::Region}", "period": 3600,
+              "metrics": [
+                ["AWS/Lambda", "Duration", "FunctionName", "${AnalyzeFunction}", {"stat": "p90"}],
+                [".", "Errors", ".", ".", {"stat": "Sum", "yAxis": "right"}]]}},
+            {"type": "metric", "x": 12, "y": 6, "width": 12, "height": 6, "properties": {
+              "title": "Human signatures (objection workflow)", "region": "${AWS::Region}", "stat": "Sum", "period": 3600,
+              "metrics": [
+                ["AWS/States", "ExecutionsStarted", "StateMachineArn", "${ObjectionStateMachine}"],
+                [".", "ExecutionsSucceeded", ".", "."],
+                [".", "ExecutionsTimedOut", ".", "."]]}}
+          ]
+        }
+
 Outputs:
   ApiUrl:
     Value: !Sub "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com"
