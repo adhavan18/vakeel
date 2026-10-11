@@ -1,0 +1,52 @@
+# Environmental Hacks submission, ready to paste
+
+**Project title:** Vakeel: an AI advocate that reads India's environmental clearance filings before they're approved
+
+**Track:** Air
+
+## One-line pitch
+
+Every coal plant in India needs a clearance, and the paperwork is 246 pages nobody reads. Vakeel's Bedrock agents read it, prove every number against the source page, tell the people next door what is being approved in their own language, and help them object before it is.
+
+## Description
+
+India's environmental clearance process has a public step: committee minutes and EIA reports are published on PARIVESH, and affected residents can object. In practice nobody does, because the documents are unreadable. The 26th Expert Appraisal Committee (Thermal) minutes from 20 June 2025 run to 246 pages and 621,869 characters, covering six coal power projects. Buried on page 18, a 1,320 MW Adani Power expansion at Korba, 2.2 km from a reserved forest, was exempted from its public hearing. On page 25 the committee recommended it.
+
+Vakeel turns that filing into something a resident can act on in about a minute:
+
+- **Read:** Step Functions splits the filing into projects and runs one Amazon Bedrock (Nova 2 Lite) agent per project in parallel.
+- **Verify:** every number must come with a word-for-word quote and page number, and code checks it against the PDF. Claims that can't be matched are thrown away and listed separately ("What Vakeel refused to tell you").
+- **Translate:** a plain-language headline in English, Hindi and the state's language. Climate cost (₹4,887 crore a year for Korba), water (enough for 7.7 lakh people a day) and coal (2.4 trains a day) are computed by code from published factors, never by the model.
+- **Object:** Vakeel drafts a formal objection whose grounds quote the record with page numbers. It cannot file anything itself. The citizen must read the letter and type an exact sentence to sign. Step Functions waits for that human with a task token, and the signed letter gets a SHA-256 receipt.
+
+Who it's for: people living next to proposed coal plants, mines and dams, and the panchayats, environmental lawyers and journalists who currently read these files by hand.
+
+## How did you use AWS?
+
+AWS is the product, not just the hosting. Everything runs serverless in ap-southeast-2, deployed with CloudFormation (SAM transform):
+
+- **Amazon Bedrock (Nova 2 Lite, global inference profile):** the core reasoning. The Converse API uses tool-forced JSON schemas to extract facts, nearby rivers and forests, concerns and the committee's decision. A second editor pass writes headlines and Hindi/Odia translations. A third call drafts the letter's opening and requests.
+- **AWS Step Functions:** the ingest state machine uses a Map state to fan out one agent per project (MaxConcurrency 3) with retries. The objection state machine uses `lambda:invoke.waitForTaskToken`, so nothing proceeds until a human signs (7-day timeout, then expiry).
+- **AWS Lambda (Python 3.12, arm64):** API, segmentation (pypdf), analysis, verification, finalisation, drafting, signing.
+- **Amazon DynamoDB:** single table for documents, projects, live agent logs, objections, global counters, and an atomic daily Bedrock budget counter.
+- **Amazon S3 + CloudFront:** presigned PDF uploads; the React app served through CloudFront with Origin Access Control.
+- **Amazon API Gateway (HTTP API):** throttled at 10 requests/second.
+- **Amazon Location Service:** geocoding fallback for projects whose filing gives no coordinates.
+- **Amazon Polly (Kajal, generative, en-IN):** narrated the launch video.
+
+Cost guardrails for a $100 credit account: daily Bedrock call cap, page and size limits, API throttling, one execution per document (execution name = document id), and SHA-256 dedupe so the same PDF is never paid for twice. Reading the whole 246-page filing takes about 200k tokens.
+
+## Feedback on the AWS services we used
+
+The new account experience pins each project to a home region. Our first deploy to us-east-1 failed with "explicit deny in a service control policy" on Lambda, DynamoDB and S3, even with AdministratorAccess. It took a while to find that the project's region (shown under Settings → Projects → Additional info) was the cause. An error message naming the allowed region would have saved an hour. Bedrock's global inference profile (`global.amazon.nova-2-lite-v1:0`) made Nova 2 Lite usable from Sydney with no code change. Step Functions' waitForTaskToken was the cleanest human-in-the-loop primitive we found.
+
+## What did you like?
+
+Tool-forced JSON in the Bedrock Converse API made model output safe to verify in code. Step Functions Map plus Lambda gave us parallel agents with retries and an execution history for free. waitForTaskToken turned "a human must sign before anything happens" into one state instead of a polling system.
+
+## Links (fill in)
+
+- Live: https://d4i9n8m04ddaa.cloudfront.net
+- Code: <GitHub URL>
+- Demo video: <YouTube URL>
+- Blog: <AWS Builder Center URL>
