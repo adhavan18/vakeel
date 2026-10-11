@@ -1,0 +1,1703 @@
+{
+  "1": {
+    "proposalNo": "IA/CG/THE/532429/2025",
+    "proponent": "Korba Power Limited",
+    "projectType": "coal_power",
+    "parentGroup": "Adani Power Limited",
+    "location": {
+      "state": "Chhattisgarh",
+      "quote": "22°15'6.33\"N 82°43'7.97\"E",
+      "village": "Pathadi",
+      "district": "Korba",
+      "latitude": 22.25176,
+      "longitude": 82.71888,
+      "source": "parsed from document"
+    },
+    "proposalType": "Fresh EC",
+    "projectName": "Expansion Project 1320 (2x660) MW Super Critical Coal Based Thermal Power Plant",
+    "concerns": [
+      {
+        "severity": "critical",
+        "title": "Public hearing exempted",
+        "explanation": "Public hearing was exempted despite the project being in a populated area with schools and health centers nearby. This denies residents a chance to voice concerns about pollution and impacts.",
+        "quote": "Public hearing for the 2x660 MW (Phase - II) is exempted as per S.O. 1247(E) dated 18.03.3021.",
+        "page": 18,
+        "verified": true
+      },
+      {
+        "severity": "medium",
+        "title": "Existing non-compliance",
+        "explanation": "The previous 600 MW unit operated without proper name transfer of statutory documents, violating environmental laws. This raises concerns about the company's compliance history.",
+        "quote": "Though the EC has been transferred from M/s Lanco Amarkantak Power Pvt. Ltd. to M/s Korba Power Ltd., other mandatory statutory documents (CTO, Hazardous Wastes Authorization, PLI Policy etc.) are still in the name of M/s Lanco Amarkantak Power Pvt. Ltd.",
+        "page": 4,
+        "verified": true
+      },
+      {
+        "severity": "high",
+        "title": "Air quality impacts",
+        "explanation": "The plant will emit pollutants like PM2.5, SO2, and NOx. While control technologies are proposed, past compliance issues and the plant's location near residential areas raise concerns about air quality impacts on health.",
+        "quote": "AAQ parameters at PM2.5: 52 μg/m3 – 20.5 μg/m3 PM10: 68.1 μg/m3 – 28.1 μg/m3 SO2: 19.6 μg/m3 – 1.5 μg/m3 NOx: 19.2 μg/m3 – 2.1 μg/m3",
+        "page": 14,
+        "verified": true
+      },
+      {
+        "severity": "high",
+        "title": "Water usage from Hasdeo River",
+        "explanation": "The plant will draw 104,110 m³/day from the Hasdeo River, which flows nearby. This could affect water availability for local communities and ecosystems, especially during dry seasons.",
+        "quote": "Water requirement for the proposed project is estimated as 104110 m3 /day, out of which 104110 m3/day of freshwater requirement which will be meet from the Hasdeo River.",
+        "page": 14,
+        "verified": true
+      },
+      {
+        "severity": "medium",
+        "title": "Ash disposal and utilization",
+        "explanation": "The plant will generate ash at 4060 TPD. While utilization plans exist, past utilization rates were below mandate, and the proposed ash pond may require careful management to prevent contamination.",
+        "quote": "Ash generation will be limited to 4060 T PD. Ash generated should be used in phased manner as per the provisions of the notification on Fly ash utilization issued by MoEFCC in Sept’ 1999 and its subsequent amendments.",
+        "page": 7,
+        "verified": true
+      }
+    ],
+    "headline": "Korba Power Limited adds 1320 MW coal plant next to Pathadi village forests and the Hasdeo River",
+    "committeeDecision": {
+      "summary": "The EAC recommended granting environmental clearance subject to specific and general conditions, including compliance with emission standards, ash utilization, water consumption limits, and public health initiatives.",
+      "quote": "In view of the foregoing and after detailed deliberations, the committee recommended the instant proposal for grant of Environment Clearance under the provisions of EIA Notification, 2006 subject to uploading of written submission on PARIVESH Portal and stipulation of the following specific conditions and general conditions based on project specific requirements",
+      "page": 25,
+      "outcome": "recommended",
+      "verified": true
+    },
+    "facts": [
+      {
+        "label": "Capacity added",
+        "quote": "Expansion of existing 600 MW (2x300 MW) project by addition of 1320 MW (2x660 MW) Super Critical Coal Based Thermal Power Plant",
+        "page": 2,
+        "key": "capacity_added_mw",
+        "value": 1320,
+        "verified": true
+      },
+      {
+        "label": "Coal requirement",
+        "quote": "Coal requirement is estimated 9024 TPD having 45% ash content and 0.5% sulphur content.",
+        "page": 6,
+        "key": "coal_tonnes_per_day",
+        "value": 9024,
+        "verified": true
+      },
+      {
+        "label": "Water requirement",
+        "quote": "Water requirement for the proposed project is estimated as 104110 m 3 /day",
+        "page": 14,
+        "key": "water_m3_per_day",
+        "value": 104110,
+        "verified": true
+      },
+      {
+        "label": "Land area",
+        "quote": "Total land 505.58 ha [Govt. land].",
+        "page": 8,
+        "key": "land_ha",
+        "value": 505.58,
+        "verified": true
+      },
+      {
+        "label": "Project cost",
+        "quote": "The capital cost of the proposed project is Rs. 8497 Crores",
+        "page": 20,
+        "key": "project_cost_crore",
+        "value": 8497,
+        "verified": true
+      },
+      {
+        "label": "PM2.5 max",
+        "quote": "PM2.5: 52 μg/m3 – 20.5 μg/m3",
+        "page": 14,
+        "key": "pm25_max_ugm3",
+        "value": 52,
+        "verified": true
+      },
+      {
+        "label": "PM10 max",
+        "quote": "PM10: 68.1 μg/m3 – 28.1 μg/m3",
+        "page": 14,
+        "key": "pm10_max_ugm3",
+        "value": 68.1,
+        "verified": true
+      },
+      {
+        "label": "SO2 max",
+        "quote": "SO2: 19.6 μg/m3 – 1.5 μg/m3",
+        "page": 14,
+        "key": "so2_max_ugm3",
+        "value": 19.6,
+        "verified": true
+      },
+      {
+        "label": "NOx max",
+        "quote": "NOx: 19.2 μg/m3 – 2.1 μg/m3",
+        "page": 14,
+        "key": "nox_max_ugm3",
+        "value": 19.2,
+        "verified": true
+      },
+      {
+        "label": "Ash generation",
+        "quote": "Ash generation will be limited to 4060 T PD.",
+        "page": 7,
+        "key": "ash_tonnes_per_day",
+        "value": 4060,
+        "verified": true
+      },
+      {
+        "label": "Stack height",
+        "quote": "A Twin flue stack with a stack height of 275 m will be provided.",
+        "page": 15,
+        "key": "stack_height_m",
+        "value": 275,
+        "verified": true
+      }
+    ],
+    "nearby": [
+      {
+        "name": "Hasdeo River",
+        "kind": "river",
+        "distanceKm": 2.4,
+        "quote": "Hasdeo River 2.4 km (from Plant Boundary) NW",
+        "page": 12,
+        "verified": true
+      },
+      {
+        "name": "Barpall R. F.",
+        "kind": "reserved_forest",
+        "distanceKm": 2.2,
+        "quote": "Barpall R. F. 2.2 SW",
+        "page": 13,
+        "verified": true
+      },
+      {
+        "name": "Kudri P.F.",
+        "kind": "protected_forest",
+        "distanceKm": 6.5,
+        "quote": "Kudri P.F. 6.5 NNE",
+        "page": 13,
+        "verified": true
+      },
+      {
+        "name": "Tuman P.F.",
+        "kind": "protected_forest",
+        "distanceKm": 7.3,
+        "quote": "Tuman P.F. 7.3 SE",
+        "page": 13,
+        "verified": true
+      },
+      {
+        "name": "Bathapara R. F.",
+        "kind": "reserved_forest",
+        "distanceKm": 7.6,
+        "quote": "Bathapara R. F. 7.6 ESE",
+        "page": 13,
+        "verified": true
+      },
+      {
+        "name": "Pondibahar P.F.",
+        "kind": "protected_forest",
+        "distanceKm": 7.8,
+        "quote": "Pondibahar P.F. 7.8 NNE",
+        "page": 13,
+        "verified": true
+      },
+      {
+        "name": "Ramapara P. F.",
+        "kind": "protected_forest",
+        "distanceKm": 9.5,
+        "quote": "Ramapara P. F. 9.5 SE",
+        "page": 13,
+        "verified": true
+      },
+      {
+        "name": "Sakti R.F.",
+        "kind": "reserved_forest",
+        "distanceKm": 11,
+        "quote": "Sakti R.F. 11 ESE",
+        "page": 13,
+        "verified": true
+      }
+    ],
+    "rejected": [
+      {
+        "kind": "fact",
+        "claim": "Total capacity",
+        "quote": "Total Technology adopted 1920 MW Sub & Super Critical",
+        "reason": "quote not found in source document"
+      },
+      {
+        "kind": "fact",
+        "claim": "Forest land",
+        "quote": "Nil and Not applicable",
+        "reason": "value 0 does not appear in its quote"
+      },
+      {
+        "kind": "fact",
+        "claim": "People displaced",
+        "quote": "Project site: No R&R involved.",
+        "reason": "value 0 does not appear in its quote"
+      }
+    ],
+    "impact": {
+      "metrics": [
+        {
+          "id": "co2",
+          "value": 6764472,
+          "unit": "tonnes CO2 / year",
+          "headline": "6.8 million tonnes of CO2 every year",
+          "formula": "1320 MW x 8760 h x 0.65 PLF x 0.9 tCO2/MWh",
+          "inputs": [
+            {
+              "label": "Capacity added",
+              "quote": "Expansion of existing 600 MW (2x300 MW) project by addition of 1320 MW (2x660 MW) Super Critical Coal Based Thermal Power Plant",
+              "page": 2,
+              "key": "capacity_added_mw",
+              "value": 1320,
+              "verified": true
+            }
+          ],
+          "factors": [
+            "plf",
+            "co2_t_per_mwh"
+          ]
+        },
+        {
+          "id": "climate_cost",
+          "value": 48866545728,
+          "unit": "INR / year",
+          "headline": "Rs 4,887 crore of climate damage every year",
+          "formula": "6,764,472 tCO2 x US$86 x Rs 84",
+          "inputs": [
+            {
+              "label": "Capacity added",
+              "quote": "Expansion of existing 600 MW (2x300 MW) project by addition of 1320 MW (2x660 MW) Super Critical Coal Based Thermal Power Plant",
+              "page": 2,
+              "key": "capacity_added_mw",
+              "value": 1320,
+              "verified": true
+            }
+          ],
+          "factors": [
+            "scc_usd_per_t",
+            "usd_inr"
+          ]
+        },
+        {
+          "id": "water",
+          "value": 771185,
+          "unit": "people",
+          "headline": "Enough water for 7.7 lakh people, every day",
+          "formula": "104,110 m3/day x 1000 L / 135 L per person",
+          "inputs": [
+            {
+              "label": "Water requirement",
+              "quote": "Water requirement for the proposed project is estimated as 104110 m 3 /day",
+              "page": 14,
+              "key": "water_m3_per_day",
+              "value": 104110,
+              "verified": true
+            }
+          ],
+          "factors": [
+            "lpcd"
+          ]
+        },
+        {
+          "id": "coal",
+          "value": 2.4,
+          "unit": "coal trains / day",
+          "headline": "2.4 full coal trains burned every day",
+          "formula": "9,024 t/day / 3800 t per train",
+          "inputs": [
+            {
+              "label": "Coal requirement",
+              "quote": "Coal requirement is estimated 9024 TPD having 45% ash content and 0.5% sulphur content.",
+              "page": 6,
+              "key": "coal_tonnes_per_day",
+              "value": 9024,
+              "verified": true
+            }
+          ],
+          "factors": [
+            "rake_t"
+          ]
+        }
+      ],
+      "airFlags": [
+        {
+          "pollutant": "PM10",
+          "measured": 68.1,
+          "annualLimit": 60,
+          "dailyLimit": 100,
+          "exceedsDaily": false,
+          "input": {
+            "label": "PM10 max",
+            "quote": "PM10: 68.1 μg/m3 – 28.1 μg/m3",
+            "page": 14,
+            "key": "pm10_max_ugm3",
+            "value": 68.1,
+            "verified": true
+          },
+          "note": "Highest pre-project reading of PM10 (68.1 ug/m3) is above India's annual-average limit of 60 ug/m3 before the project adds any emissions. Readings are 24-hour samples, so the daily limit is 100 ug/m3."
+        },
+        {
+          "pollutant": "PM2.5",
+          "measured": 52,
+          "annualLimit": 40,
+          "dailyLimit": 60,
+          "exceedsDaily": false,
+          "input": {
+            "label": "PM2.5 max",
+            "quote": "PM2.5: 52 μg/m3 – 20.5 μg/m3",
+            "page": 14,
+            "key": "pm25_max_ugm3",
+            "value": 52,
+            "verified": true
+          },
+          "note": "Highest pre-project reading of PM2.5 (52 ug/m3) is above India's annual-average limit of 40 ug/m3 before the project adds any emissions. Readings are 24-hour samples, so the daily limit is 60 ug/m3."
+        }
+      ],
+      "climateCostInrPerYear": 48866545728,
+      "factors": {
+        "plf": {
+          "value": 0.65,
+          "label": "Plant load factor",
+          "source": "Indian coal fleet has run at roughly 64-69% PLF in recent years (Central Electricity Authority)."
+        },
+        "co2_t_per_mwh": {
+          "value": 0.9,
+          "label": "tCO2 per MWh",
+          "source": "Conservative for a supercritical unit; CEA's CO2 Baseline Database puts India's coal fleet at roughly 0.95-1.0."
+        },
+        "scc_usd_per_t": {
+          "value": 86,
+          "label": "Social cost of carbon to India (US$/tCO2)",
+          "source": "Country-level social cost of carbon for India, median estimate, Ricke et al., Nature Climate Change (2018)."
+        },
+        "usd_inr": {
+          "value": 84,
+          "label": "INR per USD",
+          "source": "Approximate exchange rate."
+        },
+        "lpcd": {
+          "value": 135,
+          "label": "Litres per person per day",
+          "source": "Urban water supply norm, CPHEEO Manual (Ministry of Housing and Urban Affairs)."
+        },
+        "rake_t": {
+          "value": 3800,
+          "label": "Tonnes per coal train",
+          "source": "Approximate load of one coal rake (~58 BOXN wagons), Indian Railways."
+        }
+      },
+      "naaqsSource": "National Ambient Air Quality Standards, CPCB (2009)."
+    },
+    "dek": "Public hearing skipped for the expansion; 104,110 cubic metres of river water a day drawn",
+    "translations": [
+      {
+        "lang": "hi",
+        "headline": "कोरबा पावर लिमिटेड ने पथादी गांव के जंगलों और हसदेव नदी के पास 1320 मेगावाट कोयला संयंत्र जोड़ा",
+        "dek": "विस्तार के लिए सार्वजनिक सुनवाई को छोड़ दिया गया; हर दिन 104,110 क्यूबिक मीटर नदी का पानी निकाला जाएगा"
+      }
+    ],
+    "usage": [
+      {
+        "inputTokens": 30171,
+        "outputTokens": 2055,
+        "latencyMs": 15091,
+        "modelId": "us.amazon.nova-2-lite-v1:0"
+      },
+      {
+        "inputTokens": 2739,
+        "outputTokens": 235,
+        "latencyMs": 2263,
+        "modelId": "us.amazon.nova-2-lite-v1:0"
+      }
+    ],
+    "segment": {
+      "index": 1,
+      "startPage": 1
+    }
+  },
+  "2": {
+    "proposalNo": "IA/CG/THE/537557/2025",
+    "proponent": "KSK Mahanadi Power Company Limited",
+    "projectType": "coal_power",
+    "parentGroup": "",
+    "location": {
+      "state": "Chhattisgarh",
+      "quote": "Village Nariyara, Tehsil Akaltara, Dist. Janjgir-Champa (Chhattisgarh)",
+      "village": "Nariyara",
+      "district": "Jangir-Champa"
+    },
+    "proposalType": "Fresh EC",
+    "projectName": "Expansion of Coal Based Thermal Power Plant (Phase-II)",
+    "concerns": [
+      {
+        "severity": "high",
+        "title": "Air quality exceedances",
+        "explanation": "Ambient air quality monitoring shows concentrations exceeding NAAQS limits, indicating potential health risks for nearby residents.",
+        "quote": "The Committee noted that the resultant concentrations of all the ambient air quality monitoring parameters are exceeding the standard prescribed limit as per NAAQS, 2009.",
+        "page": 33,
+        "verified": true
+      },
+      {
+        "severity": "critical",
+        "title": "Incomplete construction details",
+        "explanation": "The proponent failed to present precise construction status and salient features, raising concerns about project readiness and transparency.",
+        "quote": "During the meeting, neither the project proponent nor the EIA consultant was able to present the status of construction of 3x600 MW (Unit-1, Unit-5, and Unit-6) and salient features of the proposal under consideration. The documents circulated by the PP does not contain precise information about the proposal under consideration.",
+        "page": 33,
+        "verified": true
+      },
+      {
+        "severity": "medium",
+        "title": "Inadequate solar budget",
+        "explanation": "The allocated budget for solar rooftop installation is deemed insufficient by the committee, suggesting inadequate renewable energy integration.",
+        "quote": "It was also noted that an amount of Rs. 12 Crore has been kept for solar rooftop installation by the PP. Committee found that budget of Rs. 12 Crore for roof top installation is too low.",
+        "page": 33,
+        "verified": true
+      },
+      {
+        "severity": "medium",
+        "title": "Stack height uncertainty",
+        "explanation": "The proponent lacks clarity on stack height specifications for new units, potentially affecting emission dispersion modeling.",
+        "quote": "EAC found that the Proponent had no clarity on stack height that would be installed for 3x600 MW (Unit -1, Unit -5, and Unit -6).",
+        "page": 33,
+        "verified": true
+      },
+      {
+        "severity": "medium",
+        "title": "Casual application submission",
+        "explanation": "Both proponent and consultant submitted the application casually with misleading information, indicating poor due diligence and transparency.",
+        "quote": "EAC observed that project proponent as well as the M/s. GreenCIindia Consulting Private Limited Ghaziabad has submitted the application in a very casual manner. The consultant failed to provide the factual information during the EAC and EAC warned the consultant to avoid submitting such misleading information to the EAC.",
+        "page": 33,
+        "verified": true
+      }
+    ],
+    "headline": "KSK Mahanadi Power’s coal plant expansion sits 1.17 km from a wildlife area",
+    "committeeDecision": {
+      "summary": "The EAC returned the proposal for revision due to incomplete information and inadequate justification.",
+      "quote": "In view of the foregoing and after detailed deliberations, the EAC recommended to return the proposal in its present form. Project proponent and the EIA consultant has been advised to revise the EC application in totality by including all the relevant information with requisite supporting documents and submit the same for fresh consideration of the proposal.",
+      "page": 33,
+      "outcome": "returned",
+      "verified": true
+    },
+    "facts": [
+      {
+        "label": "Project cost",
+        "quote": "an amount of Rs. 12 Crore has been kept for solar rooftop installation",
+        "page": 33,
+        "value": 12,
+        "key": "project_cost_crore",
+        "verified": true
+      }
+    ],
+    "nearby": [
+      {
+        "name": "RFA",
+        "kind": "wildlife_area",
+        "distanceKm": 1.17,
+        "quote": "the project site is in close proximity (~1.17 Km) to the RFA",
+        "page": 33,
+        "verified": true
+      }
+    ],
+    "rejected": [
+      {
+        "kind": "fact",
+        "claim": "Capacity added",
+        "reason": "value 1800 does not appear in its quote"
+      },
+      {
+        "kind": "fact",
+        "claim": "Total capacity",
+        "reason": "value 3600 does not appear in its quote"
+      }
+    ],
+    "impact": {
+      "metrics": [],
+      "airFlags": [],
+      "climateCostInrPerYear": 0,
+      "factors": {
+        "plf": {
+          "value": 0.65,
+          "label": "Plant load factor",
+          "source": "Indian coal fleet has run at roughly 64-69% PLF in recent years (Central Electricity Authority)."
+        },
+        "co2_t_per_mwh": {
+          "value": 0.9,
+          "label": "tCO2 per MWh",
+          "source": "Conservative for a supercritical unit; CEA's CO2 Baseline Database puts India's coal fleet at roughly 0.95-1.0."
+        },
+        "scc_usd_per_t": {
+          "value": 86,
+          "label": "Social cost of carbon to India (US$/tCO2)",
+          "source": "Country-level social cost of carbon for India, median estimate, Ricke et al., Nature Climate Change (2018)."
+        },
+        "usd_inr": {
+          "value": 84,
+          "label": "INR per USD",
+          "source": "Approximate exchange rate."
+        },
+        "lpcd": {
+          "value": 135,
+          "label": "Litres per person per day",
+          "source": "Urban water supply norm, CPHEEO Manual (Ministry of Housing and Urban Affairs)."
+        },
+        "rake_t": {
+          "value": 3800,
+          "label": "Tonnes per coal train",
+          "source": "Approximate load of one coal rake (~58 BOXN wagons), Indian Railways."
+        }
+      },
+      "naaqsSource": "National Ambient Air Quality Standards, CPCB (2009)."
+    },
+    "dek": "The expansion was returned for revision after air quality exceeded safety limits and construction details were missing.",
+    "translations": [
+      {
+        "lang": "hi",
+        "headline": "केएसके महानदी पावर का कोयला प्लांट विस्तार वन्यजीव क्षेत्र से 1.17 किमी दूर स्थित है",
+        "dek": "विस्तार को संशोधन के लिए वापस कर दिया गया था क्योंकि वायु गुणवत्ता सुरक्षा सीमा से अधिक थी और निर्माण विवरण गायब थे।"
+      }
+    ],
+    "usage": [
+      {
+        "inputTokens": 5174,
+        "outputTokens": 1043,
+        "latencyMs": 7335,
+        "modelId": "us.amazon.nova-2-lite-v1:0"
+      },
+      {
+        "inputTokens": 1766,
+        "outputTokens": 230,
+        "latencyMs": 1745,
+        "modelId": "us.amazon.nova-2-lite-v1:0"
+      }
+    ],
+    "segment": {
+      "index": 2,
+      "startPage": 32
+    }
+  },
+  "3": {
+    "proposalNo": "IA/OR/THE/500872/2024",
+    "proponent": "NLC INDIA LIMITED",
+    "projectType": "coal_power",
+    "parentGroup": "",
+    "location": {
+      "state": "ODISHA",
+      "quote": "21°45'58.02\"N 84° 0'15.30\"E",
+      "village": "Tareikela & Kumbhari Village",
+      "district": "Jharsuguda",
+      "latitude": 21.76612,
+      "longitude": 84.00425,
+      "source": "parsed from document"
+    },
+    "proposalType": "Fresh ToR",
+    "projectName": "NLC Talabira Thermal Power Project (NTTPP) Phase-II",
+    "concerns": [
+      {
+        "severity": "high",
+        "quote": "The project site is located within Jharsuguda PIA, which is neither the Critically Polluted Area (CPA) nor Severally Polluted Area (SPA) as per CEPI assessment 2018 of CPCB and identified as other polluted area.",
+        "page": 47,
+        "title": "Already-polluted baseline",
+        "explanation": "The project site is in an area already designated as \"other polluted area\" by CPCB. This means existing pollution levels may be high, and the new plant could worsen air quality for nearby residents.",
+        "verified": true
+      },
+      {
+        "severity": "high",
+        "quote": "Bhedan river and Hirakud reservoir area located at 0.5 km and 3.34 km of the project boundary.",
+        "page": 46,
+        "title": "Water drawn from river",
+        "explanation": "The plant will draw water from the Hirakud reservoir and the Bhedan river. If not managed carefully, this could affect water availability for local communities and agriculture.",
+        "verified": true
+      },
+      {
+        "severity": "medium",
+        "quote": "Total of 166.8 Ha area (40% of total project area) will be developed as greenbelt.",
+        "page": 40,
+        "title": "Forests within a few km",
+        "explanation": "While no forest land is directly involved, the project is near existing vegetation and requires creating a 166.8 ha greenbelt. Changes to land cover could impact local wildlife and ecology.",
+        "verified": true
+      }
+    ],
+    "headline": "NLC India Limited draws river water for 800 MW plant beside Bhedan River",
+    "committeeDecision": {
+      "summary": "Recommended grant of Terms of Reference for EIA/EMP study",
+      "quote": "The EAC after detailed deliberations on the information submitted and as presented during the meeting recommended the proposal for grant of ToR for conducting an EIA study for the above project under the provisions of the EIA Notification, 2006, as amended along with the following specific ToR in addition to the generic ToRs.",
+      "page": 47,
+      "outcome": "tor_granted",
+      "verified": true
+    },
+    "facts": [
+      {
+        "key": "capacity_added_mw",
+        "value": 800,
+        "label": "New generating capacity",
+        "quote": "proposed expansion of 1x800 MW NLC Talabira Thermal Power Project NTTPP phase-II",
+        "page": 34,
+        "verified": true
+      },
+      {
+        "key": "capacity_total_mw",
+        "value": 3200,
+        "label": "Total generating capacity after expansion",
+        "quote": "Total power generation after the proposed expansion will be 4x800 MW (3200 MW).",
+        "page": 34,
+        "verified": true
+      },
+      {
+        "key": "water_m3_per_day",
+        "value": 57600,
+        "label": "Water requirement for proposed project",
+        "quote": "The water requirement for the proposed project is estimated as 57,600 m3 /day",
+        "page": 39,
+        "verified": true
+      },
+      {
+        "key": "land_ha",
+        "value": 686.03,
+        "label": "Total land required",
+        "quote": "Total land required for the project is 686.03 ha",
+        "page": 46,
+        "verified": true
+      },
+      {
+        "key": "project_cost_crore",
+        "value": 7178.564,
+        "label": "Capital cost of proposed project",
+        "quote": "The capital cost of the proposed project is Rs. 7178.564 Crores",
+        "page": 39,
+        "verified": true
+      },
+      {
+        "key": "people_displaced",
+        "value": 0,
+        "label": "People displaced",
+        "quote": "As per EC recommendation for Phase- I (3 x800MW), the R&R package is being implemented for the project displaced/affected families.",
+        "page": 35,
+        "verified": true
+      }
+    ],
+    "nearby": [
+      {
+        "name": "Bhedan River",
+        "kind": "river",
+        "distanceKm": 0.5,
+        "quote": "Bhedan River 0.5 km west",
+        "page": 37,
+        "verified": true
+      },
+      {
+        "name": "Hirakud Reservoir",
+        "kind": "reserved_forest",
+        "distanceKm": 3.34,
+        "quote": "Hirakud Reservoir 3.34 km south",
+        "page": 37,
+        "verified": true
+      }
+    ],
+    "rejected": [
+      {
+        "kind": "fact",
+        "claim": "Coal requirement for proposed project",
+        "reason": "value 3500000 does not appear in its quote"
+      },
+      {
+        "kind": "fact",
+        "claim": "Forest land involved",
+        "reason": "value 0 does not appear in its quote"
+      },
+      {
+        "kind": "fact",
+        "claim": "PM10 standard",
+        "reason": "value 100 does not appear in its quote"
+      },
+      {
+        "kind": "fact",
+        "claim": "PM2.5 standard",
+        "reason": "value 60 does not appear in its quote"
+      },
+      {
+        "kind": "fact",
+        "claim": "SO2 standard",
+        "reason": "value 80 does not appear in its quote"
+      },
+      {
+        "kind": "fact",
+        "claim": "NOx standard",
+        "reason": "value 120 does not appear in its quote"
+      },
+      {
+        "kind": "fact",
+        "claim": "Annual ash generation",
+        "reason": "value 1260000 does not appear in its quote"
+      },
+      {
+        "kind": "fact",
+        "claim": "Stack height",
+        "reason": "value 200 does not appear in its quote"
+      }
+    ],
+    "impact": {
+      "metrics": [
+        {
+          "id": "co2",
+          "value": 4099680,
+          "unit": "tonnes CO2 / year",
+          "headline": "4.1 million tonnes of CO2 every year",
+          "formula": "800 MW x 8760 h x 0.65 PLF x 0.9 tCO2/MWh",
+          "inputs": [
+            {
+              "key": "capacity_added_mw",
+              "value": 800,
+              "label": "New generating capacity",
+              "quote": "proposed expansion of 1x800 MW NLC Talabira Thermal Power Project NTTPP phase-II",
+              "page": 34,
+              "verified": true
+            }
+          ],
+          "factors": [
+            "plf",
+            "co2_t_per_mwh"
+          ]
+        },
+        {
+          "id": "climate_cost",
+          "value": 29616088320,
+          "unit": "INR / year",
+          "headline": "Rs 2,962 crore of climate damage every year",
+          "formula": "4,099,680 tCO2 x US$86 x Rs 84",
+          "inputs": [
+            {
+              "key": "capacity_added_mw",
+              "value": 800,
+              "label": "New generating capacity",
+              "quote": "proposed expansion of 1x800 MW NLC Talabira Thermal Power Project NTTPP phase-II",
+              "page": 34,
+              "verified": true
+            }
+          ],
+          "factors": [
+            "scc_usd_per_t",
+            "usd_inr"
+          ]
+        },
+        {
+          "id": "water",
+          "value": 426667,
+          "unit": "people",
+          "headline": "Enough water for 4.3 lakh people, every day",
+          "formula": "57,600 m3/day x 1000 L / 135 L per person",
+          "inputs": [
+            {
+              "key": "water_m3_per_day",
+              "value": 57600,
+              "label": "Water requirement for proposed project",
+              "quote": "The water requirement for the proposed project is estimated as 57,600 m3 /day",
+              "page": 39,
+              "verified": true
+            }
+          ],
+          "factors": [
+            "lpcd"
+          ]
+        }
+      ],
+      "airFlags": [],
+      "climateCostInrPerYear": 29616088320,
+      "factors": {
+        "plf": {
+          "value": 0.65,
+          "label": "Plant load factor",
+          "source": "Indian coal fleet has run at roughly 64-69% PLF in recent years (Central Electricity Authority)."
+        },
+        "co2_t_per_mwh": {
+          "value": 0.9,
+          "label": "tCO2 per MWh",
+          "source": "Conservative for a supercritical unit; CEA's CO2 Baseline Database puts India's coal fleet at roughly 0.95-1.0."
+        },
+        "scc_usd_per_t": {
+          "value": 86,
+          "label": "Social cost of carbon to India (US$/tCO2)",
+          "source": "Country-level social cost of carbon for India, median estimate, Ricke et al., Nature Climate Change (2018)."
+        },
+        "usd_inr": {
+          "value": 84,
+          "label": "INR per USD",
+          "source": "Approximate exchange rate."
+        },
+        "lpcd": {
+          "value": 135,
+          "label": "Litres per person per day",
+          "source": "Urban water supply norm, CPHEEO Manual (Ministry of Housing and Urban Affairs)."
+        },
+        "rake_t": {
+          "value": 3800,
+          "label": "Tonnes per coal train",
+          "source": "Approximate load of one coal rake (~58 BOXN wagons), Indian Railways."
+        }
+      },
+      "naaqsSource": "National Ambient Air Quality Standards, CPCB (2009)."
+    },
+    "dek": "3.34 km from Hirakud Reservoir, the expansion adds 4.1 million tonnes of CO2 yearly",
+    "translations": [
+      {
+        "lang": "hi",
+        "headline": "NLC इंडिया लिमिटेड भेडन नदी के बगल में 800 मेगावाट प्लांट के लिए नदी का पानी निकालता है",
+        "dek": "हिराकुद जलाशय से 3.34 किमी दूर, विस्तार में सालाना 4.1 मिलियन टन CO2 जोड़ा जाता है"
+      },
+      {
+        "lang": "or",
+        "headline": "NLC ଇଣ୍ଡିଆ ଲିମିଟେଡ ଭେଦନ ନଦୀର ପାଖରେ 800 ମେଗାଓଟ ପ୍ରକଳ୍ପ ପାଇଁ ନଦୀର ଜଳ ନିଅଉଛି",
+        "dek": "ହିରାକୁଦ ଜଳାଶୟରୁ 3.34 କି.ମି ଦୂରରେ, ବିସ୍ତାରଣରେ ପ୍ରତିବର୍ଷ 4.1 ମିଲିଅନ ଟନ CO2 ଯୋଗ ଦିଏ"
+      }
+    ],
+    "usage": [
+      {
+        "inputTokens": 27858,
+        "outputTokens": 1519,
+        "latencyMs": 9328,
+        "modelId": "us.amazon.nova-2-lite-v1:0"
+      },
+      {
+        "inputTokens": 2061,
+        "outputTokens": 409,
+        "latencyMs": 3258,
+        "modelId": "us.amazon.nova-2-lite-v1:0"
+      }
+    ],
+    "segment": {
+      "index": 3,
+      "startPage": 33
+    }
+  },
+  "4": {
+    "proposalNo": "IA/OR/THE/529224/2025",
+    "proponent": "GMR KAMALANGA ENERGY LIMITED",
+    "projectType": "coal_power",
+    "parentGroup": "GMR",
+    "location": {
+      "state": "Odisha",
+      "quote": "20°52'34.14\"N 85°15'32.20\"E",
+      "district": "Dhenkanal",
+      "village": "Kamalanga",
+      "latitude": 20.87615,
+      "longitude": 85.25894,
+      "source": "parsed from document"
+    },
+    "proposalType": "Fresh EC",
+    "projectName": "Expansion by addition of 1x350 MW Imported Coal based Thermal Power Plant (Phase-ll)",
+    "concerns": [
+      {
+        "severity": "critical",
+        "title": "Public hearing exempted",
+        "explanation": "Public hearing was exempted by MoEF&CC under notification S.O. 1247(E) dated 18.03.2021 because the project had already been implemented by 63.7%. This denies local residents a formal opportunity to voice concerns and influence project conditions.",
+        "quote": "The public hearing (PH) of the project has been exempted by MoEF&CC in line with the notification of No. SO 1247 E dated 18.03.2021.",
+        "page": 67,
+        "verified": true
+      },
+      {
+        "severity": "high",
+        "title": "Existing non-compliance",
+        "explanation": "The project had previously not complied with conditions regarding coal transportation (required rail, not road), radioactive analysis of fly ash, annual hydrogeology reviews, CSR audits, green belt width, and coal consumption limits. While some issues were addressed, others remain unresolved or require future compliance.",
+        "quote": "Specify condition No- V of EC- II (1x350 MW)- “Coal transportation to plant site shall be undertaken by rail and no road transportation shall be permitted.”",
+        "page": 57,
+        "verified": true
+      },
+      {
+        "severity": "high",
+        "title": "High-ash coal use",
+        "explanation": "The coal used has 40% ash content, which is very high. This increases ash generation, requiring more disposal and utilization efforts, and may affect emissions if not properly managed.",
+        "quote": "Ash –40(%); Sulphur– 0.5 (%); Moisture (%)-13.30; GCV:3200 Kcal/Kg",
+        "page": 64,
+        "verified": true
+      },
+      {
+        "severity": "high",
+        "title": "Water draw from river",
+        "explanation": "The project draws 32,000 m3/day of freshwater from Samal Barrage on Bramhani River during operation. This could strain local water resources, especially in lean seasons.",
+        "quote": "Water requirement for the proposed project work (Construction Phase) is estimated as 3669 m3/day and for operation phase 32,000 m3/day of freshwater requirement  will be obtained from the Samal Barrage on Bramhani River.",
+        "page": 64,
+        "verified": true
+      },
+      {
+        "severity": "high",
+        "title": "Forests within vicinity",
+        "explanation": "There are forest areas within 10 km of the project site, including Genguta RF, Khalpal RF, and Ganthigarhi PF. While no forest land is directly involved in the project, nearby forests could be affected by emissions, noise, or construction activities.",
+        "quote": "Forest 1 Genguta RF 7.5 km WSW 2 Khalpal RF 6.1 km NNE 3 Ganthigarhi PF 5.8 km SW",
+        "page": 76,
+        "verified": true
+      }
+    ],
+    "headline": "GMR Kamalanga Energy Limited adds 350 MW coal plant, skipping public hearing near forests and river",
+    "committeeDecision": {
+      "summary": "The EAC recommended granting environmental clearance subject to specific and general conditions, including compliance with emission standards, ash utilization, water management, green belt development, and public consultation follow-up actions.",
+      "quote": "In view of the foregoing and after detailed deliberations, the committee recommended the instant proposal for grant of Environment Clearance under the provisions of EIA Notification, 2006 subject to uploading of written submission on PARIVESH Portal and stipulation of the following specific conditions and general conditions based on project specific requirements:",
+      "page": 25,
+      "outcome": "recommended",
+      "verified": true
+    },
+    "facts": [
+      {
+        "key": "capacity_added_mw",
+        "value": 350,
+        "label": "Added capacity",
+        "quote": "Expansion by addition of 1x350 MW Imported Coal based Thermal Power Plant (Phase-ll)",
+        "page": 55,
+        "verified": true
+      },
+      {
+        "key": "capacity_total_mw",
+        "value": 1400,
+        "label": "Total capacity after expansion",
+        "quote": "Total - 1400 (4x350) MW",
+        "page": 60,
+        "verified": true
+      },
+      {
+        "key": "land_ha",
+        "value": 468.85,
+        "label": "Total land area",
+        "quote": "Total land 468.85 ha.",
+        "page": 59,
+        "verified": true
+      },
+      {
+        "key": "forest_land_ha",
+        "value": 31.58,
+        "label": "Forest land acquired",
+        "quote": "Forest land: 31.58 ha",
+        "page": 201,
+        "verified": true
+      },
+      {
+        "key": "project_cost_crore",
+        "value": 1600,
+        "label": "Capital cost",
+        "quote": "The capital cost of the proposed project is Rs 1600 Crores",
+        "page": 71,
+        "verified": true
+      },
+      {
+        "key": "pm10_max_ugm3",
+        "value": 78.5,
+        "label": "Baseline PM10",
+        "quote": "PM10 = 5.6 to 78.5µg/m3",
+        "page": 64,
+        "verified": true
+      },
+      {
+        "key": "pm25_max_ugm3",
+        "value": 28.4,
+        "label": "Baseline PM2.5",
+        "quote": "PM 2.5 =1.4 to 28.4 µg/m3",
+        "page": 64,
+        "verified": true
+      },
+      {
+        "key": "so2_max_ugm3",
+        "value": 10.8,
+        "label": "Baseline SO2",
+        "quote": "SO2 = 6.3 to 10.8 µg/m3",
+        "page": 64,
+        "verified": true
+      },
+      {
+        "key": "nox_max_ugm3",
+        "value": 30.0,
+        "label": "Baseline NOx",
+        "quote": "Nox = 13.9 to 30.0 µg/m3",
+        "page": 64,
+        "verified": true
+      },
+      {
+        "key": "stack_height_m",
+        "value": 275,
+        "label": "Stack height",
+        "quote": "The Project Proponent shall provide stack of 275 meters height",
+        "page": 26,
+        "verified": true
+      }
+    ],
+    "nearby": [
+      {
+        "name": "Brahmani River",
+        "kind": "river",
+        "distanceKm": 2.6,
+        "quote": "Brahmani River 2.6 km E",
+        "page": 62,
+        "verified": true
+      },
+      {
+        "name": "Genguta RF",
+        "kind": "reserved_forest",
+        "distanceKm": 7.5,
+        "quote": "Forest 1 Genguta RF 7.5 km WSW",
+        "page": 76,
+        "verified": true
+      },
+      {
+        "name": "Khalpal RF",
+        "kind": "reserved_forest",
+        "distanceKm": 6.1,
+        "quote": "2 Khalpal RF 6.1 km NNE",
+        "page": 76,
+        "verified": true
+      },
+      {
+        "name": "Ganthigarhi PF",
+        "kind": "protected_forest",
+        "distanceKm": 5.8,
+        "quote": "3 Ganthigarhi PF 5.8 km SW",
+        "page": 76,
+        "verified": true
+      },
+      {
+        "name": "Primary school, Bhagamunda",
+        "kind": "school",
+        "distanceKm": 0.225,
+        "quote": "14 Primary school, Bhagamunda 0.225 km N",
+        "page": 76,
+        "verified": true
+      },
+      {
+        "name": "Asha Hospital (GMR School)",
+        "kind": "hospital",
+        "distanceKm": 0.1,
+        "quote": "19 Asha Hospital (GMR School) 0.100 m E",
+        "page": 77,
+        "verified": true
+      }
+    ],
+    "rejected": [
+      {
+        "kind": "fact",
+        "claim": "Coal requirement",
+        "reason": "value 193000 does not appear in its quote"
+      },
+      {
+        "kind": "fact",
+        "claim": "Water requirement (operation phase)",
+        "reason": "quote not found in source document"
+      },
+      {
+        "kind": "fact",
+        "claim": "Fly ash generation",
+        "reason": "value 85000 does not appear in its quote"
+      },
+      {
+        "kind": "fact",
+        "claim": "People displaced",
+        "reason": "quote not found in source document"
+      }
+    ],
+    "impact": {
+      "metrics": [
+        {
+          "id": "co2",
+          "value": 1793610,
+          "unit": "tonnes CO2 / year",
+          "headline": "1.8 million tonnes of CO2 every year",
+          "formula": "350 MW x 8760 h x 0.65 PLF x 0.9 tCO2/MWh",
+          "inputs": [
+            {
+              "key": "capacity_added_mw",
+              "value": 350,
+              "label": "Added capacity",
+              "quote": "Expansion by addition of 1x350 MW Imported Coal based Thermal Power Plant (Phase-ll)",
+              "page": 55,
+              "verified": true
+            }
+          ],
+          "factors": [
+            "plf",
+            "co2_t_per_mwh"
+          ]
+        },
+        {
+          "id": "climate_cost",
+          "value": 12957038640,
+          "unit": "INR / year",
+          "headline": "Rs 1,296 crore of climate damage every year",
+          "formula": "1,793,610 tCO2 x US$86 x Rs 84",
+          "inputs": [
+            {
+              "key": "capacity_added_mw",
+              "value": 350,
+              "label": "Added capacity",
+              "quote": "Expansion by addition of 1x350 MW Imported Coal based Thermal Power Plant (Phase-ll)",
+              "page": 55,
+              "verified": true
+            }
+          ],
+          "factors": [
+            "scc_usd_per_t",
+            "usd_inr"
+          ]
+        }
+      ],
+      "airFlags": [
+        {
+          "pollutant": "PM10",
+          "measured": 78.5,
+          "annualLimit": 60,
+          "dailyLimit": 100,
+          "exceedsDaily": false,
+          "input": {
+            "key": "pm10_max_ugm3",
+            "value": 78.5,
+            "label": "Baseline PM10",
+            "quote": "PM10 = 5.6 to 78.5µg/m3",
+            "page": 64,
+            "verified": true
+          },
+          "note": "Highest pre-project reading of PM10 (78.5 ug/m3) is above India's annual-average limit of 60 ug/m3 before the project adds any emissions. Readings are 24-hour samples, so the daily limit is 100 ug/m3."
+        }
+      ],
+      "climateCostInrPerYear": 12957038640,
+      "factors": {
+        "plf": {
+          "value": 0.65,
+          "label": "Plant load factor",
+          "source": "Indian coal fleet has run at roughly 64-69% PLF in recent years (Central Electricity Authority)."
+        },
+        "co2_t_per_mwh": {
+          "value": 0.9,
+          "label": "tCO2 per MWh",
+          "source": "Conservative for a supercritical unit; CEA's CO2 Baseline Database puts India's coal fleet at roughly 0.95-1.0."
+        },
+        "scc_usd_per_t": {
+          "value": 86,
+          "label": "Social cost of carbon to India (US$/tCO2)",
+          "source": "Country-level social cost of carbon for India, median estimate, Ricke et al., Nature Climate Change (2018)."
+        },
+        "usd_inr": {
+          "value": 84,
+          "label": "INR per USD",
+          "source": "Approximate exchange rate."
+        },
+        "lpcd": {
+          "value": 135,
+          "label": "Litres per person per day",
+          "source": "Urban water supply norm, CPHEEO Manual (Ministry of Housing and Urban Affairs)."
+        },
+        "rake_t": {
+          "value": 3800,
+          "label": "Tonnes per coal train",
+          "source": "Approximate load of one coal rake (~58 BOXN wagons), Indian Railways."
+        }
+      },
+      "naaqsSource": "National Ambient Air Quality Standards, CPCB (2009)."
+    },
+    "dek": "A 350 MW coal plant expansion in Kamalanga, Odisha, proceeds without a public hearing, drawing 32,000 m3/day from the Bramhani River just 2.6 km away and siting within 10 km of three forest reserves.",
+    "translations": [
+      {
+        "lang": "hi",
+        "headline": "GMR Kamalanga Energy Limited ने 350 MW कोयला संयंत्र जोड़ा, जंगलों और नदी के पास सार्वजनिक सुनवाई को छोड़ दिया",
+        "dek": "ओडिशा के कमलंगा में 350 MW का कोयला संयंत्र विस्तार, बिना सार्वजनिक सुनवाई के आगे बढ़ रहा है, जो ब्राह्मनी नदी से 32,000 म3/दिन पानी खींच रहा है जो केवल 2.6 किमी दूर है और 10 किमी के भीतर तीन वन रिजर्व हैं।"
+      },
+      {
+        "lang": "or",
+        "headline": "GMR Kamalanga Energy Limited 350 MW କୋଇଲ ପ୍ରଯୋଜନା ଅନୁସାରେ ଜଙ୍ଗଲ ଏବଂ ନଦୀ ପାଖରେ ସାର୍ବଜନୀନ ଶୁଣାଣୀ ଅତିକ୍ରମ କରିଛି",
+        "dek": "ଓଡିଶାର କମଲାଙ୍ଗାରେ 350 MW କୋଇଲ ପ୍ରଯୋଜନା ବିସ୍ତାରଣ, ସାର୍ବଜନୀନ ଶୁଣାଣୀ ବିନା ଆଗକୁ ବଢିଛି, ଯାହା ବ୍ରହ୍ମଣୀ ନଦୀରୁ 32,000 m3/ଦିନ ଜଳ ଆକର୍ଷଣ କରିଛି ଯାହା କେବଳ 2.6 କି.ମି. ଦୂରରେ ଅଛି ଏବଂ 10 କି.ମି. ଅଂଶରେ ତିନୋଟି ବନ ରିଜର୍ଭ ଅଛି।"
+      }
+    ],
+    "usage": [
+      {
+        "inputTokens": 30418,
+        "outputTokens": 1926,
+        "latencyMs": 12896,
+        "modelId": "us.amazon.nova-2-lite-v1:0"
+      },
+      {
+        "inputTokens": 2559,
+        "outputTokens": 497,
+        "latencyMs": 3452,
+        "modelId": "us.amazon.nova-2-lite-v1:0"
+      }
+    ],
+    "segment": {
+      "index": 4,
+      "startPage": 55
+    }
+  },
+  "5": {
+    "proposalNo": "IA/CG/THE/472414/2024",
+    "proponent": "JINDAL POWER LIMITED",
+    "projectType": "coal_power",
+    "parentGroup": "Jindal Power",
+    "location": {
+      "state": "Chhattisgarh",
+      "quote": "Village Tamnar, Taluk Gharghoda, District Raigarh (Chhattisgarh)",
+      "village": "Tamnar",
+      "district": "Raigarh"
+    },
+    "proposalType": "Amendment in EC",
+    "projectName": "4x600 MW Thermal Power Plant",
+    "concerns": [
+      {
+        "severity": "critical",
+        "quote": "The adequacy of the ash dyke for 4x250 MW have been examined by EAC in detail and noted that factor of safety is 1.0, which is pretty low.",
+        "page": 110,
+        "title": "Ash Dyke Safety Critical",
+        "explanation": "The existing ash dyke has a safety factor of only 1.0, meaning it could fail. Using it for more ash from a larger plant risks collapse and pollution.",
+        "verified": true
+      },
+      {
+        "severity": "critical",
+        "quote": "31 non-compliances have been reported by the Regional Office including the non-compliance to the provisions contained under the ash utilization notification 2021",
+        "page": 110,
+        "title": "Massive Compliance Failures",
+        "explanation": "The plant has 31 major violations of environmental rules, including misuse of ash. These must be fixed before any expansion is allowed.",
+        "verified": true
+      },
+      {
+        "severity": "medium",
+        "quote": "The railway route must be completed by 01.04.2025 and MoEF&CC with the Railway Board will regularly monitor the progress of the completion of the railway route.",
+        "page": 89,
+        "title": "Railway Deadline",
+        "explanation": "A court has ordered the railway for coal transport to be finished by April 2025. Delays could stop coal deliveries and shut down the plant.",
+        "verified": true
+      },
+      {
+        "severity": "medium",
+        "quote": "The state is directed to strictly comply Rule 22 of the Chhattisgarh District Mineral Foundation Trust Rule, 2015 and Rule 10(1)(b)(1) Odisha District Mineral Foundation Trust Rule, 2015 which provides the expenditure from the trust fund of the District Mineral Foundation Trust for the overall development of the area affected by the Mining or mining is related operations",
+        "page": 88,
+        "title": "Trust Fund Use Required",
+        "explanation": "The court requires the District Mineral Foundation Trust money to be spent on local development and road maintenance. Failure to do so could lead to legal action.",
+        "verified": true
+      },
+      {
+        "severity": "low",
+        "quote": "The South East Central Railway (SECR) Bilaspur is directed to periodically monitor the progress of the railway construction and to ensure its completion before 01.04.2025.",
+        "page": 89,
+        "title": "Railway Monitoring",
+        "explanation": "The railway construction must be monitored closely to meet the April 2025 deadline, otherwise coal transport could be disrupted.",
+        "verified": true
+      }
+    ],
+    "headline": "Jindal Power's Tamnar plant must fix 31 violations before expanding",
+    "committeeDecision": {
+      "summary": "The EAC deferred the proposal and sought a closure report against the 31 non-compliances reported by the Regional Office and circular slip analysis of the existing ash dyke.",
+      "quote": "In view of the foregoing and after the detailed deliberations, the Committee deferred the instant proposal and sought for a closure report against the 31 non-compliances as reported in the certified compliance report dated 25/04/2025 including the non-compliance to the provisions contained under the ash utilization notification 2021 for the existing ash dyke of 4x250 MW. Further, proponent shall also submit the circular slip analysis of the existing ash dyke to ensure the stability of the same as it has been proposed to be used for disposal of ash from 4x600 MW forever. Thereafter, the proposal shall be placed before the EAC for consideration for taking considered view on the amendment request of the project proponent.",
+      "page": 110,
+      "outcome": "deferred",
+      "verified": true
+    },
+    "facts": [
+      {
+        "key": "capacity_added_mw",
+        "value": 0,
+        "label": "No new capacity",
+        "quote": "Amendment in EC of 4X600 MW Thermal Power Plant",
+        "page": 86,
+        "verified": true
+      },
+      {
+        "key": "land_ha",
+        "value": 236,
+        "label": "Land for ash dyke",
+        "quote": "236 ha land at an alternate location near village Dolesera",
+        "page": 94,
+        "verified": true
+      }
+    ],
+    "nearby": [
+      {
+        "name": "Rodapali village",
+        "kind": "settlement",
+        "distanceKm": 0,
+        "quote": "As per EC dated 18.03.2011, a separate ash dyke near Rodapali village was to be constructed for 4x 600 MW.",
+        "page": 94,
+        "verified": true
+      }
+    ],
+    "rejected": [
+      {
+        "kind": "fact",
+        "claim": "Total plant capacity",
+        "reason": "value 2400 does not appear in its quote"
+      },
+      {
+        "kind": "fact",
+        "claim": "{'key': 'coal_tonnes_per_day', 'value': 0, 'label': 'Coal consumption not specif",
+        "reason": "incomplete claim"
+      },
+      {
+        "kind": "fact",
+        "claim": "{'key': 'water_m3_per_day', 'value': 0, 'label': 'Water consumption not specifie",
+        "reason": "incomplete claim"
+      },
+      {
+        "kind": "fact",
+        "claim": "{'key': 'forest_land_ha', 'value': 0, 'label': 'Forest land not specified', 'quo",
+        "reason": "incomplete claim"
+      },
+      {
+        "kind": "fact",
+        "claim": "{'key': 'project_cost_crore', 'value': 0, 'label': 'Project cost not specified',",
+        "reason": "incomplete claim"
+      },
+      {
+        "kind": "fact",
+        "claim": "{'key': 'pm10_max_ugm3', 'value': 0, 'label': 'PM10 limit not specified', 'quote",
+        "reason": "incomplete claim"
+      },
+      {
+        "kind": "fact",
+        "claim": "{'key': 'pm25_max_ugm3', 'value': 0, 'label': 'PM2.5 limit not specified', 'quot",
+        "reason": "incomplete claim"
+      },
+      {
+        "kind": "fact",
+        "claim": "{'key': 'so2_max_ugm3', 'value': 0, 'label': 'SO2 limit not specified', 'quote':",
+        "reason": "incomplete claim"
+      },
+      {
+        "kind": "fact",
+        "claim": "{'key': 'nox_max_ugm3', 'value': 0, 'label': 'NOx limit not specified', 'quote':",
+        "reason": "incomplete claim"
+      },
+      {
+        "kind": "fact",
+        "claim": "{'key': 'ash_tonnes_per_day', 'value': 0, 'label': 'Ash generation not specified",
+        "reason": "incomplete claim"
+      },
+      {
+        "kind": "fact",
+        "claim": "{'key': 'people_displaced', 'value': 0, 'label': 'Displacement not specified', '",
+        "reason": "incomplete claim"
+      },
+      {
+        "kind": "fact",
+        "claim": "{'key': 'stack_height_m', 'value': 0, 'label': 'Stack height not specified', 'qu",
+        "reason": "incomplete claim"
+      },
+      {
+        "kind": "nearby",
+        "claim": "Gare Palma IV/1 coal mine",
+        "reason": "quote not found in source document"
+      },
+      {
+        "kind": "nearby",
+        "claim": "Gare Palma IV/2 & IV/3 coal mines",
+        "reason": "quote not found in source document"
+      },
+      {
+        "kind": "nearby",
+        "claim": "Kulda mines of MCL",
+        "reason": "value 0 does not appear in its quote"
+      },
+      {
+        "kind": "nearby",
+        "claim": "Dolesara village",
+        "reason": "value 0 does not appear in its quote"
+      },
+      {
+        "kind": "nearby",
+        "claim": "Uttar Regaon village",
+        "reason": "value 0 does not appear in its quote"
+      },
+      {
+        "kind": "nearby",
+        "claim": "Kurkut River",
+        "reason": "value 0 does not appear in its quote"
+      },
+      {
+        "kind": "nearby",
+        "claim": "Chhattisgarh Environment Conservation Board",
+        "reason": "value 0 does not appear in its quote"
+      }
+    ],
+    "impact": {
+      "metrics": [
+        {
+          "id": "co2",
+          "value": 0,
+          "unit": "tonnes CO2 / year",
+          "headline": "0.0 million tonnes of CO2 every year",
+          "formula": "0 MW x 8760 h x 0.65 PLF x 0.9 tCO2/MWh",
+          "inputs": [
+            {
+              "key": "capacity_added_mw",
+              "value": 0,
+              "label": "No new capacity",
+              "quote": "Amendment in EC of 4X600 MW Thermal Power Plant",
+              "page": 86,
+              "verified": true
+            }
+          ],
+          "factors": [
+            "plf",
+            "co2_t_per_mwh"
+          ]
+        },
+        {
+          "id": "climate_cost",
+          "value": 0,
+          "unit": "INR / year",
+          "headline": "Rs 0 crore of climate damage every year",
+          "formula": "0 tCO2 x US$86 x Rs 84",
+          "inputs": [
+            {
+              "key": "capacity_added_mw",
+              "value": 0,
+              "label": "No new capacity",
+              "quote": "Amendment in EC of 4X600 MW Thermal Power Plant",
+              "page": 86,
+              "verified": true
+            }
+          ],
+          "factors": [
+            "scc_usd_per_t",
+            "usd_inr"
+          ]
+        }
+      ],
+      "airFlags": [],
+      "climateCostInrPerYear": 0,
+      "factors": {
+        "plf": {
+          "value": 0.65,
+          "label": "Plant load factor",
+          "source": "Indian coal fleet has run at roughly 64-69% PLF in recent years (Central Electricity Authority)."
+        },
+        "co2_t_per_mwh": {
+          "value": 0.9,
+          "label": "tCO2 per MWh",
+          "source": "Conservative for a supercritical unit; CEA's CO2 Baseline Database puts India's coal fleet at roughly 0.95-1.0."
+        },
+        "scc_usd_per_t": {
+          "value": 86,
+          "label": "Social cost of carbon to India (US$/tCO2)",
+          "source": "Country-level social cost of carbon for India, median estimate, Ricke et al., Nature Climate Change (2018)."
+        },
+        "usd_inr": {
+          "value": 84,
+          "label": "INR per USD",
+          "source": "Approximate exchange rate."
+        },
+        "lpcd": {
+          "value": 135,
+          "label": "Litres per person per day",
+          "source": "Urban water supply norm, CPHEEO Manual (Ministry of Housing and Urban Affairs)."
+        },
+        "rake_t": {
+          "value": 3800,
+          "label": "Tonnes per coal train",
+          "source": "Approximate load of one coal rake (~58 BOXN wagons), Indian Railways."
+        }
+      },
+      "naaqsSource": "National Ambient Air Quality Standards, CPCB (2009)."
+    },
+    "dek": "The existing ash dyke risks collapse, and a court has ordered coal railway completion by April 2025",
+    "translations": [
+      {
+        "lang": "hi",
+        "headline": "जिंदल पावर के तामनार प्लांट को विस्तार से पहले 31 उल्लंघनों को ठीक करना होगा",
+        "dek": "मौजूदा राख बांध में टूटने का खतरा है, और एक अदालत ने अप्रैल 2025 तक कोयले की रेलवे के निर्माण का आदेश दिया है"
+      }
+    ],
+    "usage": [
+      {
+        "inputTokens": 30180,
+        "outputTokens": 1928,
+        "latencyMs": 10454,
+        "modelId": "us.amazon.nova-2-lite-v1:0"
+      },
+      {
+        "inputTokens": 1887,
+        "outputTokens": 226,
+        "latencyMs": 1558,
+        "modelId": "us.amazon.nova-2-lite-v1:0"
+      }
+    ],
+    "segment": {
+      "index": 5,
+      "startPage": 86
+    }
+  },
+  "6": {
+    "proposalNo": "IA/OR/THE/539423/2025",
+    "proponent": "NTPC LIMITED",
+    "projectType": "coal_power",
+    "parentGroup": "",
+    "location": {
+      "state": "Odisha",
+      "quote": "village Darlipali, Taluk Lephripara, District Sundergarh, Odisha",
+      "village": "Darlipali",
+      "district": "Sundergarh"
+    },
+    "proposalType": "Amendment in ToR",
+    "projectName": "Darlipali Super Thermal Power Project, Stage-II",
+    "concerns": [
+      {
+        "severity": "high",
+        "title": "Court case on pollution and health hazards",
+        "explanation": "The Orissa Human Rights Commission has a pending case alleging NTPC violates human rights by polluting the environment and causing health hazards due to emissions.",
+        "quote": "The complainant alleges that NTPC is violating human rights by polluting the environment in the Sundargarh district, causing health hazards due to emissions from vehicles and chimneys of the power plant.",
+        "page": 114,
+        "verified": true
+      },
+      {
+        "severity": "medium",
+        "title": "Project site spans two districts with unclear facility allocation",
+        "explanation": "The project site is reported to fall under both Sundergarh and Jharsuguda districts, but no clarity is provided on which facilities will be set up in which district.",
+        "quote": "As per the ToR & its amendment accorded by MoEF&CC, project site falls under village Darlipali, Taluk Lephripara, District Sundergarh, Orissa whereas as per the application submitted project site falls in two districts namely Sundergarh and Jharsuguda.",
+        "page": 244,
+        "verified": true
+      },
+      {
+        "severity": "medium",
+        "title": "Inconsistent data on baseline collection status",
+        "explanation": "The application, brief summary, and presentation contain different statements about the status of baseline data collection, creating confusion about whether it has started or not.",
+        "quote": "With respect to baseline data collection, it has been mentioned in the application that data collection is going on from April to June, 2025 and in the brief summary it is stated that data collection is yet to be done.",
+        "page": 244,
+        "verified": true
+      }
+    ],
+    "headline": "NTPC's Darlipali Super Thermal Power Project demands 930 cubic metres of water an hour near a pending human rights case.",
+    "committeeDecision": {
+      "summary": "The Expert Appraisal Committee returned the proposal in its present form, advising the proponent and EIA consultant to revise the ToR amendment application with all relevant information and supporting documents for fresh consideration.",
+      "quote": "In view of the foregoing and after detailed deliberations, the EAC recommended to return the proposal in its present form . Project proponent and the EIA consultant has been advised to revise the ToR amendment  application in totality by including all the relevant information with requisite supporting documents and submit the same for fresh consideration by the EAC.",
+      "page": 244,
+      "outcome": "returned",
+      "verified": true
+    },
+    "facts": [
+      {
+        "key": "water_m3_per_day",
+        "value": 930,
+        "label": "Water requirement with air-cooled condenser",
+        "quote": "Quantity of water Requirement: 930 m3/hr",
+        "page": 111,
+        "verified": true
+      },
+      {
+        "key": "forest_land_ha",
+        "value": 65.301,
+        "label": "Forest land diversion required",
+        "quote": "the Forest diversion proposal for 65.301 Ha has been submitted.",
+        "page": 113,
+        "verified": true
+      }
+    ],
+    "nearby": [],
+    "rejected": [
+      {
+        "kind": "fact",
+        "claim": "Added capacity",
+        "reason": "quote not found in source document"
+      },
+      {
+        "kind": "fact",
+        "claim": "Additional land required for expansion",
+        "reason": "quote not found in source document"
+      },
+      {
+        "kind": "nearby",
+        "claim": "Sundargarh district",
+        "reason": "value 0 does not appear in its quote"
+      },
+      {
+        "kind": "nearby",
+        "claim": "Jharsuguda district",
+        "reason": "value 0 does not appear in its quote"
+      }
+    ],
+    "impact": {
+      "metrics": [
+        {
+          "id": "water",
+          "value": 6889,
+          "unit": "people",
+          "headline": "Enough water for 0.1 lakh people, every day",
+          "formula": "930 m3/day x 1000 L / 135 L per person",
+          "inputs": [
+            {
+              "key": "water_m3_per_day",
+              "value": 930,
+              "label": "Water requirement with air-cooled condenser",
+              "quote": "Quantity of water Requirement: 930 m3/hr",
+              "page": 111,
+              "verified": true
+            }
+          ],
+          "factors": [
+            "lpcd"
+          ]
+        }
+      ],
+      "airFlags": [],
+      "climateCostInrPerYear": 0,
+      "factors": {
+        "plf": {
+          "value": 0.65,
+          "label": "Plant load factor",
+          "source": "Indian coal fleet has run at roughly 64-69% PLF in recent years (Central Electricity Authority)."
+        },
+        "co2_t_per_mwh": {
+          "value": 0.9,
+          "label": "tCO2 per MWh",
+          "source": "Conservative for a supercritical unit; CEA's CO2 Baseline Database puts India's coal fleet at roughly 0.95-1.0."
+        },
+        "scc_usd_per_t": {
+          "value": 86,
+          "label": "Social cost of carbon to India (US$/tCO2)",
+          "source": "Country-level social cost of carbon for India, median estimate, Ricke et al., Nature Climate Change (2018)."
+        },
+        "usd_inr": {
+          "value": 84,
+          "label": "INR per USD",
+          "source": "Approximate exchange rate."
+        },
+        "lpcd": {
+          "value": 135,
+          "label": "Litres per person per day",
+          "source": "Urban water supply norm, CPHEEO Manual (Ministry of Housing and Urban Affairs)."
+        },
+        "rake_t": {
+          "value": 3800,
+          "label": "Tonnes per coal train",
+          "source": "Approximate load of one coal rake (~58 BOXN wagons), Indian Railways."
+        }
+      },
+      "naaqsSource": "National Ambient Air Quality Standards, CPCB (2009)."
+    },
+    "dek": "This amendment application returns to the Expert Appraisal Committee without complete information, while a court case alleges health hazards from emissions.",
+    "translations": [
+      {
+        "lang": "hi",
+        "headline": "NTPC के डार्लिपाली सुपर थर्मल पावर प्रोजेक्ट ने एक मानव अधिकार मामले के पास प्रति घंटे 930 क्यूबिक मीटर पानी की मांग की है।",
+        "dek": "यह संशोधन आवेदन विशेषज्ञ मूल्यांकन समिति को बिना पूरी जानकारी के वापस आ गया है, जबकि एक अदालत का मामला उत्सर्जन से स्वास्थ्य जोखिमों का आरोप लगाता है।"
+      },
+      {
+        "lang": "or",
+        "headline": "NTPC ର ଡାର୍ଲିପାଲି ସୁପର ଥର୍ମାଲ ପାଉଅର ପ୍ରକଲ୍ପ ଏକ ମାନବ ଅଧିକାର କేସ ପାଖରେ ପ୍ରତି ଘଣ୍ଟା ୯୩୦ କୁବିକ ମିଟର ଜଳ ମାଗିଛି।",
+        "dek": "ଏହି ସଂଶୋଧନ ଅପେକ୍ଷା ଅନୁସନ୍ଧାନ ସମିତି ନିକଟେ ଅସମ୍ପୂର୍ଣ ଜାଣकारी ନାହିଁ ଥିବା ଅବସ୍ଥାରେ ଫେରିଆସିଛି, ଯାହାର ସମକ୍ଷ ଏକ ଅଦାଲତ କେସ ଉତ୍ସର୍ଗନରୁ ସ୍ୱାସ୍ଥ୍ୟ ଜୋଖମ ଅବହେଳ କରେ ବୋଲି ଆରୋପ କରେ।"
+      }
+    ],
+    "usage": [
+      {
+        "inputTokens": 9084,
+        "outputTokens": 980,
+        "latencyMs": 5450,
+        "modelId": "us.amazon.nova-2-lite-v1:0"
+      },
+      {
+        "inputTokens": 1770,
+        "outputTokens": 585,
+        "latencyMs": 4818,
+        "modelId": "us.amazon.nova-2-lite-v1:0"
+      }
+    ],
+    "segment": {
+      "index": 6,
+      "startPage": 110
+    }
+  }
+}
