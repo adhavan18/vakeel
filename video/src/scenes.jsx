@@ -1,6 +1,7 @@
 import { AbsoluteFill, Img, Html5Video, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig, Easing } from "remotion";
 import clips from "../public/clips/manifest.json";
 import { C, serif, sans, mono, deva } from "./theme.js";
+export const displayFont = serif;
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" };
 const ease = Easing.bezier(0.22, 1, 0.36, 1);

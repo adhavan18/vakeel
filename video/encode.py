@@ -22,6 +22,7 @@ FPS = 30
 
 CONFIG = {
     "launch": {"script": "script.json", "frames": "out/frames_launch", "out": "out/vakeel-launch.mp4", "vo_delay": 8, "pad": 0.9, "duck": True, "music_gain": 0.42},
+    "launch2": {"script": "script_v2.json", "frames": "out/frames_launch2", "out": "out/vakeel-launch-v2.mp4", "vo_delay": 8, "pad": 0.9, "duck": True, "music_gain": 0.42},
     "short": {"script": "short_script.json", "frames": "out/frames_short", "out": "out/vakeel-short.mp4", "vo_delay": 6, "pad": 0.6, "duck": False, "music_gain": 0.32},
 }[sys.argv[1]]
 

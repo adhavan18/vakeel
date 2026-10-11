@@ -1,20 +1,88 @@
 {
-  "voice": { "id": "Kajal", "engine": "generative", "language": "en-IN" },
-  "vo_dir": "vo_v2",
-  "music": { "file": "music_v2.wav", "title": "title", "product": "s_home", "close": "close", "end": "end" },
+  "voice": {
+    "id": "Kajal",
+    "engine": "generative",
+    "language": "en-IN"
+  },
+  "vo_dir": "vo_final",
+  "music": {
+    "file": "music_v2.wav",
+    "title": "title",
+    "product": "s_home",
+    "close": "close",
+    "end": "end"
+  },
   "scenes": [
-    { "id": "cold", "min": 6.5, "vo": "On the twentieth of June, 2025, a government committee in Delhi met to decide the future of six coal power plants." },
-    { "id": "wall", "min": 8, "vo": "Its decisions were published in a document two hundred and forty-six pages long. Public, and impossible to read for the people who live next to these plants." },
-    { "id": "buried", "min": 14, "vo": "On page eighteen, a thirteen-hundred-megawatt coal expansion, two kilometres from a reserved forest, was exempted from its public hearing. On page twenty-five, the committee recommended it. Nobody objected. Because nobody could read it." },
-    { "id": "title", "min": 4, "vo": "So I built Vakeel. It's Hindi for advocate." },
-    { "id": "s_home", "min": 7, "screen": "home", "vo": "You take any clearance filing from the government's PARIVESH portal, and drop it in." },
-    { "id": "s_agents", "min": 12, "screen": "agents", "vo": "AWS Step Functions splits it into projects and sends an Amazon Bedrock agent to read each one, in parallel. Two hundred and forty-six pages, read in under a minute." },
-    { "id": "s_verify", "min": 11, "screen": "verify", "vo": "But an AI reading legal documents can't be allowed to guess. Every number needs a word-for-word quote and a page. My verifier checks each one against the PDF, and throws away anything it can't find." },
-    { "id": "s_project", "min": 14, "screen": "project", "vo": "What's left is what a neighbour actually needs. Plain language, in Hindi too. Nearly five thousand crore rupees of climate damage a year. River water for almost eight lakh people, every day. Computed by code, not by the AI." },
-    { "id": "s_evidence", "min": 5, "screen": "evidence", "vo": "And every single number opens the exact page it came from." },
-    { "id": "s_object", "min": 15, "screen": "object", "vo": "Then Vakeel helps you act. It drafts a formal objection from the committee's own record, but it can never send it on its own. You read it, and you type the exact sentence to sign. Step Functions waits for a human." },
-    { "id": "arch", "min": 12, "vo": "Under the hood, it's fully serverless on AWS. Bedrock running Nova, Step Functions, Lambda, DynamoDB, S3 and CloudFront, with a daily spending cap built in." },
-    { "id": "close", "min": 10, "vo": "India clears coal plants, mines and dams every month, one unreadable PDF at a time. Vakeel reads them first, so the people who'll live with them can say no while it still counts." },
-    { "id": "end", "min": 4.5, "vo": "" }
+    {
+      "id": "cold",
+      "min": 6.5,
+      "vo": "On the twentieth of June, 2025, a government committee in Delhi met to decide the future of six coal power plants."
+    },
+    {
+      "id": "wall",
+      "min": 8,
+      "vo": "Its decisions were published in a document two hundred and forty-six pages long. Public, and impossible to read for the people who live next to these plants."
+    },
+    {
+      "id": "buried",
+      "min": 16,
+      "vo": "On page eighteen, a thirteen-hundred-megawatt coal expansion, drawing water from the Hasdeo River, skipped its public hearing, under a 2021 rule that waives hearings for projects that are already half built. On page twenty-five, the committee recommended it. Nobody objected. Because nobody could read it."
+    },
+    {
+      "id": "title",
+      "min": 4,
+      "vo": "So I built Vakeel. It's Hindi for advocate."
+    },
+    {
+      "id": "s_home",
+      "min": 7,
+      "screen": "home",
+      "vo": "You take any clearance filing from the government's PARIVESH portal, and drop it in."
+    },
+    {
+      "id": "s_agents",
+      "min": 12,
+      "screen": "agents",
+      "vo": "AWS Step Functions splits it into projects and sends an Amazon Bedrock agent to read each one, in parallel. Two hundred and forty-six pages, read in under a minute."
+    },
+    {
+      "id": "s_verify",
+      "min": 11,
+      "screen": "verify",
+      "vo": "But an AI reading legal documents can't be allowed to guess. Every number needs a word-for-word quote and a page. My verifier checks each one against the PDF, and throws away anything it can't find."
+    },
+    {
+      "id": "s_project",
+      "min": 14,
+      "screen": "project",
+      "vo": "What's left is what a neighbour actually needs. Plain language, in Hindi too. Nearly five thousand crore rupees of climate damage a year. River water for almost eight lakh people, every day. Computed by code, not by the AI."
+    },
+    {
+      "id": "s_evidence",
+      "min": 5,
+      "screen": "evidence",
+      "vo": "And every single number opens the exact page it came from."
+    },
+    {
+      "id": "s_object",
+      "min": 15,
+      "screen": "object",
+      "vo": "Then Vakeel helps you act. It drafts a formal objection from the committee's own record, but it can never send it on its own. You read it, and you type the exact sentence to sign. Step Functions waits for a human."
+    },
+    {
+      "id": "arch",
+      "min": 12,
+      "vo": "Under the hood, it's fully serverless on AWS. Bedrock running Nova, Step Functions, Lambda, DynamoDB, S3 and CloudFront, with a daily spending cap built in."
+    },
+    {
+      "id": "close",
+      "min": 15,
+      "vo": "Studies link India's coal power to as many as a hundred and fifteen thousand early deaths a year. And in 2025, most coal plants were exempted from installing sulphur scrubbers. The clearance file is the last place anyone can say no. Vakeel makes sure the people who'll breathe it can read it first."
+    },
+    {
+      "id": "end",
+      "min": 4.5,
+      "vo": ""
+    }
   ]
 }
