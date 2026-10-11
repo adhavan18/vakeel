@@ -6,7 +6,7 @@
 
 Vakeel reads India's environmental clearance filings for the people who live next to the project. It turns a 246-page committee document into plain-language facts, in English, Hindi or the state's language. Every number is verified against the page it came from. Then Vakeel helps residents file a formal objection before the project is approved.
 
-**Live:** https://d4i9n8m04ddaa.cloudfront.net · **Build log:** [6 posts on AWS Builder Center](#build-log)
+**Live:** https://d4i9n8m04ddaa.cloudfront.net · **Demo (2:58):** https://www.youtube.com/watch?v=IDNKushA0cg · **Build log:** [6 posts on AWS Builder Center](#build-log)
 
 ![Vakeel home](assets/screenshots/01-home.png)
 
