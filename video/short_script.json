@@ -1,0 +1,15 @@
+{
+  "voice": { "id": "Kajal", "engine": "generative", "language": "en-IN" },
+  "vo_dir": "vo_short",
+  "music": { "file": "music_short.wav", "title": "s_title", "product": "s_agents", "close": "s_close", "end": "s_end" },
+  "scenes": [
+    { "id": "s_hook", "min": 6, "vo": "Page eighteen of a two-hundred-and-forty-six page government file. A thirteen-hundred-megawatt coal expansion skipped its public hearing." },
+    { "id": "s_rec", "min": 4.5, "vo": "Page twenty-five: recommended. Nobody objected. Nobody could read it." },
+    { "id": "s_title", "min": 2.5, "vo": "So we built Vakeel." },
+    { "id": "s_agents", "min": 7, "clip": "agents", "vo": "AI agents on Amazon Bedrock read every page, and prove every number against the source." },
+    { "id": "s_project", "min": 8, "clip": "project", "vo": "Then they tell the people next door what is being approved. In plain words. In Hindi." },
+    { "id": "s_object", "min": 7, "clip": "object", "vo": "And help them object, legally, before it is too late." },
+    { "id": "s_close", "min": 3.5, "vo": "Read the filing before it is approved." },
+    { "id": "s_end", "min": 3, "vo": "" }
+  ]
+}

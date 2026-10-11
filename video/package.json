@@ -1,0 +1,19 @@
+{
+  "name": "vakeel-launch-video",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "studio": "remotion studio src/index.jsx",
+    "render": "remotion render src/index.jsx Launch out/vakeel-launch.mp4"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.534",
+    "@remotion/google-fonts": "^4.0.534",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "remotion": "^4.0.534"
+  },
+  "devDependencies": {
+    "playwright": "^1.64.0"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "voice": {
+    "id": "Kajal",
+    "engine": "generative",
+    "language": "en-IN"
+  },
+  "scenes": [
+    {
+      "id": "cold",
+      "min": 7,
+      "vo": "On the twentieth of June, a government committee in New Delhi met to decide the future of six coal power plants."
+    },
+    {
+      "id": "wall",
+      "min": 10,
+      "vo": "Its decisions were published in a document two hundred and forty-six pages long. Public. And, for the people who live next to these plants, impossible to read."
+    },
+    {
+      "id": "buried",
+      "min": 15,
+      "vo": "On page eighteen: a thirteen-hundred-megawatt coal expansion, two kilometres from a reserved forest, was exempted from its public hearing. On page twenty-five, the committee recommended it. Nobody objected. Nobody could read it."
+    },
+    {
+      "id": "title",
+      "min": 5,
+      "vo": "This is Vakeel. Hindi for advocate.",
+      "spoken": "This is Vakeel. Hindi for advocate."
+    },
+    {
+      "id": "agents",
+      "min": 15,
+      "clip": "agents",
+      "vo": "Drop in any environmental clearance filing. AWS Step Functions splits it into projects, and sends one Amazon Bedrock agent to read each one, in parallel. Two hundred and forty-six pages, read in about a minute."
+    },
+    {
+      "id": "verify",
+      "min": 14,
+      "clip": "verify",
+      "vo": "But an AI that explains the law cannot be allowed to guess. Every number must come with a word-for-word quote and a page. Our verifier checks each one against the PDF, and throws away anything it cannot find. You never see it."
+    },
+    {
+      "id": "project",
+      "min": 20,
+      "clip": "project",
+      "vo": "What is left is what a neighbour needs to know, in plain language, and in Hindi, Odia or Tamil. Nearly five thousand crore rupees of climate damage, every year. River water for seven point seven lakh people, every day. Computed by code from published factors, never by the AI. And every figure opens the exact page it came from.",
+      "spoken": "What is left is what a neighbour needs to know, in plain language, and in Hindi, Odia or Tamil. Nearly five thousand crore rupees of climate damage, every year. River water for seven point seven lakh people, every day. Computed by code from published factors, never by the AI. And every figure opens the exact page it came from."
+    },
+    {
+      "id": "object",
+      "min": 20,
+      "clip": "object",
+      "vo": "Then Vakeel helps them act. It drafts a formal objection from the committee's own record. But it can never send one. A real person has to read it, and type the exact sentence to sign. Step Functions waits for that human. And the letter is locked with a SHA-256 receipt.",
+      "spoken": "Then Vakeel helps them act. It drafts a formal objection from the committee's own record. But it can never send one. A real person has to read it, and type the exact sentence to sign. Step Functions waits for that human. And the letter is locked with a SHA two-fifty-six receipt."
+    },
+    {
+      "id": "arch",
+      "min": 15,
+      "vo": "Under the hood: Amazon Bedrock running Nova, Step Functions, Lambda, DynamoDB, S3 and CloudFront. Fully serverless, with a daily spending cap built in, and every filing read once, then cached for everyone."
+    },
+    {
+      "id": "close",
+      "min": 12,
+      "vo": "India clears coal plants, mines and dams every month, one unreadable PDF at a time. Vakeel reads them first, so the people who will live with them can say no while it still counts."
+    },
+    {
+      "id": "end",
+      "min": 5,
+      "vo": ""
+    }
+  ]
+}
