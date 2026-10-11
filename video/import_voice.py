@@ -1,4 +1,4 @@
-"""Import the founder's recorded takes (public/vo_user/<scene>.webm|wav|m4a|mp3) into
+"""Import the founder's recorded takes (public/<user_dir>/<scene>.webm|wav|m4a|mp3, vo_user by default) into
 public/vo_final as clean 44.1 kHz mono WAVs: decoded with PyAV, silence trimmed at both
 ends, loudness evened out. Lines without a take keep the Polly version.
 Usage: python import_voice.py [script_v2.json]
@@ -15,7 +15,7 @@ import numpy as np
 ROOT = pathlib.Path(__file__).parent
 SR = 44100
 script = json.loads((ROOT / (sys.argv[1] if len(sys.argv) > 1 else "script_v2.json")).read_text(encoding="utf-8"))
-src = ROOT / "public" / "vo_user"
+src = ROOT / "public" / script.get("user_dir", "vo_user")
 dst = ROOT / "public" / script["vo_dir"]
 manifest_path = dst / "manifest.json"
 manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}

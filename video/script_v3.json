@@ -1,0 +1,40 @@
+{
+  "voice": {
+    "id": "Kajal",
+    "engine": "generative",
+    "language": "en-IN"
+  },
+  "vo_dir": "vo_v3",
+  "user_dir": "vo_user_v3",
+  "music": {
+    "file": "music_v3.wav"
+  },
+  "timing": {
+    "beatFrames": 14,
+    "voDelay": 6,
+    "tail": 10
+  },
+  "scenes": [
+    { "id": "hook", "bars": 4, "energy": 1, "vo": "Every coal plant in India needs government permission. And every permission is public." },
+    { "id": "wall", "bars": 3, "energy": 1, "vo": "Public, like this. Two hundred and forty-six pages. Six hundred thousand characters." },
+    { "id": "needle", "bars": 5, "energy": 2, "vo": "Page eighteen. A thirteen-hundred-megawatt coal plant on the Hasdeo River skips its public hearing. Page twenty-five. Approved." },
+    { "id": "nobody", "bars": 2, "energy": 0, "vo": "Nobody objected. Because nobody could read it." },
+    { "id": "title", "bars": 3, "energy": 3, "vo": "So I built Vakeel. An AI advocate for the people next door." },
+    { "id": "drop", "bars": 2, "energy": 3, "screen": "home", "chapter": "01 Read", "vo": "Drop in any filing from the government portal." },
+    { "id": "agents", "bars": 4, "energy": 3, "screen": "agents", "chapter": "01 Read", "vo": "Step Functions splits it into projects, and an Amazon Bedrock agent reads each one, in parallel." },
+    { "id": "speed", "bars": 2, "energy": 3, "chapter": "01 Read", "vo": "Two hundred and forty-six pages. Fifty-two seconds." },
+    { "id": "verify", "bars": 4, "energy": 2, "chapter": "02 Verify", "vo": "But AI makes things up. So every number needs a word-for-word quote and a page, and code checks it against the PDF." },
+    { "id": "purge", "bars": 3, "energy": 2, "chapter": "02 Verify", "vo": "No quote, no claim. Sixty-five claims thrown out. Two hundred and nineteen survived." },
+    { "id": "plain", "bars": 3, "energy": 3, "chapter": "03 Explain", "vo": "What survives becomes plain language. In English. In Hindi. In Odia." },
+    { "id": "impact", "bars": 4, "energy": 3, "chapter": "03 Explain", "vo": "Then code, not the AI, does the math. Six point eight million tonnes of carbon a year. Water for almost eight lakh people, every day." },
+    { "id": "receipts", "bars": 2, "energy": 3, "screen": "evidence", "chapter": "03 Explain", "vo": "And every number opens the exact page it came from." },
+    { "id": "near", "bars": 2, "energy": 3, "chapter": "04 Find", "vo": "Search your district. See what's being approved near you." },
+    { "id": "object", "bars": 4, "energy": 3, "screen": "object", "chapter": "05 Act", "vo": "Then, act. Vakeel drafts a formal objection from the committee's own record." },
+    { "id": "human", "bars": 3, "energy": 2, "chapter": "05 Act", "vo": "But it can't send a thing until you sign it. Step Functions waits for a human. Up to seven days." },
+    { "id": "stack", "bars": 4, "energy": 3, "vo": "All serverless, on AWS. Bedrock, Step Functions, Lambda, DynamoDB, S3, CloudFront, and Amazon Location. With a hard daily budget cap." },
+    { "id": "proof", "bars": 3, "energy": 3, "vo": "Three real filings. Seven hundred and thirty-two pages. Seventeen projects. Every claim checked." },
+    { "id": "stakes", "bars": 6, "energy": -1, "vo": "Coal power in India is linked to as many as a hundred and fifteen thousand early deaths a year. The clearance file is the last place anyone can say no." },
+    { "id": "close", "bars": 3, "energy": 2, "vo": "Vakeel makes sure the people who'll breathe it can read it first." },
+    { "id": "end", "bars": 3, "energy": 4, "vo": "" }
+  ]
+}

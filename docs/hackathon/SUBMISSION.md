@@ -39,7 +39,7 @@ How it differs from existing tools: permit trackers such as Open Permit list fil
 - **Amazon S3 + CloudFront:** presigned PDF uploads; the React app served through CloudFront with Origin Access Control.
 - **Amazon API Gateway (HTTP API):** throttled at 10 requests/second.
 - **Amazon Location Service:** geocoding fallback for projects whose filing gives no coordinates.
-- **Amazon Polly (Kajal, generative, en-IN):** narrated the launch video.
+- **Amazon Polly (Kajal, generative, en-IN):** narrated the launch videos (and served as the pacing guide for the founder's own voice takes).
 
 Cost guardrails for a $100 credit account: daily Bedrock call cap, page and size limits, API throttling, one execution per document (execution name = document id), and SHA-256 dedupe so the same PDF is never paid for twice. Reading the whole 246-page filing takes about 200k tokens.
 
@@ -55,7 +55,8 @@ Tool-forced JSON in the Bedrock Converse API made model output safe to verify in
 
 - Live: https://d4i9n8m04ddaa.cloudfront.net
 - Code: https://github.com/adhavan18/vakeel
-- Demo video: <YouTube URL>
+- Demo video: <YouTube URL of the fast cut, vakeel-launch-hype.mp4>
+- Longer walkthrough (optional second link): <YouTube URL of vakeel-launch-final.mp4>
 - Blog: <AWS Builder Center URL>
 
 ## Team leader's contributions

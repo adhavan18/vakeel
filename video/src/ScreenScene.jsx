@@ -46,7 +46,7 @@ function Cursor({ x, y, pressed }) {
   );
 }
 
-export function ScreenScene({ scene, spec, url, labels }) {
+export function ScreenScene({ scene, spec, url, labels, backdrop = true }) {
   const f = useCurrentFrame();
   const total = scene.frames;
   const t = Math.min(1, f / Math.max(1, total - 1));
@@ -74,7 +74,7 @@ export function ScreenScene({ scene, spec, url, labels }) {
 
   return (
     <AbsoluteFill>
-      <Backdrop />
+      {backdrop && <Backdrop />}
       <div
         style={{
           position: "absolute",

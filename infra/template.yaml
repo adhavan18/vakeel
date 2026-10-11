@@ -11,7 +11,7 @@ Parameters:
     Default: global.amazon.nova-2-lite-v1:0
   MaxBedrockCallsPerDay:
     Type: Number
-    Default: 150
+    Default: 60
 
 Globals:
   Function:
