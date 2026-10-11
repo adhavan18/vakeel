@@ -57,7 +57,13 @@ Tool-forced JSON in the Bedrock Converse API made model output safe to verify in
 - Code: https://github.com/adhavan18/vakeel
 - Demo video: <YouTube URL of the fast cut, vakeel-launch-hype.mp4>
 - Longer walkthrough (optional second link): <YouTube URL of vakeel-launch-final.mp4>
-- Blog: <AWS Builder Center URL>
+- Blogs (AWS Builder Center series "Vakeel: building an AI advocate on AWS"):
+  1. https://builder.aws.com/content/3KXmQEU3NpHdPcboqyu278IJgu2/we-built-an-ai-that-isnt-allowed-to-make-anything-up-then-pointed-it-at-indias-coal-plant-approvals
+  2. https://builder.aws.com/content/3KXpWljfUj9Vs5qcw1zUJHOqEUI/how-we-fact-check-an-llm-against-a-246-page-pdf
+  3. https://builder.aws.com/content/3KXqBM7zFjJKBY37TgHgkPUSb5Y/a-legal-signature-as-a-step-functions-waitfortasktoken
+  4. https://builder.aws.com/content/3KXqVfIYB2dJkiTDARJRMtPn8na/fixing-explicit-deny-in-a-service-control-policy-on-aws
+  5. https://builder.aws.com/content/3KXyQ8AUuYqu5a9JYvaQDjdAPbq/parallel-bedrock-agents-on-a-dollar100-aws-budget
+  6. https://builder.aws.com/content/3KXylOcV0ArLzLgt97NlEHsxygS/we-made-our-launch-film-in-code-with-amazon-polly
 
 ## Team leader's contributions
 

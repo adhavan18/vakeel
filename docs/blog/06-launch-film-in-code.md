@@ -62,7 +62,7 @@ Every number on screen came from the live API on the day we rendered: 246 pages 
 
 ## The stack
 
-- **Voice:** Amazon Polly (generative, Kajal, en-IN), then the founder's own takes
+- **Voice:** Amazon Polly (generative, Kajal, en-IN), with a recorder for swapping in the founder's own takes
 - **Visuals:** Remotion (React), Playwright captures of the live app on CloudFront
 - **Music:** numpy and scipy, written from scratch
 - **Encode:** PyAV (libx264 + AAC)
