@@ -77,16 +77,16 @@ function ObjectStart({ docId, n, project, onClose }) {
         <h3 className="serif mt-2 text-3xl leading-tight">Vakeel will draft it from the record. You read it, then you decide.</h3>
         <label className="mt-6 block text-sm text-muted">
           Your full name
-          <input autoFocus required minLength={2} value={name} onChange={(e) => setName(e.target.value)} className="mt-2 w-full rounded-lg border hairline bg-ink px-4 py-3 text-paper outline-none focus:border-ember" />
+          <input autoFocus required minLength={2} value={name} onChange={(e) => setName(e.target.value)} className="mt-2 w-full rounded-lg border hairline bg-ink px-4 py-3 text-paper outline-none focus:border-action" />
         </label>
         <label className="mt-4 block text-sm text-muted">
           Where you live
-          <input value={place} onChange={(e) => setPlace(e.target.value)} className="mt-2 w-full rounded-lg border hairline bg-ink px-4 py-3 text-paper outline-none focus:border-ember" />
+          <input value={place} onChange={(e) => setPlace(e.target.value)} className="mt-2 w-full rounded-lg border hairline bg-ink px-4 py-3 text-paper outline-none focus:border-action" />
         </label>
         {error && <p className="mt-4 text-sm text-ember">{error}</p>}
         <div className="mt-7 flex items-center justify-between gap-4">
           <p className="text-xs text-dim">Nothing is sent anywhere until you sign.</p>
-          <button disabled={busy} className="rounded-full bg-ember px-5 py-2.5 text-sm font-semibold text-ink hover:bg-ember-soft disabled:opacity-50">
+          <button disabled={busy} className="rounded-full press bg-action px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#0077ed] disabled:opacity-50">
             {busy ? "Starting…" : "Draft my objection"}
           </button>
         </div>
@@ -107,8 +107,8 @@ export default function ProjectPage({ docId, n }) {
     [p]
   );
 
-  if (error) return <p className="mx-auto max-w-7xl px-5 py-24 text-ember">{error.message}</p>;
-  if (!p) return <p className="mx-auto max-w-7xl px-5 py-24 text-muted">Loading…</p>;
+  if (error) return <p className="mx-auto max-w-6xl px-5 py-24 text-ember">{error.message}</p>;
+  if (!p) return <p className="mx-auto max-w-6xl px-5 py-24 text-muted">Loading…</p>;
 
   const t = lang === "en" ? { headline: p.headline, dek: p.dek } : p.translations.find((x) => x.lang === lang) || {};
   const loc = p.location || {};
@@ -116,9 +116,9 @@ export default function ProjectPage({ docId, n }) {
   const open = (item) => setSource({ page: item.page, quote: item.quote });
 
   return (
-    <div className="mx-auto max-w-7xl px-5 pb-32 pt-10">
+    <div className="mx-auto max-w-6xl px-5 pb-32 pt-10">
       <a href={`#/doc/${docId}`} className="inline-flex items-center gap-2 text-sm text-muted hover:text-paper">
-        <ArrowLeft className="h-4 w-4" /> {data.document.fileName}
+        <ArrowLeft className="h-4 w-4" /> {data.document.fileName.replace(/\.pdf$/i, "")}
       </a>
 
       <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
@@ -140,7 +140,7 @@ export default function ProjectPage({ docId, n }) {
 
       <AnimatePresence mode="wait">
         <motion.div key={lang} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
-          <h1 className={`mt-6 max-w-5xl text-[40px] leading-[1.05] sm:text-[64px] ${lang === "en" ? "serif" : "font-semibold tracking-tight"}`}>{t.headline}</h1>
+          <h1 className="mt-6 max-w-5xl text-[36px] font-semibold leading-[1.08] tracking-[-0.03em] sm:text-[52px]">{t.headline}</h1>
           {t.dek && <p className="mt-5 max-w-3xl text-lg leading-relaxed text-muted">{t.dek}</p>}
         </motion.div>
       </AnimatePresence>
@@ -263,7 +263,7 @@ export default function ProjectPage({ docId, n }) {
       )}
 
       <div className="no-print fixed inset-x-0 bottom-0 z-30 border-t hairline bg-ink/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
           <p className="hidden text-sm text-muted sm:block">
             {data.objections > 0 ? (
               <>
@@ -274,7 +274,7 @@ export default function ProjectPage({ docId, n }) {
             )}
             {p.impact.climateCostInrPerYear > 0 && <> At stake: <span className="text-ember">{crore(p.impact.climateCostInrPerYear)}</span> a year.</>}
           </p>
-          <button onClick={() => setObjecting(true)} className="ml-auto flex items-center gap-2 rounded-full bg-ember px-5 py-2.5 text-sm font-semibold text-ink hover:bg-ember-soft">
+          <button onClick={() => setObjecting(true)} className="ml-auto flex items-center gap-2 rounded-full press bg-action px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#0077ed]">
             <PenLine className="h-4 w-4" /> Object to this proposal
           </button>
         </div>

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import L from "leaflet";
 
-const COLORS = { ember: "#ff5a1f", amber: "#f5b83d", sky: "#7cc4ff", signal: "#3ddc97", muted: "#9a968e" };
+const COLORS = { ember: "#d70015", "ember-soft": "#c93400", amber: "#c76a00", sky: "#0071e3", signal: "#1f8a3b", muted: "#86868b" };
 
 export default function MapView({ points = [], rings = [], height = 380, className = "" }) {
   const el = useRef(null);
@@ -10,11 +10,11 @@ export default function MapView({ points = [], rings = [], height = 380, classNa
     if (!el.current) return;
     const map = L.map(el.current, { zoomControl: false, attributionControl: true, scrollWheelZoom: false });
     const esri = "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas";
-    L.tileLayer(`${esri}/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}`, {
+    L.tileLayer(`${esri}/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}`, {
       attribution: "Tiles &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors",
       maxZoom: 16,
     }).addTo(map);
-    L.tileLayer(`${esri}/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 16, opacity: 0.9 }).addTo(map);
+    L.tileLayer(`${esri}/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 16, opacity: 0.9 }).addTo(map);
     L.control.zoom({ position: "bottomright" }).addTo(map);
 
     if (!valid.length) {
@@ -39,7 +39,7 @@ export default function MapView({ points = [], rings = [], height = 380, classNa
       valid.forEach((p) => {
         const color = COLORS[p.tone] || COLORS.ember;
         L.circleMarker([p.lat, p.lng], { radius: 14, color, weight: 0, fillOpacity: 0.18 }).addTo(map);
-        const m = L.circleMarker([p.lat, p.lng], { radius: 6, color: "#0b0b0c", weight: 2, fillColor: color, fillOpacity: 1 })
+        const m = L.circleMarker([p.lat, p.lng], { radius: 6, color: "#ffffff", weight: 2, fillColor: color, fillOpacity: 1 })
           .bindTooltip(p.label, { className: "vk-tip", direction: "top", offset: [0, -8] })
           .addTo(map);
         if (p.href) m.on("click", () => (window.location.hash = p.href));
@@ -54,5 +54,5 @@ export default function MapView({ points = [], rings = [], height = 380, classNa
     return () => map.remove();
   }, [JSON.stringify(points), JSON.stringify(rings)]);
 
-  return <div ref={el} style={{ height }} className={`overflow-hidden rounded-2xl border hairline ${className}`} />;
+  return <div ref={el} style={{ height }} className={`overflow-hidden rounded-3xl border hairline ${className}`} />;
 }

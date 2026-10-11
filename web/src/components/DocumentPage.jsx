@@ -69,7 +69,7 @@ function AgentConsole({ logs, status }) {
                 <p className="mt-1.5 line-clamp-1 text-sm text-paper/90">{lane.title}</p>
                 <div className="mt-3 h-1 overflow-hidden rounded-full bg-line">
                   <motion.div
-                    className={`h-full ${lane.state === "done" ? "bg-signal" : "bg-ember"}`}
+                    className={`h-full ${lane.state === "done" ? "bg-signal" : "bg-action"}`}
                     animate={{ width: lane.state === "reading" ? "38%" : lane.state === "verified" ? "78%" : "100%" }}
                     transition={{ duration: 0.8 }}
                   />
@@ -81,7 +81,7 @@ function AgentConsole({ logs, status }) {
           </AnimatePresence>
         </div>
       </div>
-      <div className="flex flex-col rounded-2xl border hairline bg-[#09090a] p-5">
+      <div className="flex flex-col rounded-2xl border hairline bg-[#1d1d1f] text-white/90 p-5">
         <div className="flex items-center justify-between">
           <Eyebrow>Live log</Eyebrow>
           {live && <span className="h-2 w-2 animate-pulse rounded-full bg-ember" />}
@@ -89,13 +89,13 @@ function AgentConsole({ logs, status }) {
         <div ref={feed} className="mono mt-4 max-h-[540px] flex-1 space-y-2 overflow-y-auto pr-2 text-[12px] leading-relaxed">
           {logs.map((l, i) => (
             <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-3">
-              <span className="shrink-0 text-dim">{t0 ? `+${((new Date(l.at) - t0) / 1000).toFixed(1)}s` : ""}</span>
-              <span className={l.kind === "error" ? "text-ember" : l.kind === "done" ? "text-signal" : l.kind === "milestone" ? "text-paper" : /rejected [1-9]/.test(l.message) ? "text-amber" : "text-muted"}>
+              <span className="shrink-0 text-white/35">{t0 ? `+${((new Date(l.at) - t0) / 1000).toFixed(1)}s` : ""}</span>
+              <span className={l.kind === "error" ? "text-[#ff6961]" : l.kind === "done" ? "text-[#30d158]" : l.kind === "milestone" ? "text-white" : /rejected [1-9]/.test(l.message) ? "text-[#ffd60a]" : "text-white/60"}>
                 {l.message}
               </span>
             </motion.div>
           ))}
-          {live && <span className="blink text-ember">▍</span>}
+          {live && <span className="blink text-[#30d158]">▍</span>}
         </div>
       </div>
     </div>
@@ -123,16 +123,16 @@ export default function DocumentPage({ docId }) {
     [data, docId]
   );
 
-  if (error && !data) return <p className="mx-auto max-w-7xl px-5 py-24 text-ember">{error.message}</p>;
-  if (!data) return <p className="mx-auto max-w-7xl px-5 py-24 text-muted">Loading…</p>;
+  if (error && !data) return <p className="mx-auto max-w-6xl px-5 py-24 text-ember">{error.message}</p>;
+  if (!data) return <p className="mx-auto max-w-6xl px-5 py-24 text-muted">Loading…</p>;
   const { document: doc, projects, logs } = data;
   const ready = doc.status === "ready";
   const secs = elapsed(logs);
 
   return (
-    <div className="mx-auto max-w-7xl px-5 pt-12">
+    <div className="mx-auto max-w-6xl px-5 pt-12">
       <Eyebrow>{ready ? "Filing, decoded" : doc.status === "failed" ? "Could not finish" : "Reading filing"}</Eyebrow>
-      <h1 className="serif mt-3 max-w-4xl text-4xl leading-tight sm:text-5xl">{doc.fileName}</h1>
+      <h1 className="serif mt-3 max-w-4xl text-4xl leading-tight sm:text-5xl">{doc.fileName.replace(/\.pdf$/i, "")}</h1>
       <div className="mono mt-5 flex flex-wrap gap-x-8 gap-y-2 text-sm text-muted">
         <span><span className="text-paper">{fmt(doc.pages)}</span> pages</span>
         <span><span className="text-paper">{fmt(doc.chars)}</span> characters</span>

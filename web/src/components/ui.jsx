@@ -2,7 +2,7 @@ import { DECISION, SEVERITY, TONE, useCountUp, fmt } from "../lib.js";
 
 export function Badge({ tone = "muted", children, className = "" }) {
   return (
-    <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wider ${TONE[tone]} ${className}`}>
+    <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[12px] font-semibold leading-none ${TONE[tone]} ${className}`}>
       {children}
     </span>
   );
@@ -29,17 +29,20 @@ export function Counter({ value, format = (v) => fmt(v), className = "" }) {
 }
 
 export function Eyebrow({ children, className = "" }) {
-  return <p className={`mono text-[11px] uppercase tracking-[0.2em] text-muted ${className}`}>{children}</p>;
+  return <p className={`text-[15px] font-semibold text-muted ${className}`}>{children}</p>;
 }
 
 export function VerifiedTick({ page, onClick }) {
   return (
     <button
       onClick={onClick}
-      className="mono inline-flex items-center gap-1 rounded border border-signal/30 bg-signal/10 px-1.5 py-0.5 text-[10px] text-signal transition hover:bg-signal/20"
+      className="press inline-flex items-center gap-1 rounded-full bg-signal/10 px-2 py-0.5 align-middle text-[11px] font-semibold text-signal hover:bg-signal/20"
       title="This figure was found word-for-word in the source document"
     >
-      ✓ p.{page || "?"}
+      <svg viewBox="0 0 12 12" className="h-2.5 w-2.5" aria-hidden="true">
+        <path d="M2.5 6.2 5 8.5l4.5-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      Page {page || "?"}
     </button>
   );
 }

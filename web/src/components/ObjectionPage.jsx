@@ -54,8 +54,8 @@ export default function ObjectionPage({ objectionId }) {
   const [busy, setBusy] = useState(false);
   const [signError, setSignError] = useState("");
 
-  if (error && !o) return <p className="mx-auto max-w-7xl px-5 py-24 text-ember">{error.message}</p>;
-  if (!o) return <p className="mx-auto max-w-7xl px-5 py-24 text-muted">Loading…</p>;
+  if (error && !o) return <p className="mx-auto max-w-6xl px-5 py-24 text-ember">{error.message}</p>;
+  if (!o) return <p className="mx-auto max-w-6xl px-5 py-24 text-muted">Loading…</p>;
 
   const norm = (s) => (s || "").toLowerCase().replace(/[^a-z0-9/ ]/g, " ").split(/\s+/).filter(Boolean).join(" ");
   const matches = o.phrase && norm(phrase) === norm(o.phrase);
@@ -74,7 +74,7 @@ export default function ObjectionPage({ objectionId }) {
     : "#";
 
   return (
-    <div className="mx-auto max-w-7xl px-5 pb-24 pt-10">
+    <div className="mx-auto max-w-6xl px-5 pb-24 pt-10">
       <a href={`#/doc/${o.docId}/p/${o.projectIndex}`} className="no-print text-sm text-muted hover:text-paper">← Back to the project</a>
       <div className="no-print mt-8 flex flex-wrap items-end justify-between gap-6">
         <div>
@@ -103,7 +103,7 @@ export default function ObjectionPage({ objectionId }) {
                   value={phrase}
                   onChange={(e) => setPhrase(e.target.value)}
                   placeholder="Type the sentence above"
-                  className={`mt-4 w-full rounded-lg border bg-ink px-4 py-3 outline-none ${matches ? "border-signal" : "hairline focus:border-ember"}`}
+                  className={`mt-4 w-full rounded-lg border bg-ink px-4 py-3 outline-none ${matches ? "border-signal" : "hairline focus:border-action"}`}
                 />
                 <p className="mono mt-4 break-all text-[10px] text-dim">
                   You are signing letter sha256:{o.letterHash}
@@ -112,7 +112,7 @@ export default function ObjectionPage({ objectionId }) {
                 <button
                   disabled={!matches || busy}
                   onClick={sign}
-                  className="mt-5 w-full rounded-full bg-ember py-3 text-sm font-semibold text-ink transition hover:bg-ember-soft disabled:cursor-not-allowed disabled:opacity-30"
+                  className="mt-5 w-full rounded-full press bg-action py-3 text-sm font-semibold text-white hover:bg-[#0077ed] disabled:cursor-not-allowed disabled:opacity-30"
                 >
                   {busy ? "Signing…" : "Sign this objection"}
                 </button>
@@ -139,7 +139,7 @@ export default function ObjectionPage({ objectionId }) {
                 </p>
                 <p className="mono mt-4 break-all text-[10px] text-dim">Verification receipt {o.receipt}</p>
                 <div className="mt-5 grid grid-cols-2 gap-3">
-                  <a href={mailto} className="flex items-center justify-center gap-2 rounded-full bg-paper py-2.5 text-sm font-medium text-ink hover:bg-white">
+                  <a href={mailto} className="flex items-center justify-center gap-2 rounded-full press bg-paper py-2.5 text-sm font-medium text-white hover:bg-black">
                     <Mail className="h-4 w-4" /> Email it
                   </a>
                   <button onClick={() => window.print()} className="flex items-center justify-center gap-2 rounded-full border hairline py-2.5 text-sm hover:bg-ink-3">

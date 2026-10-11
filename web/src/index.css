@@ -1,21 +1,24 @@
 @import "tailwindcss";
 
+/* Light, high-clarity civic palette. Token names are semantic roles:
+   ink = page background, ink-2 = raised surface, paper = primary text. */
 @theme {
-  --color-ink: #0b0b0c;
-  --color-ink-2: #121214;
-  --color-ink-3: #1a1a1d;
-  --color-line: #2a2a2e;
-  --color-paper: #ede9e1;
-  --color-muted: #9a968e;
-  --color-dim: #6b6862;
-  --color-ember: #ff5a1f;
-  --color-ember-soft: #ff8a5c;
-  --color-amber: #f5b83d;
-  --color-signal: #3ddc97;
-  --color-sky: #7cc4ff;
-  --font-serif: "Instrument Serif", Georgia, serif;
-  --font-sans: "Inter", "Noto Sans Devanagari", "Noto Sans Oriya", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --color-ink: #f5f5f7;
+  --color-ink-2: #ffffff;
+  --color-ink-3: #ececf0;
+  --color-line: #e3e3e8;
+  --color-paper: #1d1d1f;
+  --color-muted: #6e6e73;
+  --color-dim: #86868b;
+  --color-ember: #d70015;
+  --color-ember-soft: #c93400;
+  --color-amber: #b25000;
+  --color-signal: #1f8a3b;
+  --color-sky: #0066cc;
+  --color-action: #0071e3;
+  --font-serif: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", "Inter", "Noto Sans Devanagari", "Noto Sans Oriya", sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", "Inter", "Noto Sans Devanagari", "Noto Sans Oriya", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", monospace;
 }
 
 html,
@@ -24,27 +27,18 @@ body {
   color: var(--color-paper);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 60;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: var(--color-ember);
-  color: var(--color-ink);
+  background: rgba(0, 113, 227, 0.2);
 }
 
+/* Display type: bold sans with size-specific negative tracking. */
 .serif {
   font-family: var(--font-serif);
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  letter-spacing: -0.022em;
 }
 
 .mono {
@@ -55,11 +49,24 @@ body::before {
   border-color: var(--color-line);
 }
 
+.surface {
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.press {
+  transition: transform 120ms ease-out, background-color 150ms ease;
+}
+.press:active {
+  transform: scale(0.97);
+}
+
 .paper-letter {
-  background: #f4f0e8;
+  background: #fffdf8;
   color: #1c1a17;
   font-family: Georgia, "Times New Roman", serif;
-  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 24px 60px -12px rgba(0, 0, 0, 0.18);
+  border: 1px solid #eee9de;
 }
 
 .scan {
@@ -70,7 +77,7 @@ body::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 90, 31, 0.18), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 113, 227, 0.1), transparent);
   transform: translateX(-100%);
   animation: scan 1.6s ease-in-out infinite;
 }
@@ -90,38 +97,48 @@ body::before {
 }
 
 .leaflet-container {
-  background: #0e0e10;
+  background: #eef0f3;
   font-family: var(--font-sans);
 }
 .leaflet-control-attribution {
-  background: rgba(11, 11, 12, 0.7) !important;
-  color: #6b6862 !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  color: #86868b !important;
   font-size: 10px !important;
 }
 .leaflet-control-attribution a {
-  color: #9a968e !important;
+  color: #6e6e73 !important;
 }
 .leaflet-tooltip.vk-tip {
-  background: #121214;
-  color: #ede9e1;
-  border: 1px solid #2a2a2e;
-  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  color: #1d1d1f;
+  border: 1px solid #e3e3e8;
+  border-radius: 8px;
   font-size: 12px;
-  box-shadow: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 .leaflet-tooltip.vk-tip::before {
   display: none;
 }
 
 mark.vk {
-  background: rgba(255, 90, 31, 0.28);
+  background: rgba(255, 204, 0, 0.45);
   color: inherit;
-  border-bottom: 2px solid var(--color-ember);
+  border-radius: 2px;
   padding: 0 1px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .scan::after,
+  .blink {
+    animation: none;
+  }
+  .press:active {
+    transform: none;
+  }
+}
+
 @media print {
-  body::before,
   .no-print {
     display: none !important;
   }
@@ -131,5 +148,6 @@ mark.vk {
   }
   .paper-letter {
     box-shadow: none;
+    border: 0;
   }
 }

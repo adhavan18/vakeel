@@ -8,18 +8,18 @@ import ObjectionPage from "./components/ObjectionPage.jsx";
 
 function Header() {
   return (
-    <header className="no-print sticky top-0 z-40 border-b hairline bg-ink/80 backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-5">
-        <a href="#/" className="flex items-baseline gap-2">
-          <span className="serif text-2xl tracking-tight">Vakeel</span>
-          <span className="text-sm text-ember">वकील</span>
+    <header className="no-print sticky top-0 z-40 border-b border-black/5 bg-[rgba(251,251,253,0.72)] backdrop-blur-xl backdrop-saturate-[180%]">
+      <div className="mx-auto flex h-12 max-w-6xl items-center justify-between px-5">
+        <a href="#/" className="flex items-center gap-2">
+          <span className="grid h-7 w-7 place-items-center rounded-lg bg-paper text-[13px] font-bold text-white">व</span>
+          <span className="text-[17px] font-semibold tracking-tight">Vakeel</span>
         </a>
-        <nav className="flex items-center gap-6 text-sm text-muted">
-          <a href="#/" className="hidden hover:text-paper sm:inline">Filings</a>
+        <nav className="flex items-center gap-6 text-[13px] text-paper/80">
+          <a href="#/filings" className="hidden hover:text-paper sm:inline">Filings</a>
           <a href="#/how" className="hidden hover:text-paper sm:inline">How it works</a>
           <button
             onClick={() => go("/read")}
-            className="rounded-full bg-paper px-4 py-1.5 text-sm font-medium text-ink transition hover:bg-white"
+            className="press rounded-full bg-action px-3.5 py-1 text-[13px] font-medium text-white hover:bg-[#0077ed]"
           >
             Read a filing
           </button>
@@ -33,11 +33,11 @@ function Header() {
 function Footer() {
   return (
     <footer className="no-print mt-24 border-t hairline">
-      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-10 text-sm text-dim sm:flex-row sm:justify-between">
+      <div className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-10 text-[13px] text-dim sm:flex-row sm:justify-between">
         <p>
           Vakeel reads public filings from India's PARIVESH portal. Every figure links to the page it came from.
         </p>
-        <p className="mono text-xs">Amazon Bedrock · Step Functions · Lambda · DynamoDB · S3 · CloudFront</p>
+        <p>Built on Amazon Bedrock · Step Functions · Lambda · DynamoDB · S3 · CloudFront</p>
       </div>
     </footer>
   );
@@ -53,7 +53,7 @@ class Boundary extends Component {
     return (
       <div className="mx-auto max-w-3xl px-5 py-24">
         <p className="serif text-4xl">Something went wrong on this page.</p>
-        <button onClick={() => window.location.reload()} className="mt-6 rounded-full bg-paper px-5 py-2 text-sm font-medium text-ink">
+        <button onClick={() => window.location.reload()} className="press mt-6 rounded-full bg-action px-5 py-2 text-sm font-medium text-white">
           Reload
         </button>
       </div>
