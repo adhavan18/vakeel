@@ -1,107 +1,114 @@
 # Vakeel · वकील
 
-**Read the filing before it's approved.**
+[![CI](https://github.com/adhavan18/vakeel/actions/workflows/ci.yml/badge.svg)](https://github.com/adhavan18/vakeel/actions/workflows/ci.yml)
+[![Live](https://img.shields.io/badge/live-d4i9n8m04ddaa.cloudfront.net-0071e3)](https://d4i9n8m04ddaa.cloudfront.net)
+[![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
-**Live:** https://d4i9n8m04ddaa.cloudfront.net
+Vakeel reads India's environmental clearance filings for the people who live next to the project. It turns a 246-page committee document into plain-language facts, in English, Hindi or the state's language. Every number is verified against the page it came from. Then Vakeel helps residents file a formal objection before the project is approved.
 
-Every coal plant, mine and dam in India needs an environmental clearance. The paperwork is public, on the government's PARIVESH portal, and practically unreadable: the June 2025 Expert Appraisal Committee (Thermal) minutes we use as our demo run to **246 pages and 621,869 characters**, covering six coal power projects at once.
+![Vakeel home](assets/screenshots/01-home.png)
 
-Buried on page 18: a 1,320 MW Adani Power expansion at Korba, Chhattisgarh, 2.2 km from a reserved forest, was **exempted from its public hearing**. On page 25, the committee **recommended it**. Nobody objected, because nobody could read it.
+## Why
 
-Vakeel reads these filings for the people who live next to the projects:
+Every coal plant, mine and dam in India needs an environmental clearance. The paperwork is public on [PARIVESH](https://parivesh.nic.in), and the law gives affected people a voice, but nobody uses it, because nobody can read it.
 
-1. **Read.** Upload any EIA report or committee minutes. AWS Step Functions splits it into projects and fans out one Amazon Bedrock agent per project, in parallel.
-2. **Verify.** Every number the AI reports must come with a word-for-word quote and a page. Deterministic code checks each quote against the PDF and throws away anything it cannot find. Rejected claims are shown separately, never as facts.
-3. **Translate.** A plain-language headline a villager would understand, in English, Hindi and the state's language (Odia, Tamil, Malayalam…). Climate cost, water and coal equivalents are **computed by code** from published factors, never by the model, and every factor shows its source.
-4. **Object.** Vakeel drafts a formal objection to the committee from the record itself, with grounds that quote the filing with page numbers. It cannot file anything on its own: a real person must read the letter and type an exact sentence to sign. Step Functions waits for that human (task token), and the signed letter is locked with a SHA-256 receipt.
+In the Expert Appraisal Committee (Thermal) minutes of 20 June 2025, **page 18** records that a 1,320 MW coal expansion at Korba, 2.2 km from a reserved forest, was *exempted from its public hearing*. **Page 25** records that the committee *recommended* it. Vakeel finds that in under a minute.
 
-**Track:** Air. Coal power plants are India's largest industrial source of air pollution, and the clearance file is the last point where residents have a legal voice.
+## What it does
 
-## What it found in one real filing
+- **Reads whole filings in parallel.** AWS Step Functions splits the document into projects and runs one Amazon Bedrock (Nova 2 Lite) agent per project. A 246-page filing takes under a minute.
+- **Proves every claim.** The model must return a word-for-word quote and a page for every number. Code checks each quote against the PDF and drops anything it can't find. Dropped claims are listed openly under *What Vakeel refused to tell you*.
+- **Speaks plainly, in the reader's language.** Headlines in English, Hindi and the state's language. Generated text can't introduce a number that isn't in the verified data.
+- **Keeps the money math out of the model.** CO₂, climate cost (₹ crore a year), water use (in people's daily water) and coal trains are computed in code from published factors, and every factor is cited.
+- **Links every figure to its source.** Tap any ✓ to open the exact page with the quote highlighted, or the government's original PDF.
+- **Drafts objections a human must sign.** The grounds quote the committee's own record with page numbers. Nothing is filed until the resident reads the letter and types an exact sentence. Step Functions waits on a task token, and the signed letter is locked with a SHA-256 receipt.
 
-From the 26th EAC (Thermal) meeting, 20 June 2025 (`parivesh.nic.in/utildoc/131396604_1751547453000.pdf`):
+| | |
+|---|---|
+| ![Project](assets/screenshots/04-project.png) | ![Evidence](assets/screenshots/05-evidence-drawer.png) |
+| ![Agents](assets/screenshots/02-agents.png) | ![Refused](assets/screenshots/06-refused.png) |
 
-| Project | Committee decision | What Vakeel surfaced |
-|---|---|---|
-| Korba Power (Adani Power), 1,320 MW, Chhattisgarh | Recommended | Public hearing exempted; 104,110 m³/day from the Hasdeo River (water for 7.7 lakh people); baseline PM2.5 already above the annual standard; est. ₹4,887 crore/yr climate damage |
-| GMR Kamalanga, 350 MW, Odisha | Recommended | Public hearing exempted; high-ash coal; river water draw; forests within 10 km |
-| Jindal Power, Tamnar, Chhattisgarh | Deferred | 31 non-compliances reported by the Regional Office |
-| NTPC Darlipali Stage II, Odisha | Returned | Pending human-rights court case on pollution and health hazards |
-| NLC Talabira, 800 MW, Odisha | Study (ToR) approved | Already-polluted baseline; river water draw |
-| KSK Mahanadi expansion, Chhattisgarh | Returned | Wildlife area 1.17 km away |
+## On real filings
 
-The whole filing was read for roughly 200k Bedrock tokens. The verifier rejected about 40 AI claims that were not word-for-word in the source.
+| Filing | Pages | Read in | Findings |
+|---|---|---|---|
+| EAC Thermal, 20 Jun 2025 | 246 | < 1 min | Korba (Adani Power) 1,320 MW recommended with the public hearing exempted; 104,110 m³/day from the Hasdeo River; Jindal deferred over 31 non-compliances |
+| EAC Coal Mining, 8 Dec 2025 | 250 | 45 s | Central Coalfields' Karo mine *ran at 15 MTPA while allowed 1.5*, recommended; UltraTech clears 652.9 ha of forest |
+| EAC Thermal, 30 Apr 2026 | 236 | 39 s | Jhabua Power dumping ash without approval, returned |
 
-The live deployment has also read two more real filings, **732 pages and 17 projects in total, with 209 claims verified and 70 rejected**:
-
-- **EAC (Coal Mining), 8 December 2025, 250 pages, read in 45 s:** Central Coalfields' Karo mine *"ran at 15 MTPA while only allowed 1.5"* and was recommended; UltraTech's Arjuni East mine clears 652.9 ha of forest beside Patasi Reserved Forest; a coal washery doubles capacity in air already above the PM10 standard.
-- **EAC (Thermal), 30 April 2026, 236 pages, read in 39 s:** Jhabua Power dumping ash without approval (returned); Adani Power's Raipur expansion; Jindal Power's Tamnar ash dyke.
+Across these: 732 pages, 17 projects, 224 claims verified and 75 rejected.
 
 ## Architecture
 
-```
-Browser ─► CloudFront + S3 (React app)
-   │
-   ├─► API Gateway (HTTP API, throttled) ─► Lambda (api)
-   │        ├─ presigned S3 upload
-   │        ├─ starts Step Functions
-   │        └─ reads DynamoDB
-   │
-   ├─ Ingest state machine (Step Functions, STANDARD)
-   │     Segment (Lambda: pypdf, split projects) ─► Map, 1 agent per project, MaxConcurrency 3
-   │        └─ Analyze (Lambda) ─► Amazon Bedrock Converse, Nova 2 Lite, tool-forced JSON
-   │              ─► verify quotes against PDF ─► impact math in code ─► editor pass + translation
-   │     ─► Finalize (dedupe coordinates, Amazon Location geocode fallback)
-   │
-   └─ Objection state machine
-         Draft (Bedrock writes opening/requests only; grounds assembled by code)
-         ─► AwaitSignature (lambda:invoke.waitForTaskToken, 7-day timeout)
-         ─► File (SHA-256 receipt, counters) │ Expire
+```mermaid
+flowchart LR
+  U[Resident] -->|PDF| CF[CloudFront + S3<br/>web app]
+  CF --> API[API Gateway<br/>+ Lambda]
+  API -->|presigned upload| S3[(S3)]
+  API --> ING{{Step Functions<br/>Ingest}}
+  ING --> SEG[Segment<br/>projects]
+  SEG --> MAP[Map: one agent<br/>per project]
+  MAP --> BR[Amazon Bedrock<br/>Nova 2 Lite]
+  BR --> VER[Verifier +<br/>impact math]
+  VER --> DB[(DynamoDB)]
+  API --> OBJ{{Step Functions<br/>Objection}}
+  OBJ --> DR[Draft letter]
+  DR --> WAIT[[waitForTaskToken:<br/>human signs]]
+  WAIT --> FILE[Lock with<br/>SHA-256 receipt]
 ```
 
-AWS services: **Amazon Bedrock** (Nova 2 Lite), **AWS Step Functions** (Map state, waitForTaskToken), **AWS Lambda**, **Amazon API Gateway**, **Amazon DynamoDB**, **Amazon S3**, **Amazon CloudFront**, **Amazon Location Service** (geocode fallback), **Amazon Polly** (launch video voiceover), **AWS CloudFormation** (SAM transform).
+**AWS:** Bedrock, Step Functions, Lambda, API Gateway, DynamoDB, S3, CloudFront and Location Service, deployed with CloudFormation (SAM transform) in `ap-southeast-2`. The launch film is narrated with Amazon Polly.
 
-## Guardrails
+**Cost guardrails:**
+- an atomic daily Bedrock call cap in DynamoDB;
+- page, size and project limits;
+- API throttling;
+- one execution per document;
+- SHA-256 dedupe, so the same PDF is never paid for twice.
 
-- **No unverified numbers.** Facts, distances, concerns and the committee decision each need a verbatim quote found on a real page. Table rows, which PDF text scrambles, are verified by matching the name and value within the same row.
-- **The model never does the math.** CO₂, ₹ climate cost, water and coal equivalents are computed in `backend/vakeel/impact.py` with sourced factors (CEA, Ricke et al. 2018 for India's social cost of carbon, CPHEEO, CPCB NAAQS).
-- **Headlines cannot invent numbers.** Any number in a generated headline, dek or translation that is not in the verified data gets the text replaced.
-- **Never overstate a decision.** "Terms of Reference granted" (approval to study) is never shown as "recommended for clearance".
-- **A human signs everything.** Exact-phrase signature plus letter-hash check before Step Functions continues.
-- **Cost controls for a $100 free-plan account.** Atomic daily Bedrock call cap in DynamoDB, page, size and project limits, API throttling, one Step Functions execution per document (execution name = document id), and content-hash dedupe so the same PDF is never paid for twice.
+One full filing costs roughly 200k tokens.
 
-## Repo layout
+## Quick start
+
+Requirements: Python 3.12, Node 20+, and AWS credentials with Bedrock access (for the analysis step only).
+
+```bash
+pip install -r requirements.txt -r requirements-dev.txt
+python -m pytest -q tests                       # verifier, impact math, guards, segmenter
+python scripts/analyze_local.py path/to/filing.pdf   # run the full pipeline locally against Bedrock
+```
+
+Preview the web app offline on a real exported analysis:
+
+```bash
+cd web && npm install && npm run dev            # open http://localhost:5173/?mock
+```
+
+## Deploy
+
+```bash
+bash scripts/deploy.sh                          # CloudFormation stack + web app to S3/CloudFront
+python scripts/upload.py <api-url> filing.pdf   # read a filing through the live API
+```
+
+## Project structure
 
 ```
 backend/vakeel/     pipeline: pdf, extract, verify, impact, editor, draft, geo, store, llm
-backend/handlers/   api.py (HTTP API), workers.py (Step Functions tasks)
-infra/template.yaml CloudFormation + SAM transform
-web/                React + Vite + Tailwind app (?mock runs it offline on a real exported analysis)
-video/              Remotion launch film + Playwright recorder for real product footage
-scripts/            analyze_local.py (run the pipeline locally), deploy.sh
+backend/handlers/   HTTP API and Step Functions task handlers
+infra/template.yaml CloudFormation + SAM
+web/                React, Vite, Tailwind, Motion, Leaflet
+tests/              unit tests for the deterministic core
+video/              launch film (Remotion), voiceover, score, encoder
+docs/blog/          build log
 ```
 
-## Run it
+## Limits
 
-```bash
-# analyse a filing locally against Bedrock (needs AWS credentials with Bedrock access)
-pip install -r requirements.txt
-python scripts/analyze_local.py path/to/filing.pdf
+- Vakeel never submits anything itself. Residents send the signed letter from their own email or by post, so it carries their identity.
+- Climate-cost figures are estimates from the proposal's stated capacity and published factors, and are labelled as estimates.
+- v1 reads text PDFs, which covers committee minutes and most EIA reports. Scanned filings will need an Amazon Textract step.
 
-# preview the web app offline on the exported analysis
-cd web && npm install && npm run dev   # open http://localhost:5173/?mock
+## Credits
 
-# deploy everything (CloudFormation + S3 + CloudFront)
-bash scripts/deploy.sh
-```
-
-## Honest limits
-
-- Vakeel does not submit anything to PARIVESH. The signed letter is sent by the citizen from their own email or by post, so it carries their legal identity.
-- Climate-cost figures are estimates from the proposal's stated capacity and published factors, and are labelled as estimates everywhere they appear.
-- v1 reads text PDFs, which covers PARIVESH committee minutes and most EIA reports. Scanned, image-only filings will need an Amazon Textract OCR step (next on the list).
-- The live stack runs in `ap-southeast-2`. The hackathon AWS account is a project pinned to that region, and Bedrock is reached through the `global.amazon.nova-2-lite-v1:0` inference profile.
-
-## Next
-
-Auto-watch PARIVESH for new filings by district, WhatsApp and voice alerts in local languages (Amazon Polly), and dashboards for environmental lawyers and journalists who already file these objections by hand.
+Built for **Environmental Hacks 2026** (WeMakeDevs × AWS, Bharat Builds Tour) by Tamil Adhavan S K. Source documents are public records from PARIVESH, Ministry of Environment, Forest and Climate Change. MIT licensed.

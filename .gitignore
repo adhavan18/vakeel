@@ -19,3 +19,9 @@ sample_data/**/*.pdf
 video/public/*.wav
 video/public/vo*/*.wav
 video/public/clips/*.webm
+SOCIAL.md
+SESSION_LOG.md
+web/public/recorder/
+video/public/vo_user/
+video/public/vo*/*.webm
+.pytest_cache/

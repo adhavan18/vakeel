@@ -12,7 +12,7 @@ That's a 1,320 MW coal expansion at Korba, Chhattisgarh, 2.2 km from the Barpall
 
 Indian law gives people next to these projects a voice: public hearings and written objections. But you can't object to a document you can't read. So we built **Vakeel** (Hindi for *advocate*): an AI that reads these filings for the people next door, and helps them object before approval.
 
-![Vakeel project page: the Korba expansion decoded, every figure linked to its source page](img/04-project.png)
+![Vakeel project page: the Korba expansion decoded, every figure linked to its source page](../../assets/screenshots/04-project.png)
 
 ## The hard part wasn't reading. It was trust.
 
@@ -29,7 +29,7 @@ An LLM summarising legal documents is easy to build and dangerous to ship. If it
 
 Committee minutes bundle several projects, and describe each one twice: once with its details near the front, again with the committee's deliberations near the back. Vakeel's segmenter stitches each project's two halves back together. Then a **Step Functions Map state** fans out one Bedrock agent per project, three at a time, with retries. Every agent streams progress into DynamoDB, and the UI shows six lanes reading in parallel. The whole 246-page filing goes through in about 35 seconds for roughly 200k tokens.
 
-![Six Bedrock agents reading one filing in parallel, with a live log](img/02-agents.png)
+![Six Bedrock agents reading one filing in parallel, with a live log](../../assets/screenshots/02-agents.png)
 
 ## A human must sign. Step Functions waits.
 

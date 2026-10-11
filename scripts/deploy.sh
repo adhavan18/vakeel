@@ -57,7 +57,7 @@ DIST_ID=$(output DistributionId)
 
 echo "==> building web app"
 (cd web && npx vite build >/dev/null)
-rm -rf web/dist/mock
+rm -rf web/dist/mock web/dist/recorder
 printf '{"apiUrl": "%s"}\n' "$API_URL" > web/dist/config.json
 
 echo "==> uploading web app"
