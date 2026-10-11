@@ -84,7 +84,11 @@ def compute(project_type: str, facts: list[dict]) -> dict:
             "id": "water",
             "value": round(people),
             "unit": "people",
-            "headline": f"Enough water for {people / 100000:.1f} lakh people, every day",
+            "headline": (
+                f"Enough water for {people / 100000:.1f} lakh people, every day"
+                if people >= 100000
+                else f"Enough water for {people:,.0f} people, every day"
+            ),
             "formula": f"{water['value']:,.0f} m3/day x 1000 L / {_f('lpcd'):g} L per person",
             "inputs": [water],
             "factors": ["lpcd"],
