@@ -5,6 +5,8 @@ film's dark backdrop with a name lower-third, loudness-matched to the narration.
 
 Usage: python add_face.py [intro.mp4] [outro.mp4]
 Defaults: public/face/intro.* and public/face/outro.* (either may be missing).
+CUTS below keeps only the spoken parts of each take (jump cuts, alternating a slight
+zoom), so the finished film stays under the 3-minute limit.
 Writes out/vakeel-launch-face.mp4.
 """
 
@@ -19,6 +21,14 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 ROOT = pathlib.Path(__file__).parent
 FILM = ROOT / "out/vakeel-launch-final.mp4"
 END_CARD_FRAMES = 135  # the calm film's end scene is 4.5 s (script_v2.json "end")
+END_CARD_KEEP = 75  # trimmed to 2.5 s, faded out, to make room for the founder
+ROTATE = 180  # the takes were recorded upside down
+# Seconds of each take to keep, cut in the silences between phrases (from a word-level
+# transcript plus an energy check). None keeps the whole take.
+CUTS = {
+    "intro": [(4.45, 9.05), (9.98, 17.95), (18.95, 21.35), (22.40, 23.25), (23.88, 25.70)],
+    "outro": [(5.50, 14.90), (15.98, 17.88), (19.10, 24.50)],
+}
 W, H, FPS, SR = 1920, 1080, 30, 44100
 INK = (11, 11, 12)
 EMBER = (255, 90, 31)
@@ -65,9 +75,16 @@ def shadow_mask(x, y, cw, ch):
     return _SHADOWS[key]
 
 
-def compose(img, t, dur, template):
+def compose(img, t, dur, template, zoom=1.0, lower_third=True):
     """Place one camera frame on the backdrop: 16:9 fills a large rounded card, portrait sits left."""
     canvas = template.copy()
+    if zoom != 1.0:
+        iw, ih = img.size
+        cw0, ch0 = iw / zoom, ih / zoom
+        cx, cy = iw * 0.5, ih * 0.45
+        left = min(max(0, cx - cw0 / 2), iw - cw0)
+        top = min(max(0, cy - ch0 / 2), ih - ch0)
+        img = img.crop((round(left), round(top), round(left + cw0), round(top + ch0)))
     w, h = img.size
     if w >= h:
         cw = 1600
@@ -85,7 +102,7 @@ def compose(img, t, dur, template):
     canvas.paste((0, 0, 0), (0, 0), shadow_mask(x, y, cw, ch))
     canvas.paste(card, (x, y), mask)
     # Lower third, eased in over the first 0.5 s.
-    a = min(1.0, max(0.0, (t - 0.4) / 0.5))
+    a = min(1.0, max(0.0, (t - 0.4) / 0.5)) if lower_third else 0
     if a > 0:
         d = ImageDraw.Draw(canvas)
         if w >= h:
@@ -128,26 +145,54 @@ def level(x, target=0.085):
     return x * (0.95 / peak) if peak > 0.95 else x
 
 
-def clip_frames(path, template):
+def clip_frames(path, template, cuts, lower_third):
+    """Yield composed 30 fps frames for the kept segments, reading the take once."""
+    segs = cuts or [(0.0, 1e9)]
     c = av.open(str(path))
-    vs = c.streams.video[0]
-    dur = float(vs.duration * vs.time_base) if vs.duration else float(c.duration / 1e6)
-    rot = int(vs.metadata.get("rotate", 0) or 0)
-    frames = []
-    for fr in c.decode(video=0):
-        frames.append((float(fr.pts * fr.time_base) if fr.pts is not None else len(frames) / FPS, fr.to_image()))
+    dur_src = float(c.duration / 1e6)
+    segs = [(a, min(b, dur_src)) for a, b in segs]
+    total = sum(round((b - a) * FPS) for a, b in segs)
+    frames = c.decode(video=0)
+    cur = next(frames)
+    nxt = next(frames, None)
+    i = 0
+    for k, (a, b) in enumerate(segs):
+        zoom = 1.0 if k % 2 == 0 else 1.1
+        for j in range(round((b - a) * FPS)):
+            target = a + j / FPS
+            while nxt is not None and nxt.time <= target:
+                cur, nxt = nxt, next(frames, None)
+            img = cur.to_image()
+            if ROTATE:
+                img = img.rotate(ROTATE, expand=True)
+            yield compose(img, i / FPS, total / FPS, template, zoom, lower_third)
+            i += 1
     c.close()
-    t0 = frames[0][0]
-    n = int(round((frames[-1][0] - t0) * FPS)) + 1
-    j = 0
-    for i in range(n):
-        t = i / FPS
-        while j + 1 < len(frames) and frames[j + 1][0] - t0 <= t:
-            j += 1
-        img = frames[j][1]
-        if rot:
-            img = img.rotate(-rot, expand=True)
-        yield compose(img, t, n / FPS, template)
+
+
+def clip_audio(path, cuts, n_frames):
+    """Kept segments of the take, joined with 15 ms crossfades, high-passed and levelled."""
+    from scipy.signal import butter, sosfilt
+
+    full = decode_audio(path)
+    segs = cuts or [(0.0, len(full) / SR)]
+    xf = int(0.015 * SR)
+    out = np.zeros((0, 2), np.float32)
+    for a, b in segs:
+        piece = full[int(a * SR):int(round((b - a) * FPS) / FPS * SR) + int(a * SR)].copy()
+        if len(out) and len(piece) > xf:
+            ramp = np.linspace(0, 1, xf)[:, None]
+            out[-xf:] = out[-xf:] * (1 - ramp) + piece[:xf] * ramp
+            piece = piece[xf:]
+        out = np.concatenate([out, piece])
+    out = sosfilt(butter(2, 80, "highpass", fs=SR, output="sos"), out, axis=0).astype(np.float32)
+    out = level(out, 0.09)
+    want = int(n_frames / FPS * SR)
+    out = np.pad(out[:want], ((0, max(0, want - len(out))), (0, 0)))
+    fade = int(0.08 * SR)
+    out[:fade] *= np.linspace(0, 1, fade)[:, None]
+    out[-fade:] *= np.linspace(1, 0, fade)[:, None]
+    return out
 
 
 def main():
@@ -178,29 +223,34 @@ def main():
         for p in vs.encode(f):
             dst.mux(p)
 
-    def add_clip(path):
+    def add_clip(path, key, lower_third):
         start = pts
-        for img in clip_frames(path, template):
+        for img in clip_frames(path, template, CUTS.get(key), lower_third):
             put(img)
         n = pts - start
-        a = level(decode_audio(path))[: int(n / FPS * SR)]
-        a = np.pad(a, ((0, int(n / FPS * SR) - len(a)), (0, 0)))
-        fade = int(0.08 * SR)
-        a[:fade] *= np.linspace(0, 1, fade)[:, None]
-        a[-fade:] *= np.linspace(1, 0, fade)[:, None]
-        parts_audio.append(a)
+        parts_audio.append(clip_audio(path, CUTS.get(key), n))
         print(f"{path.name}: {n / FPS:.1f}s")
 
     if intro:
-        add_clip(intro)
+        add_clip(intro, "intro", True)
     film = av.open(str(FILM))
+    last = cut + END_CARD_KEEP
     for i, fr in enumerate(film.decode(video=0)):
         if i == cut and outro:
             parts_audio.append(film_audio[: int(cut / FPS * SR)])
             film_audio = film_audio[int(cut / FPS * SR):]
-            add_clip(outro)
-        put(fr)  # film frames go straight to the encoder, no PIL round trip
-    parts_audio.append(film_audio)
+            add_clip(outro, "outro", False)
+        if i >= last:
+            break
+        if i >= last - 20:  # fade the shortened end card to black
+            img = fr.to_image()
+            put(Image.blend(Image.new("RGB", img.size, (0, 0, 0)), img, (last - i) / 20))
+        else:
+            put(fr)  # film frames go straight to the encoder, no PIL round trip
+    tail = film_audio[: int(END_CARD_KEEP / FPS * SR)].copy()
+    fade = int(20 / FPS * SR)
+    tail[-fade:] *= np.linspace(1, 0, fade)[:, None]
+    parts_audio.append(tail)
     for p in vs.encode():
         dst.mux(p)
 
