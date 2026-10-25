@@ -78,6 +78,10 @@ backend/   pipeline (pdf, extract, verify, impact, editor, draft) and lambda han
 infra/     cloudformation + sam template
 web/       react, vite, tailwind, leaflet
 tests/     unit tests for the deterministic core
+
+## platform engineering lab
+
+The [`platform-engineering-lab/`](platform-engineering-lab/) directory contains a production-oriented AWS delivery reference: Terraform, CloudFormation/SAM, ECS Fargate, EKS manifests, Lambda, CloudWatch, CloudTrail, GitHub Actions, CodePipeline, CodeBuild, ECR, OIDC, SBOM generation, and container security checks.
 video/     launch film (remotion), voiceover, score, encoder
 docs/      build log and hackathon notes
 ```

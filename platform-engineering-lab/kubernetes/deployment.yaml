@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Namespace
+metadata: { name: platform }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: inference-api, namespace: platform }
+spec:
+  replicas: 2
+  selector: { matchLabels: { app: inference-api } }
+  template:
+    metadata: { labels: { app: inference-api } }
+    spec:
+      securityContext: { runAsNonRoot: true }
+      containers:
+        - name: api
+          image: REPLACE_WITH_ECR_DIGEST
+          ports: [{ containerPort: 8080 }]
+          readinessProbe: { httpGet: { path: /ready, port: 8080 }, periodSeconds: 10 }
+          livenessProbe: { httpGet: { path: /health, port: 8080 }, periodSeconds: 30 }
+          resources: { requests: { cpu: 100m, memory: 128Mi }, limits: { cpu: 500m, memory: 512Mi } }
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata: { name: inference-api, namespace: platform }
+spec: { scaleTargetRef: { apiVersion: apps/v1, kind: Deployment, name: inference-api }, minReplicas: 2, maxReplicas: 10, metrics: [{ type: Resource, resource: { name: cpu, target: { type: Utilization, averageUtilization: 70 } } }] }
